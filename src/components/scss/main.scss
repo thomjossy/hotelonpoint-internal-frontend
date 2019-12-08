@@ -1,0 +1,18 @@
+$whiteColor: #fff;
+$goldColor: #ffd700;
+$blackColor: #04070e;
+
+@import "./singleform";
+@import "./addhotels.scss";
+@import "./addroom.scss";
+@import "./custombutton.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}

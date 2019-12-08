@@ -1,0 +1,13 @@
+.custom-btn-div {
+  margin: 1rem 0;
+  .custom-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.8rem;
+    width: 20rem;
+    background: $blackColor;
+    color: $whiteColor;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+}

@@ -1,0 +1,36 @@
+.single-form-div {
+  display: block;
+  margin: 0.2rem 0;
+
+  .single-form-label {
+    display: inline-block;
+    height: 3rem;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .form-field {
+    display: block;
+    width: 30rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+.single-checkbox-div {
+  width: auto;
+  padding: 0.2rem;
+
+  .single-form-label {
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+
+  .checkbox-field {
+    width: 2rem;
+    height: 2rem;
+  }
+}
