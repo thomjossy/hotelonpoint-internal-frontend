@@ -1,11 +1,18 @@
 $whiteColor: #fff;
-$goldColor: #ffd700;
+$goldColor: #d39000;
 $blackColor: #04070e;
 
+@mixin easeTrans {
+  transition: all 0.6s ease-in;
+}
 @import "./singleform";
 @import "./addhotels.scss";
 @import "./addroom.scss";
 @import "./custombutton.scss";
+@import "./dashboardnavbar";
+@import "./reservations";
+@import "./dashboarditem";
+@import "./dashboardhomepage";
 
 * {
   padding: 0;
@@ -14,5 +21,17 @@ $blackColor: #04070e;
 }
 
 html {
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.custom-shadow {
+  box-shadow: 0px 0px 1rem rgba($blackColor, 0.3);
+}
+
+.gold {
+  color: $goldColor;
+  font-size: 2rem;
+}
+.form-field {
+  outline-color: $goldColor !important;
 }
