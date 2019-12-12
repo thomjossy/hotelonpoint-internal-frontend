@@ -27,7 +27,7 @@ export default function RegisterHotel1() {
 
   return (
     <div className="container register-1">
-      <h3>Welcome, Carefully fill in the form</h3>
+      <h3>Welcome, to add your property, carefully fill in the form</h3>
       <form>
         <div className="row p-4 custom-shadow">
           <FormField
