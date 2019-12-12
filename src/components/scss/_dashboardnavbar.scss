@@ -1,0 +1,160 @@
+.dashboardnavbar-div {
+  width: 100%;
+  background: $blackColor;
+  display: flex;
+  flex-direction: column;
+
+  .harmbuger-div {
+    position: relative;
+    width: 100%;
+    height: 2rem;
+    display: none;
+
+    i {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      color: $whiteColor;
+      font-size: 2rem;
+    }
+  }
+}
+
+.dashboardnavbar {
+  width: 100%;
+  background: $blackColor;
+}
+ul {
+  display: flex;
+  list-style-type: none;
+
+  li {
+    display: block;
+    margin: 0.5rem;
+
+    a {
+      display: block;
+      width: 100%;
+      color: $whiteColor;
+      text-decoration: none;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 1rem;
+      @include easeTrans();
+
+      ul {
+        display: none;
+        overflow: hidden;
+      }
+
+      &:hover {
+        background: rgba($whiteColor, 0.3);
+        color: $whiteColor;
+        text-decoration: none;
+
+        ul {
+          display: block;
+
+          li {
+            a {
+              background: $whiteColor;
+              color: $blackColor;
+
+              &:hover {
+                background: $blackColor;
+                color: $goldColor;
+              }
+            }
+          }
+        }
+      }
+
+      i {
+        display: block;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboardnavbar-close {
+    display: none;
+    overflow: hidden;
+  }
+  .dashboardnavbar-div {
+    width: 100%;
+    position: relative;
+    background: $blackColor;
+
+    .harmbuger-div {
+      position: relative;
+      width: 100%;
+      height: 3rem;
+      display: block;
+
+      i {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        color: $whiteColor;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .dashboardnavbar {
+    width: 100%;
+    background: $blackColor;
+  }
+  ul {
+    display: block;
+    list-style-type: none;
+
+    li {
+      display: block;
+      margin: 0.5rem;
+
+      a {
+        display: block;
+        width: 100%;
+        color: $whiteColor;
+        text-decoration: none;
+        font-size: 1.3rem;
+        text-align: left;
+        padding: 0.8rem;
+        @include easeTrans();
+
+        ul {
+          display: none;
+          overflow: hidden;
+        }
+
+        &:hover {
+          background: rgba($whiteColor, 0.3);
+
+          ul {
+            display: block;
+
+            li {
+              a {
+                background: $whiteColor;
+                color: $blackColor;
+
+                &:hover {
+                  background: $blackColor;
+                  color: $goldColor;
+                }
+              }
+            }
+          }
+        }
+
+        i {
+          display: block;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
