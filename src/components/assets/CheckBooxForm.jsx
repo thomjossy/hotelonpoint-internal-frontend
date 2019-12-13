@@ -32,10 +32,10 @@ export default function CheckBooxForm() {
       <div className="row">
         <div className="col-sm-8 md-6 col-lg-4 ">
           <button
-            className="btn btn-primary btn-lg w-50 mb-4 bg-dark"
+            className="btn btn-primary btn-lg w-50 mb-4"
             onClick={decrementStep}
           >
-            Back
+            <i className="fas fa-arrow-left mr-3"></i> Back
           </button>
         </div>
       </div>

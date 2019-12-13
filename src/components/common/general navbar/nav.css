@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap");
+.navigation {
+  color: red;
+}
+.nav-link {
+  font-size: 15px;
+  color: black;
+  font-weight: bold;
+}
+.nav-link:hover {
+  color: white;
+}
+.wicon {
+  font-size: 30px;
+  color: green;
+}
+.number {
+  color: white;
+}
+.menuicon {
+  color: black;
+  font-size: 15px;
+  margin-right: 5px;
+}
+.navbar-expand-lg {
+  z-index: 3px;
+}
+.navbar {
+  background-color: black !important;
+}
+.navbar-toggler {
+  border-color: white !important;
+  margin-bottom: 10px;
+}
+.navbar-toggler-icon {
+  color: white;
+}
+.botin {
+  outline: none;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #c4bda3;
+  color: #c4bda3;
+  background: none;
+}
+.botin:hover {
+  background-color: #c4bda3;
+  color: black;
+  font-weight: bold;
+}
+.bg2 {
+  background-color: #c4bda3;
+}
+.nav-item {
+  font-family: "PT Sans", sans-serif;
+}

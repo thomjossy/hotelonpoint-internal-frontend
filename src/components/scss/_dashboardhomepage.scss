@@ -1,10 +1,34 @@
 .dashboard-wrapper {
-  padding: 2rem 1rem;
-  width: 90%;
-  margin: 0 auto;
-  display: grid;
+}
+
+.dashboard-top {
+  height: 30vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.699), rgba(0, 0, 0, 0.699)),
+    url(../images/hoomage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  display: flex;
   justify-content: center;
   align-items: center;
+
+  .greeting-text {
+    color: $whiteColor;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+}
+
+.dashboard-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 250px));
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  background: chocolate;
+
+  .dashboard-menu {
+    width: 150px;
+    height: 150px;
+    background: cyan;
+  }
 }

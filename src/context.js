@@ -14,6 +14,7 @@ class RoomProvider extends Component {
     hotelWebsite: "",
     conNumber: "",
     email: "",
+    roomAmenities: [{ index: Math.random(), amenity: "" }],
     isChainComp: "",
     compName: "",
     country: "",
@@ -47,7 +48,6 @@ class RoomProvider extends Component {
     accomodatePet: false,
     fitnessCenter: false,
     frontDesk: false,
-
     swimingPollValue: "swiming pool",
     restaurantValue: "restaurant",
     gardenValue: "garden",
@@ -57,7 +57,6 @@ class RoomProvider extends Component {
     accomodatePetValue: "accomodates pets",
     fitnessCenterValue: "fitness center",
     frontDeskValue: "front desk",
-
     freeCancellationPeriod: "",
     paidCancellation: "",
     checkIn: "",
@@ -81,9 +80,16 @@ class RoomProvider extends Component {
 
   handleChange = event => {
     const { name, value, type, checked } = event.target;
+
     if (["index", "addressName"].includes(event.target.name)) {
       let address = [...this.state.address];
       address[event.target.dataset.id][event.target.name] = event.target.value;
+    }
+
+    if (["index", "amenity"].includes(event.target.name)) {
+      let roomAmenities = [...this.state.roomAmenities];
+      roomAmenities[event.target.dataset.id][event.target.name] =
+        event.target.value;
     }
     if (
       [
@@ -93,8 +99,8 @@ class RoomProvider extends Component {
         "roomSize",
         "roomsOfthisType",
         "bedType",
-        " bedNumber",
-        " smokePolicy",
+        "bedNumber",
+        "smokePolicy",
         "occupantPolicy",
         "pricePerNight"
       ].includes(event.target.name)
@@ -106,7 +112,7 @@ class RoomProvider extends Component {
         ? this.setState({ [name]: checked })
         : this.setState({ [name]: value });
 
-    console.log(this.state.rooms);
+    console.log(this.state.address);
   };
 
   addNewRow = e => {
@@ -135,6 +141,24 @@ class RoomProvider extends Component {
         }
       ]
     }));
+  };
+
+  addRoomAmenities = e => {
+    e.preventDefault();
+    this.setState(prevState => ({
+      roomAmenities: [
+        ...prevState.roomAmenities,
+        { index: Math.random(), amenity: "" }
+      ]
+    }));
+  };
+
+  deleteRoomAmenities = index => {
+    this.setState({
+      roomAmenities: this.state.roomAmenities.filter(
+        (s, sindex) => index !== sindex
+      )
+    });
   };
 
   deleteRow = index => {
@@ -182,7 +206,8 @@ class RoomProvider extends Component {
       checkIn: this.state.checkIn,
       checkOut: this.state.checkOut,
       accomodateChild: this.state.accomodateChild,
-      accomodatePet: this.state.accomodatePet
+      accomodatePet: this.state.accomodatePet,
+      roomAmenities: this.state.roomAmenities
     };
 
     // const result = await axios.post(
@@ -203,7 +228,9 @@ class RoomProvider extends Component {
           handleSubmit: this.handleSubmit,
           addNewRow: this.addNewRow,
           deleteRow: this.deleteRow,
-          addNewRoom: this.addNewRoom
+          addNewRoom: this.addNewRoom,
+          addRoomAmenities: this.addRoomAmenities,
+          deleteRoomAmenities: this.deleteRoomAmenities
         }}
       >
         {this.props.children}

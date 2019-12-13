@@ -28,7 +28,7 @@ export default function RegisterHotel1() {
   return (
     <div className="container register-1">
       <h3>Welcome, to add your property, carefully fill in the form</h3>
-      <form>
+      <div>
         <div className="row p-4 custom-shadow">
           <FormField
             value={hotelName}
@@ -139,9 +139,6 @@ export default function RegisterHotel1() {
         </div>
         <br />
 
-        <div className="row p-4 custom-shadow">{address[0].data}</div>
-        <br />
-
         <div className="row p-4 custom-shadow">
           <FormField
             label="Zip/Postal Code"
@@ -188,7 +185,7 @@ export default function RegisterHotel1() {
           </label>
         </div>
         <br />
-      </form>
+      </div>
       <br />
       <div className="row">
         <div className="col-md-8">
@@ -196,7 +193,7 @@ export default function RegisterHotel1() {
             className="btn btn-primary btn-lg w-50 btn-block "
             onClick={incrementStep}
           >
-            Continue
+            Continue <i className="fas fa-arrow-right m2"></i>
           </button>
         </div>
       </div>
