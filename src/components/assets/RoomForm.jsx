@@ -37,7 +37,7 @@ export default function RegisterHotel2() {
                   />
                 </div>
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Room Type</label>
+                  <label htmlFor={roomType}>Room Type</label>
                   <input
                     type="text"
                     id={roomType}
@@ -50,7 +50,7 @@ export default function RegisterHotel2() {
                   />
                 </div>
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Size of the Room</label>
+                  <label htmlFor={roomSize}>Size of the Room</label>
                   <input
                     type="text"
                     id={roomSize}
@@ -63,7 +63,7 @@ export default function RegisterHotel2() {
                   />
                 </div>
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Room of this type </label>
+                  <label htmlFor={roomsOfthisType}>Room of this type </label>
                   <input
                     type="text"
                     id={roomsOfthisType}
@@ -76,7 +76,7 @@ export default function RegisterHotel2() {
                 </div>
 
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Type of Bed</label>
+                  <label htmlFor={bedType}>Type of Bed</label>
                   <input
                     type="text"
                     id={bedType}
@@ -90,7 +90,7 @@ export default function RegisterHotel2() {
                 </div>
 
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Number of Beds</label>
+                  <label htmlFor={bedNumber}>Number of Beds</label>
                   <input
                     type="text"
                     id={bedNumber}
@@ -103,7 +103,7 @@ export default function RegisterHotel2() {
                 </div>
 
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Smoking Policy</label>
+                  <label htmlFor={smokePolicy}>Smoking Policy</label>
                   <input
                     type="text"
                     id={smokePolicy}
@@ -116,7 +116,7 @@ export default function RegisterHotel2() {
                 </div>
                 <br />
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Occupant Policy</label>
+                  <label htmlFor={occupantPolicy}>Occupant Policy</label>
                   <input
                     type="text"
                     id={occupantPolicy}
@@ -129,7 +129,7 @@ export default function RegisterHotel2() {
                 </div>
                 <br />
                 <div className="form-group w-75">
-                  <label htmlFor="roomName">Price of Room Per Night</label>
+                  <label htmlFor={pricePerNight}>Price of Room Per Night</label>
                   <input
                     type="text"
                     id={pricePerNight}
@@ -140,13 +140,24 @@ export default function RegisterHotel2() {
                     onChange={handleChange}
                   />
                 </div>
+                <br />
               </div>
               <br />
             </>
           );
         })}
+
         <br />
-        <p className="btn btn-primary" onClick={addNewRoom}>
+        <br />
+        <p
+          className=" .add-room-btn"
+          style={{
+            textDecoration: "underline",
+            cursor: " pointer",
+            color: "#ff8c00"
+          }}
+          onClick={addNewRoom}
+        >
           Click here, to add a new Room Details
         </p>
       </div>

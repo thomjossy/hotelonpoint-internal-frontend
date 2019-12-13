@@ -44,3 +44,18 @@
 // #isNotChained {
 //   display: block;
 // }
+
+.form-item {
+  input {
+    width: 80%;
+    height: 2.5rem;
+    margin-left: 1rem;
+  }
+}
+
+.add-room-btn {
+  font-size: 1.5rem !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  color: #ff8c00 !important;
+}

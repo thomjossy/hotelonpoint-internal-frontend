@@ -1,0 +1,21 @@
+.blogphoto {
+  display: flex;
+  overflow: scroll;
+}
+
+.imageup {
+  margin: 5px;
+  width: 220px;
+  height: 250px;
+}
+
+.piccard {
+  background-color: grey;
+  height: 300px;
+  margin-top: 10px;
+}
+
+.tex {
+  color: #ffffff;
+  font-size: 1.5rem;
+}

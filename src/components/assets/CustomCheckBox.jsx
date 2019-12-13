@@ -7,9 +7,6 @@ export default function CustomCheckBox({ label, name, value, checked }) {
   const { handleChange } = context;
   return (
     <div className="single-checkbox-div">
-      <label htmlFor={label} className="single-form-label">
-        {label}
-      </label>
       <input
         type="checkbox"
         className="checkbox-field"
@@ -18,7 +15,10 @@ export default function CustomCheckBox({ label, name, value, checked }) {
         onChange={handleChange}
         value={value}
         checked={checked}
-      />
+      />{" "}
+      <label htmlFor={label} className="single-form-label">
+        {label}
+      </label>
     </div>
   );
 }
