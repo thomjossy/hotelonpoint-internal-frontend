@@ -35,3 +35,13 @@ html {
 .form-field {
   outline-color: $goldColor !important;
 }
+
+.wrapper {
+  min-height: 60vh;
+}
+
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

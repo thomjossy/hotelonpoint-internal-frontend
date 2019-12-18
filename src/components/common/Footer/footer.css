@@ -1,0 +1,26 @@
+.label{
+    color:#C4BDA3;
+}
+.icon{
+    color:#C4BDA3;
+    font-size:40px;
+    margin-left:30px;
+    margin-top:10px;
+}
+.footer-back{
+    background-color:black;
+    color:#C4BDA3;
+}
+.logo{
+    margin-top:25px;
+    color:#C4BDA3;
+}
+@media (max-width: 991.98px){
+    .secondsec{
+        display:none;
+    }
+}
+.secondsec{
+    color:#C4BDA3;
+
+}

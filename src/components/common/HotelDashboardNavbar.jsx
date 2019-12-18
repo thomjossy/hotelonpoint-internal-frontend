@@ -40,12 +40,7 @@ export default class HotelDashboardNavbar extends Component {
                 Reservations
               </Link>
             </li>
-            <li>
-              <Link to="#">
-                <i className="fas fa-pen"></i>
-                Reviews
-              </Link>
-            </li>
+
             <li>
               <Link to="/">
                 <i className="fas fa-inbox"></i>
