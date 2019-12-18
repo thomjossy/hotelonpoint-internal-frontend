@@ -15,6 +15,13 @@ import { Link } from "react-router-dom";
 import logo from "../../images/HOP.svg";
 
 export default class Navbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      authenticated: false,
+      userData: {}
+    };
+  }
   componentDidMount() {
     // this.props.getUser();
   }
@@ -45,89 +52,52 @@ export default class Navbar extends Component {
             >
               <span class="navbar-toggler-icon bg-light"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <ul className="navbar-nav ml-auto">
-                <li className="number  mr-1">
-                  <div
-                    className="btn-group mr-1 btn-group-sm"
-                    role="group"
-                    aria-label="Button group with nested dropdown"
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">
+                    Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    Link
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
-                    <div className="btn-group" role="group">
-                      <button
-                        id="btnGroupDrop2"
-                        type="button"
-                        className="botin dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Talk to us
-                      </button>
-
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenu2"
-                      >
-                        <Link to="/language/" className="dropdown-item">
-                          <FontAwesomeIcon
-                            className="wicon"
-                            icon={faWhatsapp}
-                          />{" "}
-                          08028967884
-                        </Link>
-                      </div>
-                    </div>
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">
+                      Action
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      Another action
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                      Something else here
+                    </a>
                   </div>
                 </li>
-
-                <li className="nav-item mr-1">
-                  <div
-                    className="btn-group mr-1 btn-group-sm"
-                    role="group"
-                    aria-label="Button group with nested dropdown"
+                <li class="nav-item">
+                  <a
+                    class="nav-link disabled"
+                    href="#"
+                    tabindex="-1"
+                    aria-disabled="true"
                   >
-                    <div className="btn-group" role="group">
-                      <button
-                        id="btnGroupDrop1"
-                        type="button"
-                        className="botin dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        EN
-                      </button>
-
-                      <div
-                        className="dropdown-menu"
-                        aria-labelledby="btnGroupDrop1"
-                      >
-                        <Link to="/language" className="dropdown-item">
-                          testing
-                        </Link>
-                      </div>
-                      <button type="button" className="botin">
-                        NGN
-                      </button>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="nav-item mr-1">
-                  <Link to="/properties">
-                    <button className="botin">Add your property</button>
-                  </Link>
-                </li>
-                <li className="nav-item mr-1">
-                  <Link to="/signup">
-                    <button className="botin">Sign up</button>
-                  </Link>
-                </li>
-                <li className="nav-item mr-1">
-                  <Link to="/login">
-                    <button className="botin">Login</button>
-                  </Link>
+                    Disabled
+                  </a>
                 </li>
               </ul>
             </div>

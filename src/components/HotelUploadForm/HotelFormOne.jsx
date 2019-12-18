@@ -23,11 +23,11 @@ class HotelFormOne extends Component {
       <div className="container" style={{ fontSize: "14px" }}>
         <br />
         <div>
-          <div className="container p-5">
-            <h1>Property Information</h1>
-            <br />
+          <div className="container ">
             {/* Begining of Row   */}
             <div className="container p-5 custom-shadow">
+              <h1>Property Information</h1>
+              <br />
               <h3>Basic Property Information</h3>
               {/* Begining of Row   */}
               <div className="row">

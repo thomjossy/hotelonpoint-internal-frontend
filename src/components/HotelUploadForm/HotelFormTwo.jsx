@@ -3,17 +3,17 @@ import { FieldArray, Field, connect } from "formik";
 
 class HotelFormTwo extends Component {
   render() {
-    console.log("Hi am props");
-    console.log(this.props.formik.values);
     const { moreHotelPolicies, moreHotelAmenities } = this.props.formik.values;
     return (
-      <section>
+      <section className="container">
+        <h1>Hotel Policies</h1>
         <div className="container custom-shadow p-4">
           <br />
           <h3>
             Fill in the policies in your hotel, to more policies click on the
             more policy button
           </h3>
+          <br />
           {/*Beginging of Row */}
           <div className="row">
             <div className="col-md-6 col-sm-12">

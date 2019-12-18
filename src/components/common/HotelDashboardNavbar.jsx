@@ -13,8 +13,8 @@ export default class HotelDashboardNavbar extends Component {
   render() {
     return (
       <div className="dashboardnavbar-div">
-        <div className="harmbuger-div" onClick={this.handleNavOpen}>
-          <i className="fas fa-bars"></i>
+        <div className="harmbuger-div">
+          <i onClick={this.handleNavOpen} className="fas fa-bars"></i>
         </div>
         <nav
           className={
@@ -42,13 +42,13 @@ export default class HotelDashboardNavbar extends Component {
             </li>
 
             <li>
-              <Link to="/">
+              <Link to="/reviews">
                 <i className="fas fa-inbox"></i>
-                Messages
+                Reviews
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/finance">
                 <i className="fas fa-money-bill-wave-alt"></i>
                 Finance
               </Link>

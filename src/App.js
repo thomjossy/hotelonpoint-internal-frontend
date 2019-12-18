@@ -4,7 +4,8 @@ import "./App.css";
 import "./components/scss/main.scss";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import Dashboard from "./components/pages/Dashboard";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
   return (
