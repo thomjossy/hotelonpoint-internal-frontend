@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import RegisterHotel1 from "./RegisterHotel1";
 import RegisterHotel2 from "./RegisterHotel2";
 import { RoomContext } from "../../context";
-import RoomAmenities from "./RoomAmenities";
 import RegisterHotel3 from "./RegisterHotel3";
 
 export default class AddHotelsPage extends Component {

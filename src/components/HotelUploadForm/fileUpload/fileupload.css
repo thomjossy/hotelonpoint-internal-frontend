@@ -1,6 +1,6 @@
 .blogphoto {
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .imageup {
