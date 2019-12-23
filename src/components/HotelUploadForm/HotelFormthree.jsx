@@ -1,11 +1,12 @@
-import React from "react";
 import { Field } from "formik";
+import React from "react";
+import './upload.css';
 
 export default function HotelUploadFormThree() {
   return (
-    <div className="container" style={{ fontSize: "14px" }}>
+    <div className="container bigd" style={{ fontSize: "14px" }}>
       <section>
-        <div className="container p-5 custom-shadow">
+        <div className="p-3 custom-shadow">
           <h1>Mangement Details</h1>
           <br />
           <div className="row">
@@ -19,7 +20,7 @@ export default function HotelUploadFormThree() {
                   id="propertyOwner"
                   name="propertyOwner"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -30,7 +31,7 @@ export default function HotelUploadFormThree() {
                   id="propertyOwnerPhoneOne"
                   name="propertyOwnerPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -42,7 +43,7 @@ export default function HotelUploadFormThree() {
                   id="propertyOwnerPhoneTwo"
                   name="propertyOwnerPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -52,7 +53,7 @@ export default function HotelUploadFormThree() {
                   id="propOwnerEmail"
                   name="propOwnerEmail"
                   placeholder="jane@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
@@ -67,7 +68,7 @@ export default function HotelUploadFormThree() {
                   id="frontDesk"
                   name="frontDesk"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -78,7 +79,7 @@ export default function HotelUploadFormThree() {
                   id="frontDeskPhoneOne"
                   name="frontDeskPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -90,7 +91,7 @@ export default function HotelUploadFormThree() {
                   id="frontDeskPhoneTwo"
                   name="frontDeskPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -100,7 +101,7 @@ export default function HotelUploadFormThree() {
                   id="frontDeskEmail"
                   name="frontDeskEmail"
                   placeholder="jane@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
@@ -121,7 +122,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationOne"
                   name="headOfReservationOne"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -132,7 +133,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationPhoneOne"
                   name="headOfReservationPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -144,7 +145,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationPhoneTwo"
                   name="headOfReservationPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -154,7 +155,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationOneEmail"
                   name="headOfReservationOneEmail"
                   placeholder="email@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
@@ -162,7 +163,7 @@ export default function HotelUploadFormThree() {
             {/* End of Owners info */}
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Reservation 2 (Optional)</h3>
+              <h3>Head of Reservation 2</h3>
               <div class="form-group">
                 <label htmlFor="headOfReservationTwo">Name</label>
                 <Field
@@ -170,7 +171,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationTwo"
                   name="headOfReservationTwo"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -183,7 +184,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationTwoPhoneOne"
                   name="headOfReservationTwoPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -195,7 +196,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationTwoPhoneTwo"
                   name="headOfReservationTwoPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -205,7 +206,7 @@ export default function HotelUploadFormThree() {
                   id="headOfReservationTwoEmail"
                   name="headOfReservationTwoEmail"
                   placeholder="jane@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
@@ -226,7 +227,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationOne"
                   name="headOfOperationOne"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -237,7 +238,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationPhoneOne"
                   name="headOfOperationPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -249,7 +250,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationPhoneTwo"
                   name="headOfOperationPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -259,14 +260,14 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationOneEmail"
                   name="headOfOperationOneEmail"
                   placeholder="jane@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
             {/* End of Owners info */}
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Operations 2 (Optional)</h3>
+              <h3>Head of Operations 2</h3>
               <div class="form-group">
                 <label htmlFor="headOfOperationTwo">Name</label>
                 <Field
@@ -274,7 +275,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationTwo"
                   name="headOfOperationTwo"
                   placeholder="John Doe"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
 
@@ -285,7 +286,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationTwoPhoneOne"
                   name="headOfOperationTwoPhoneOne"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -297,7 +298,7 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationTwoPhoneTwo"
                   name="headOfOperationTwoPhoneTwo"
                   placeholder="+234 801 345 6789"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
               <div class="form-group">
@@ -307,14 +308,13 @@ export default function HotelUploadFormThree() {
                   id="headOfOperationTwoEmail"
                   name="headOfOperationTwoEmail"
                   placeholder="jane@email.com"
-                  className="custom-field"
+                  className="form-control"
                 />
               </div>
             </div>
             {/* End of Owners info */}
             {/* End of Row   */}
           </div>
-          <br />
         </div>
       </section>
     </div>

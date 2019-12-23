@@ -1,5 +1,6 @@
+import { connect, Field } from "formik";
 import React, { Component } from "react";
-import { Field, connect } from "formik";
+import './upload.css';
 
 const newRooms = {
   roomName: "",
@@ -20,25 +21,22 @@ class HotelFormOne extends Component {
   render() {
     const { isPropertyGroup } = this.props.formik.values;
     return (
-      <div className="container" style={{ fontSize: "14px" }}>
-        <br />
-        <div>
-          <div className="container ">
+      <div className="container bigd" style={{ fontSize: "14px" }}>
+            <h1>Property Information</h1>
+            <br />
             {/* Begining of Row   */}
-            <div className="container p-5 custom-shadow">
-              <h1>Property Information</h1>
-              <br />
+            <div className="p-3 custom-shadow">
               <h3>Basic Property Information</h3>
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="hotelName">
                       What is the name of your property
                     </label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="hotelName"
                       name="hotelName"
                     />
@@ -48,14 +46,14 @@ class HotelFormOne extends Component {
                     </small>
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="propWebsite">
                       What is the website of your property (optional)
                     </label>
                     <Field
                       type="url"
-                      className="custom-field"
+                      className="form-control"
                       id="propWebsite"
                       name="hotelWebsite"
                     />
@@ -65,25 +63,25 @@ class HotelFormOne extends Component {
               {/* End of Row   */}
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="contactName">
                       Contact Name of the Hotel
                     </label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="contactName"
                       name="contactName"
                     />
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="starRating">Star Rating of you hotel</label>
                     <Field
                       as="select"
-                      className="custom-field"
+                      className="form-control"
                       id="starRating"
                       name="starRating"
                     >
@@ -99,23 +97,23 @@ class HotelFormOne extends Component {
               {/* End of Row   */}
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="country">Country</label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="country"
                       name="country"
                     />
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="state">State</label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="state"
                       name="state"
                     />
@@ -126,18 +124,18 @@ class HotelFormOne extends Component {
 
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="city">City</label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="city"
                       name="city"
                     />
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="isPropertyGroup">
                       Is this property part of property management company or
@@ -145,7 +143,7 @@ class HotelFormOne extends Component {
                     </label>
                     <Field
                       as="select"
-                      className="custom-field"
+                      className="form-control"
                       id="isPropertyGroup"
                       name="isPropertyGroup"
                     >
@@ -159,18 +157,18 @@ class HotelFormOne extends Component {
 
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <div class="form-group">
                     <label htmlFor="zipCode">Zip Code</label>
                     <Field
                       type="text"
-                      className="custom-field"
+                      className="form-control"
                       id="zipCode"
                       name="zipCode"
                     />
                   </div>
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   {isPropertyGroup === "no" ? null : (
                     <div class="form-group">
                       <label htmlFor="compName">
@@ -179,7 +177,7 @@ class HotelFormOne extends Component {
                       </label>
                       <Field
                         type="text"
-                        className="custom-field"
+                        className="form-control"
                         id="compName"
                         name="compName"
                       />
@@ -191,18 +189,18 @@ class HotelFormOne extends Component {
 
               {/* Begining of Row   */}
               <div className="row">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <label htmlFor="hotelDescription">
                     A brief description of your company
                   </label>
                   <Field
                     as="textarea"
                     name="hotelDescription"
-                    className="hotelDescription"
+                    className="form-control"
                     id="hotelDescription"
                   />
                 </div>
-                <div className="col-md-6 col-sm-12">
+                <div className="col-md-6">
                   <label htmlFor="repApproach">
                     Where you approached by a Hotel On Point staff, if so write
                     his/her fullname below
@@ -210,19 +208,14 @@ class HotelFormOne extends Component {
                   <Field
                     type="text"
                     name="repApproach"
-                    className="custom-field"
+                    className="form-control"
                     id="repApproach"
                   />
                 </div>
               </div>
-              <br />
-              <br />
               {/* End of Row   */}
             </div>
           </div>
-        </div>
-        <br />
-      </div>
     );
   }
 }

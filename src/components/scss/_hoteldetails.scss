@@ -1,0 +1,22 @@
+.property-information-div {
+  h3,
+  h5 {
+    font-weight: 400;
+  }
+  .no-bullets {
+    list-style-type: none;
+  }
+}
+.no-bullets {
+  list-style-type: none;
+}
+
+.light-font {
+  font-weight: 400;
+}
+
+.second-gold {
+  color: $goldColor;
+  font-size: larger;
+  margin-bottom: 0;
+}

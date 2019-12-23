@@ -1,0 +1,52 @@
+.custom-shadow {
+    box-shadow: 0px 0px 1rem rgba(26, 24, 24, 0.568);
+  }
+  .carier{
+    padding-left:50%;
+    padding-right:50%;
+  }
+  .gold {
+    color: #C4BDA3;
+    font-size: 2rem;
+  }
+  .form-field {
+    outline-color: #C4BDA3 !important;
+  }
+  
+  .wrapper {
+    min-height: 60vh;
+  }
+  
+  .button-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .custom-field {
+    display: block;
+    width: 90%;
+    height: 2.5rem;
+    outline-color: black;
+  }
+  
+    .custom-field:hover {
+      outline-color: #C4BDA3 ;
+    }
+  
+  
+  @media screen and (max-width: 768px) {
+    .custom-field {
+      display: block;
+      width: 100%;
+      height: 2.5rem;
+      outline-color: black;
+    
+    }
+    .custom-field:hover {
+        outline-color: #C4BDA3 ;
+      }
+      .custom-field:active {
+        outline-color: #C4BDA3 ;
+      }
+    }

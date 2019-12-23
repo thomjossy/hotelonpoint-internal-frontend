@@ -1,11 +1,16 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
+import axios from "axios";
+import { Form, Formik } from "formik";
 import React, { Component } from "react";
-import { Formik, Form, Field, FieldArray } from "formik";
-import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HotelFormOne from "../HotelUploadForm/HotelFormOne";
 import HotelFormThree from "../HotelUploadForm/HotelFormthree";
-import HotelUploadForm from "./HotelUploadForm";
+import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
 import FileUpload from "./FileUpload";
-import axios from "axios";
+import HotelFormSix from "./HotelFormSix";
+import HotelUploadForm from "./HotelUploadForm";
+import "./upload.css";
 
 const initialValues = {
   hotelName: "",
@@ -22,8 +27,8 @@ const initialValues = {
   hotelDescription: "",
   rooms: [
     {
-      roomName: "",
       roomType: "",
+      smokingPolicy: "",
       roomSize: "",
       roomsOfThisType: "",
       bedType: "",
@@ -49,7 +54,7 @@ const initialValues = {
   headOfReservationPhoneTwo: "",
   headOfReservationOneEmail: "",
   headOfReservationTwo: "",
-  headOfReservationTwoPhoneTwo: "",
+  headOfReservationTwoPhoneOne: "",
   headOfReservationTwoPhoneTwo: "",
   headOfReservationTwoEmail: "",
   headOfOperationOne: "",
@@ -67,23 +72,30 @@ const initialValues = {
   checkOut: "",
   freeBooking: "",
   paidBooking: "",
-  otherpaymentMethod: "",
+  isBreakfastAvailable: "",
+  breakfastPrice: "",
+  contractName: "",
+  confirmRecipientAddress: "",
+  recipientCountry: "",
+  recipientState: "",
+  recipientCity: "",
+  recipientZipCode: "",
+  confirmAgreement: false,
+  isShuttleAvailable: "",
+  shuttlePrice: "",
   moreHotelPolicies: [
     {
-      policy: ""
+      policyTitle: "",
+      policyDescription: ""
     }
   ],
-  moreHotelAmenities: [
-    {
-      amenity: ""
-    }
-  ],
+  moreHotelAmenities: [],
   files: []
 };
 
 const newRooms = {
-  roomName: "",
   roomType: "",
+  smokingPolicy: "",
   roomSize: "",
   roomsOfThisType: "",
   bedType: "",
@@ -98,7 +110,9 @@ const newRooms = {
 
 export default class FormWrapper extends Component {
   state = {
-    page: 0
+    page: 0,
+    message: "",
+    isSubmitting: false
   };
 
   render() {
@@ -107,7 +121,8 @@ export default class FormWrapper extends Component {
       <HotelFormThree />,
       <HotelFormTwo />,
       <HotelUploadForm />,
-      <FileUpload />
+      <FileUpload />,
+      <HotelFormSix />
     ];
 
     const incrementStep = () => {
@@ -150,6 +165,7 @@ export default class FormWrapper extends Component {
           JSON.stringify(values.moreHotelAmenities[x])
         );
       }
+      form.append("confirmAgreement", values.confirmAgreement);
 
       form.append("hotelName", values.hotelName);
       form.append("hotelWebsite", values.hotelWebsite);
@@ -216,73 +232,107 @@ export default class FormWrapper extends Component {
       form.append("checkOut", values.checkOut);
       form.append("freeBooking", values.freeBooking);
       form.append("paidBooking", values.paidBooking);
-      form.append("otherPaymentMethod", values.otherPaymentMethod);
+      form.append("isBreakfastAvailable", values.isBreakfastAvailable);
+      form.append("breakfastPrice", values.breakfastPrice);
+      form.append("contractName", values.contractName);
+      form.append("confirmRecipientAddress", values.confirmRecipientAddress);
+      form.append("recipientCountry", values.recipientCountry);
+      form.append("recipientState", values.recipientState);
+      form.append("recipientCity", values.recipientCity);
+      form.append("recipientZipCode", values.recipientZipCode);
+      form.append("isShuttleAvailable", values.isShuttleAvailable);
+      form.append("shuttlePrice", values.shuttlePrice);
 
-      //apicall
-      // Axios.post('http://localhost:3001/properties?file=#', form)
-
-      const result = await axios.post("http://localhost:3400/hotel", form);
-      console.log("here", result);
+      const url = "https://calm-anchorage-14244.herokuapp.com/hotel";
+      this.setState({ isSubmitting: true });
+      // try {
+      //   const result = await axios.post(url, form);
+      //   this.setState({ message: result.data.status, isSubmitting: false });
+      //   toast.success(this.state.message);
+      //   setTimeout(() => {
+      //     history.push("/");
+      //   }, 800);
+      // } catch (err) {
+      //   this.setState({
+      //     message: err.response.data.error,
+      //     isSubmitting: false
+      //   });
+      //   toast.error(this.state.message);
+      // }
     };
     return (
-      <div className="container" style={{ fontSize: "14px" }}>
-        <div className="mt-3">
-          <br />
-          <Formik
-            initialValues={initialValues}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log(JSON.stringify(values, null, 2));
-              setSubmitting(true);
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit
-              // isSubmitting
-            }) => (
-              <Form>
-                <div>{hotels[this.state.page]}</div>
-                <br />
-                <div className="button-div">
-                  <button
-                    type="button"
-                    className="btn btn-dark btn-lg"
-                    disabled={this.state.page === 0}
-                    onClick={() => decrementStep()}
-                  >
-                    Back
-                  </button>
-
-                  {this.state.page === 4 ? (
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg"
-                      // disabled={isSubmitting}
-                      onClick={() => handleFormSubmit(values)}
-                    >
-                      Submit
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className="btn btn-dark btn-lg"
-                      // disabled={isSubmitting}
-                      onClick={() => incrementStep()}
-                    >
-                      Next
-                    </button>
-                  )}
+      <>
+        <ToastContainer />
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, { setSubmitting }) => {
+            console.log(JSON.stringify(values, null, 2));
+            setSubmitting(true);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit
+            // isSubmitting
+          }) => (
+            <div className="container ">
+              <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
+                  <Form>
+                    <div>{hotels[this.state.page]}</div>
+                    <br />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <button
+                          type="button"
+                          href="#top"
+                          className="btn btn-dark btn-block"
+                          disabled={this.state.page === 0}
+                          onClick={() => decrementStep()}
+                        >
+                          Back
+                        </button>
+                      </div>
+                      <div className="col-md-6">
+                        {this.state.page === hotels.length - 1 ? (
+                          values.confirmAgreement ? (
+                            <button
+                              type="submit"
+                              className="btn btn-primary btn-block"
+                              disabled={this.state.isSubmitting}
+                              onClick={() => handleFormSubmit(values)}
+                            >
+                              Submit
+                              {this.state.isSubmitting && (
+                                <CircularProgress size={30} />
+                              )}
+                            </button>
+                          ) : null
+                        ) : (
+                          <button
+                            type="button"
+                            href="#top"
+                            className="btn btn-dark btn-block"
+                            onClick={() => incrementStep()}
+                          >
+                            Next
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </Form>
                 </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
-        <br />
-      </div>
+                <div className="col-md-1"></div>
+              </div>
+            </div>
+          )}
+        </Formik>
+      </>
     );
   }
 }

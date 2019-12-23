@@ -1,29 +1,26 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import HotelDashboardNavbar from "../common/HotelDashboardNavbar";
 import Reservation from "../assets/Reservation";
-import DashboardHomePage from "../assets/DashboardHomePage";
-import FormWrapper from "../HotelUploadForm/FormWrapper";
-import Navbar from "../common/general navbar/HOPNavbar";
-import Footer from "../common/Footer/footer";
-import HotelUploadForm from "../HotelUploadForm/HotelUploadForm.js";
-import HotelFormThree from "../HotelUploadForm/HotelFormthree";
-import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
-import HotelFormOne from "../HotelUploadForm/HotelFormOne";
+import Reviews from "../Reviews/Reviews";
+import SingleHotelLandingPage from "../singlehotelLandingPage/SingleHotelLandingPage";
+import ManageRooms from "../manage rooms/ManageRooms";
+import AddRoomForm from "../manage rooms/AddRoomForm";
+import EditRoomForm from "../manage rooms/EditRoomForm";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   return (
     <section className="hotel-dashboard-section">
-      <Navbar />
-      <HotelDashboardNavbar />
-      <div className="wrapper">
-        <Switch>
-          <Route path="/" component={DashboardHomePage} exact />
-          <Route path="/reservations" component={Reservation} exact />
-          <Route path="/properties" component={FormWrapper} />
-        </Switch>
-      </div>
-      <Footer />
+      <HotelDashboardNavbar {...props} />
+      <Route path="/hotel/:name" component={SingleHotelLandingPage} exact />
+      <Route path="/hotel/:name/reviews" component={Reviews} />
+      <Route path="/hotel/:name/reservation" component={Reservation} />
+      <Route path="/hotel/:name/rooms/addroom" component={AddRoomForm} />
+      <Route
+        path="/hotel/:name/rooms/:roomType/editroom"
+        component={EditRoomForm}
+      />
+      <Route path="/hotel/:name/rooms" component={ManageRooms} exact />
     </section>
   );
 }

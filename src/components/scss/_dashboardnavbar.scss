@@ -3,19 +3,22 @@
   background: darken($secondGoldColor, 10);
   display: flex;
   flex-direction: column;
+  z-index: 99;
+  padding: 0;
 
   .harmbuger-div {
     position: relative;
     width: 100%;
     height: 2rem;
     display: none;
+    background-color: transparent;
 
     i {
       position: absolute;
-      right: 1rem;
-      top: 1rem;
+      right: 2rem;
+      top: 0.2rem;
       color: $whiteColor;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
   }
 }
@@ -24,50 +27,31 @@
   width: 100%;
   background: darken($secondGoldColor, 10);
 }
-ul {
+.dashboard-ul {
   display: flex;
   list-style-type: none;
+  // height: 80%;
 
-  li {
+  .dashboard-li {
     display: block;
-    margin: 0.5rem;
+    margin: 0.2rem 1rem;
+    height: 100%;
 
     a {
       display: block;
       width: 100%;
+      height: 100%;
       color: $blackColor;
       text-decoration: none;
-      font-size: 1.3rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 400;
       text-align: center;
-      padding: 1rem;
+      padding: 0rem;
       @include easeTrans();
 
-      ul {
-        display: none;
-        overflow: hidden;
-      }
-
       &:hover {
-        background: rgba($whiteColor, 0.3);
         color: $whiteColor;
-        text-decoration: none;
-
-        ul {
-          display: block;
-
-          li {
-            a {
-              background: $whiteColor;
-              color: $blackColor;
-
-              &:hover {
-                background: $blackColor;
-                color: $goldColor;
-              }
-            }
-          }
-        }
+        text-decoration: underline;
       }
 
       i {
@@ -91,15 +75,15 @@ ul {
     .harmbuger-div {
       position: relative;
       width: 100%;
-      height: 3rem;
+      height: 2.5rem;
       display: block;
 
       i {
         position: absolute;
         right: 1rem;
-        top: 1rem;
+        top: 0.5rem;
         color: $whiteColor;
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
     }
   }
@@ -108,11 +92,11 @@ ul {
     width: 100%;
     background: darken($secondGoldColor, 10);
   }
-  ul {
+  .dashboard-ul {
     display: block;
     list-style-type: none;
 
-    li {
+    .dashboard-li {
       display: block;
       margin: 0.5rem;
 
@@ -121,10 +105,10 @@ ul {
         width: 100%;
         color: $blackColor;
         text-decoration: none;
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: 500;
         text-align: left;
-        padding: 0.8rem;
+        padding: 0.3rem;
         @include easeTrans();
 
         ul {

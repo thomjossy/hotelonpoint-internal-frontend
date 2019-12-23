@@ -8,9 +8,9 @@ export default class HotelDashboardNavbar extends Component {
 
   handleNavOpen = () => {
     this.setState({ navOpen: !this.state.navOpen });
-    console.log("clicked");
   };
   render() {
+    const { match } = this.props;
     return (
       <div className="dashboardnavbar-div">
         <div className="harmbuger-div">
@@ -21,33 +21,33 @@ export default class HotelDashboardNavbar extends Component {
             this.state.navOpen ? "dashboardnavbar" : "dashboardnavbar-close"
           }
         >
-          <ul>
-            <li>
-              <Link to="/">
+          <ul className="dashboard-ul">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.name}`}>
                 <i className="fas fa-home"></i>
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/properties">
-                <i className="fas fa-building"></i>
-                Add Properties
-              </Link>
-            </li>
-            <li>
-              <Link to="/reservations">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.name}/reservation`}>
                 <i className="fas fa-chart-area"></i>
                 Reservations
               </Link>
             </li>
 
-            <li>
-              <Link to="/reviews">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.name}/reviews`}>
                 <i className="fas fa-inbox"></i>
                 Reviews
               </Link>
             </li>
-            <li>
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.name}/rooms`}>
+                <i className="fas fa-bed"></i>
+                Manage Rooms
+              </Link>
+            </li>
+            <li className="dashboard-li">
               <Link to="/finance">
                 <i className="fas fa-money-bill-wave-alt"></i>
                 Finance
