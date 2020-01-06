@@ -1,7 +1,7 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
-export default function SingleHotelLandingPage(props) {
-  console.log("123", props);
+function SingleHotelLandingPage(props) {
   const { match } = props;
   return (
     <section>
@@ -17,7 +17,13 @@ export default function SingleHotelLandingPage(props) {
                 <h4>Reviews</h4>
                 <i className="fas fa-comments single-fa"></i>
               </div>
-              <div className="card-footer">view</div>
+
+              <Link
+                to={`/hotel/${match.params.id}/reviews`}
+                className="view-btn"
+              >
+                <div className="card-footer">view </div>
+              </Link>
             </div>
           </div>
           <div className="col-sm-4">
@@ -26,7 +32,14 @@ export default function SingleHotelLandingPage(props) {
                 <h4>Reservation</h4>
                 <i className="fas fa-hotel single-fa"></i>
               </div>
-              <div className="card-footer">view</div>
+
+              <Link
+                to={`/hotel/${match.params.id}/reservation`}
+                className="view-btn"
+              >
+                {" "}
+                <div className="card-footer">view</div>
+              </Link>
             </div>
           </div>
           <div className="col-sm-4">
@@ -35,7 +48,10 @@ export default function SingleHotelLandingPage(props) {
                 <h4>Rooms</h4>
                 <i className="fas fa-bed single-fa"></i>
               </div>
-              <div className="card-footer">view</div>
+
+              <Link to={`/hotel/${match.params.id}/rooms`} className="view-btn">
+                <div className="card-footer">view</div>
+              </Link>
             </div>
           </div>
         </div>
@@ -43,3 +59,5 @@ export default function SingleHotelLandingPage(props) {
     </section>
   );
 }
+
+export default withRouter(SingleHotelLandingPage);

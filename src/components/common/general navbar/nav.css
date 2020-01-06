@@ -64,7 +64,6 @@
   border-radius: 0.5rem;
   padding: 2px 7px;
   color: #c4bda3;
-
   transition: all 0.6s ease-in;
 }
 
@@ -119,6 +118,7 @@
   }
 
   .hop-navbar > .hop-navbar-ul .hop-navbar-li .navbar-link {
+    display: block;
     text-decoration: none;
     align-self: center;
     font-size: 1rem;
@@ -127,6 +127,7 @@
     padding: 2px 7px;
     color: #c4bda3;
     height: 100%;
+    width: 100%;
     transition: all 0.6s ease-in;
   }
 

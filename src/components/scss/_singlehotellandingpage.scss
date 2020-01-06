@@ -13,3 +13,19 @@
   font-size: 2.5rem;
   color: $secondGoldColor;
 }
+
+.view-btn {
+  padding: 0 !important;
+  width: 100% !important;
+  text-transform: capitalize;
+  height: 100%;
+  background: $secondGoldColor;
+  color: $whiteColor;
+  cursor: pointer;
+  @include easeTrans();
+  &:hover {
+    color: $blackColor;
+    font-size: large;
+    overflow: hidden;
+  }
+}

@@ -9,8 +9,8 @@ import HotelFormThree from "../HotelUploadForm/HotelFormthree";
 import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
 import FileUpload from "./FileUpload";
 import HotelFormSix from "./HotelFormSix";
-import HotelUploadForm from "./HotelUploadForm";
 import "./upload.css";
+import * as Yup from "yup";
 
 const initialValues = {
   hotelName: "",
@@ -25,22 +25,6 @@ const initialValues = {
   compName: "",
   repApproach: "",
   hotelDescription: "",
-  rooms: [
-    {
-      roomType: "",
-      smokingPolicy: "",
-      roomSize: "",
-      roomsOfThisType: "",
-      bedType: "",
-      bedNumber: "",
-      weekendRate: "",
-      standardRate: "",
-      occupantNumber: "",
-      roomPrice: "",
-      roomAmenities: [],
-      moreAmenities: []
-    }
-  ],
   propertyOwner: "",
   propertyOwnerPhoneOne: "",
   propertyOwnerPhoneTwo: "",
@@ -83,6 +67,9 @@ const initialValues = {
   confirmAgreement: false,
   isShuttleAvailable: "",
   shuttlePrice: "",
+  registerName: "",
+  registerPhone: "",
+  registerAddress: "",
   moreHotelPolicies: [
     {
       policyTitle: "",
@@ -93,21 +80,100 @@ const initialValues = {
   files: []
 };
 
-const newRooms = {
-  roomType: "",
-  smokingPolicy: "",
-  roomSize: "",
-  roomsOfThisType: "",
-  bedType: "",
-  bedNumber: "",
-  weekendRate: "",
-  standardRate: "",
-  occupantNumber: "",
-  roomPrice: "",
-  roomAmenities: [],
-  moreAmenities: [{ amenity: "" }]
-};
-
+const validationSchema = Yup.object({
+  hotelName: Yup.string().required("This field is Required"),
+  contactName: Yup.string().required("This field is Required"),
+  hotelWebsite: Yup.string().url(),
+  country: Yup.string().required("This field is Required"),
+  state: Yup.string().required("This field is Required"),
+  city: Yup.string().required("This field is Required"),
+  zipCode: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  compName: Yup.string(),
+  hotelDescription: Yup.string()
+    .required("This field is Required")
+    .max(200, "Maximum amount of character exceeded")
+    .min(50, "Hotel Description should be more than 50 Characters"),
+  propertyOwner: Yup.string().required("This field is Required"),
+  propertyOwnerPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  propertyOwnerPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  propOwnerEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  frontDesk: Yup.string().required("This field is Required"),
+  frontDeskPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  frontDeskPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  frontDeskEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfReservationOne: Yup.string().required("This field is Required"),
+  headOfReservationPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  headOfReservationPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationOneEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfReservationTwo: Yup.string(),
+  headOfReservationTwoPhoneOne: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationTwoPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationTwoEmail: Yup.string().email(),
+  headOfOperationOne: Yup.string().required("This is a required field"),
+  headOfOperationPhoneOne: Yup.string().required(
+    "This is a required field and enter a valid phone number"
+  ),
+  headOfOperationPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationOneEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfOperationTwo: Yup.string(),
+  headOfOperationTwoPhoneOne: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationTwoPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationTwoEmail: Yup.string().email(),
+  checkIn: Yup.date(),
+  checkOut: Yup.date(),
+  freeBooking: Yup.number()
+    .integer()
+    .positive(),
+  paidBooking: Yup.number("Enter Numeric Characters")
+    .positive()
+    .integer(),
+  breakfastPrice: Yup.number()
+    .positive()
+    .integer(),
+  contractName: Yup.string().required("This is a required field"),
+  recipientCountry: Yup.string(),
+  recipientState: Yup.string(),
+  recipientCity: Yup.string(),
+  // recipientZipCode: Yup.string()
+  //   .integer()
+  //   .positive(),
+  shuttlePrice: Yup.number()
+    .positive()
+    .integer()
+});
 export default class FormWrapper extends Component {
   state = {
     page: 0,
@@ -120,7 +186,6 @@ export default class FormWrapper extends Component {
       <HotelFormOne />,
       <HotelFormThree />,
       <HotelFormTwo />,
-      <HotelUploadForm />,
       <FileUpload />,
       <HotelFormSix />
     ];
@@ -133,15 +198,10 @@ export default class FormWrapper extends Component {
     };
 
     const handleFormSubmit = async values => {
-      console.log("23", values);
       const form = new FormData();
 
       for (let x = 0; x < values.files.length; x++) {
         form.append("image", values.files[x]);
-      }
-
-      for (let x = 0; x < values.rooms.length; x++) {
-        form.append("rooms", JSON.stringify(values.rooms[x]));
       }
 
       for (let x = 0; x < values.paymentMethod.length; x++) {
@@ -242,29 +302,37 @@ export default class FormWrapper extends Component {
       form.append("recipientZipCode", values.recipientZipCode);
       form.append("isShuttleAvailable", values.isShuttleAvailable);
       form.append("shuttlePrice", values.shuttlePrice);
+      form.append("registerName", values.registerName);
+      form.append("registerAddress", values.registerAddress);
+      form.append("registerPhone", values.registerPhone);
 
-      const url = "https://calm-anchorage-14244.herokuapp.com/hotel";
+      const url = "http://localhost:3400/hotel";
       this.setState({ isSubmitting: true });
-      // try {
-      //   const result = await axios.post(url, form);
-      //   this.setState({ message: result.data.status, isSubmitting: false });
-      //   toast.success(this.state.message);
-      //   setTimeout(() => {
-      //     history.push("/");
-      //   }, 800);
-      // } catch (err) {
-      //   this.setState({
-      //     message: err.response.data.error,
-      //     isSubmitting: false
-      //   });
-      //   toast.error(this.state.message);
-      // }
+      try {
+        const result = await axios.post(url, form);
+        this.setState({ message: result.data.status, isSubmitting: false });
+        toast.success(this.state.message);
+
+        setTimeout(() => {
+          window.location.href = `/hotel/${result.data.data._id}/rooms/addroom`;
+          // history.push("/");
+        }, 1000);
+      } catch (err) {
+        this.setState({
+          message: err.response.data.error,
+          isSubmitting: false
+        });
+        toast.error(this.state.message);
+      }
     };
     return (
       <>
         <ToastContainer />
         <Formik
+          validateOnChange={true}
+          validateOnBlur={true}
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
             console.log(JSON.stringify(values, null, 2));
             setSubmitting(true);
@@ -285,12 +353,11 @@ export default class FormWrapper extends Component {
                 <div className="col-md-10">
                   <Form>
                     <div>{hotels[this.state.page]}</div>
-                    <br />
+
                     <div className="row">
                       <div className="col-md-6">
                         <button
                           type="button"
-                          href="#top"
                           className="btn btn-dark btn-block"
                           disabled={this.state.page === 0}
                           onClick={() => decrementStep()}

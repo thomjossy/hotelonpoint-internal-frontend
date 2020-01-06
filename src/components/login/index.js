@@ -3,13 +3,13 @@ import "./login.css";
 
 import { getUser, loginUser } from "../../redux/actions/userActions";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { Input } from "../../components/inputs/input1";
 import React from "react";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import background from "./bacground-pic/blue.jfif";
 import { connect } from "react-redux";
-import history from '../../history';
+import history from "../../history";
 
 //import {Link} from 'react-router-dom'
 
@@ -30,27 +30,27 @@ class Login extends React.Component {
     };
   }
 
-  handleForm = (event) => {
-    console.log(this.state);
+  handleForm = event => {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
-  handlesubmit = (event) => {
+  handlesubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+
     const data = {
       email: this.state.email,
       password: this.state.password
     };
 
-    this.props.loginUser(data, history)
-
-  }
+    this.props.loginUser(data, history);
+  };
 
   render() {
-    const { UI: { loading, errors } } = this.props;
+    const {
+      UI: { loading, errors }
+    } = this.props;
     return (
       <div style={sectionStyle}>
         <div className="container mt-3 mb-3">
@@ -59,7 +59,7 @@ class Login extends React.Component {
               <h1>We are reliable and trust Worthy</h1>
             </div>
 
-            <div className="col-md-4 ">
+            <div className="col-md-6 ">
               <div className="card  mb-3 shadow login-card">
                 <div className="card-body text-dark ">
                   <div>
@@ -76,8 +76,9 @@ class Login extends React.Component {
                         placeholder="Enter Username"
                         Label="Email"
                       />
-                      {errors && errors.email ? (<small className='text-danger'>{errors.email}</small>) : null}
-  
+                      {errors && errors.email ? (
+                        <small className="text-danger">{errors.email}</small>
+                      ) : null}
                     </div>
 
                     <div className="form-group">
@@ -91,12 +92,20 @@ class Login extends React.Component {
                         Label="Password:"
                         small="your details are safe with us."
                       />
-                      {errors && errors.password ?(<small className='text-danger'>{errors.password}</small>)  : null}
+                      {errors && errors.password ? (
+                        <small className="text-danger">{errors.password}</small>
+                      ) : null}
                     </div>
-                    <button type='submit' onClick={this.handlesubmit} variant='contained' color='primary' className="btn btn-block btin" disabled=  {loading}>Login
-                      {loading && (
-                        <CircularProgress size={30}  />
-                      )}
+                    <button
+                      type="submit"
+                      onClick={this.handlesubmit}
+                      variant="contained"
+                      color="primary"
+                      className="btn btn-block btin"
+                      disabled={loading}
+                    >
+                      Login
+                      {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
                   <p>No account sign up </p>
@@ -104,7 +113,7 @@ class Login extends React.Component {
               </div>
             </div>
 
-            <div className="col-md-4"></div>
+            <div className="col-md-2"></div>
           </div>
           <ToastContainer />
         </div>

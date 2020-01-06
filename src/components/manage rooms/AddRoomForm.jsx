@@ -1,30 +1,120 @@
-import { connect, Formik, Form, Field, FieldArray } from "formik";
+import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+import { withRouter } from "react-router-dom";
 import React, { Component } from "react";
+import RoomFileUpload from "./fileUpload/RoomFileUpload";
+import * as Yup from "yup";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialValues = {
   roomType: "",
   smokingPolicy: "",
   roomSize: "",
-  roomsOfThisType: "",
+  roomsOfThisType: 0,
   bedType: "",
   bedNumber: "",
-  weekendRate: "",
-  standardRate: "",
-  occupantNumber: "",
+  weekendRate: 0,
+  standardRate: 0,
+  occupantNumber: 0,
   roomPrice: "",
   roomAmenities: [],
-  moreAmenities: []
+  moreAmenities: [],
+  files: []
 };
+
+const validationSchema = Yup.object({
+  roomType: Yup.string().required("This field is Required"),
+  roomSize: Yup.string().required("This field is Required"),
+  roomsOfThisType: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  bedNumber: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  weekendRate: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  standardRate: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  roomPrice: Yup.string().required("This field is Required")
+});
 
 class AddRoomForm extends Component {
   render() {
+    const hotelID = this.props.match.params.id;
     return (
       <div className="container">
+        <ToastContainer />
         <Formik
+          validateOnChange={true}
+          validateOnBlur={true}
+          validationSchema={validationSchema}
           initialValues={initialValues}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(JSON.stringify(values, null, 2));
-            setSubmitting(true);
+          onSubmit={async values => {
+            const form = new FormData();
+
+            for (let x = 0; x < values.files.length; x++) {
+              form.append("image", values.files[x]);
+            }
+            for (let x = 0; x < values.moreAmenities.length; x++) {
+              form.append(
+                "moreAmenities",
+                JSON.stringify(values.moreAmenities[x])
+              );
+            }
+            for (let x = 0; x < values.roomAmenities.length; x++) {
+              form.append(
+                "roomAmenities",
+                JSON.stringify(values.roomAmenities[x])
+              );
+            }
+            form.append("roomType", values.roomType);
+            form.append("roomSize", values.roomSize);
+            form.append("roomPrice", values.roomPrice);
+            form.append("smokingPolicy", values.smokingPolicy);
+            form.append("roomsOfThisType", values.roomsOfThisType);
+            form.append("bedNumber", values.bedNumber);
+            form.append("weekendRate", values.weekendRate);
+            form.append("standardRate", values.standardRate);
+            form.append("occupantNumber", values.occupantNumber);
+            form.append("bedType", values.bedType);
+            const url = `http://localhost:3400/room/${hotelID}`;
+            console.log(values);
+            console.log(form.get("moreAmenities"));
+            console.log(form.get("roomType"));
+            console.log(form.getAll("image"));
+            this.setState({ isSubmitting: true });
+            try {
+              const result = await axios.post(url, form);
+              console.log("3243", result);
+              if (result) {
+                this.setState({
+                  message: result.data.status,
+                  isSubmitting: false
+                });
+                toast.success(this.state.message);
+                setTimeout(() => {
+                  window.location.href = `/hotel/${hotelID}/rooms/addroom`;
+                }, 1000);
+              }
+            } catch (err) {
+              this.setState({
+                message: err.response.data.error,
+                isSubmitting: false
+              });
+              if (err.status >= 400) {
+                toast.error(
+                  "Could not submit the form, fill the required field or check your internet connection"
+                );
+              }
+              toast.error(this.state.message);
+            }
           }}
         >
           {({
@@ -42,7 +132,7 @@ class AddRoomForm extends Component {
 
                 <React.Fragment>
                   <div>
-                    <h3>Room Details</h3>
+                    <h4>Add information about the hotel room</h4>
                     <div className="p-3 mb-3 custom-shadow">
                       {/* Begining of Row   */}
                       <div className="row">
@@ -56,6 +146,11 @@ class AddRoomForm extends Component {
                               placeholder="Eg, Double Deluxe"
                               className="form-control"
                             />
+                            <ErrorMessage name="roomType">
+                              {msg => {
+                                return <div className="text-danger">{msg}</div>;
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -88,6 +183,15 @@ class AddRoomForm extends Component {
                               placeholder="20squaremeter"
                               className="form-control"
                             />
+                            <ErrorMessage name="roomSize">
+                              {msg => {
+                                return (
+                                  <div className="text-danger">
+                                    <p>Enter a valid Number</p>
+                                  </div>
+                                );
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -121,7 +225,16 @@ class AddRoomForm extends Component {
                               name={`roomsOfThisType`}
                               placeholder="20"
                               className="form-control"
-                            />
+                            />{" "}
+                            <ErrorMessage name="roomsOfThisType">
+                              {msg => {
+                                return (
+                                  <div className="text-danger">
+                                    <p>Enter a valid Number</p>
+                                  </div>
+                                );
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -136,6 +249,11 @@ class AddRoomForm extends Component {
                               placeholder="3"
                               className="form-control"
                             />
+                            <ErrorMessage name="bedNumber">
+                              {msg => {
+                                return <div className="text-danger">{msg}</div>;
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                       </div>
@@ -170,6 +288,16 @@ class AddRoomForm extends Component {
                               placeholder="NGN30,000"
                               className="form-control"
                             />
+                            <ErrorMessage name="roomPrice">
+                              {msg => {
+                                return (
+                                  <div className="text-danger">
+                                    {" "}
+                                    <p>Enter a valid Number</p>{" "}
+                                  </div>
+                                );
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                       </div>
@@ -189,6 +317,15 @@ class AddRoomForm extends Component {
                               name={`weekendRate`}
                               className="form-control"
                             />
+                            <ErrorMessage name="weekendRate">
+                              {msg => {
+                                return (
+                                  <div className="text-danger">
+                                    <p>Enter a valid Number</p>
+                                  </div>
+                                );
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -202,11 +339,22 @@ class AddRoomForm extends Component {
                               name={`standardRate`}
                               className="form-control"
                             />
+                            <ErrorMessage name="standardRate">
+                              {msg => {
+                                return (
+                                  <div className="text-danger">
+                                    <p>Enter a valid Number</p>
+                                  </div>
+                                );
+                              }}
+                            </ErrorMessage>
                           </div>
                         </div>
                       </div>
                     </div>
                     {/* End of Row   */}
+
+                        {/* Beginging of Room Amenities   */}
                     <h3>Room Amenities</h3>
                     <div className="p-3 mb-3 custom-shadow">
                       <p>
@@ -216,50 +364,260 @@ class AddRoomForm extends Component {
                         </b>
                       </p>
 
-                      <div className="form-group">
-                        <Field
-                          type="checkbox"
-                          name={`roomAmenities`}
-                          value="spa tub"
-                          className="mr-2 "
-                          id="spatub"
-                        />
-                        <label htmlFor="spatub">Spa tub</label>
-                        <hr />
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="spa tub"
+                            className="mr-2 "
+                            id="spatub"
+                          />
+                          <label htmlFor="spatub">Spa tub</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Television"
+                            className="mr-2 "
+                            id="television"
+                          />
+                          <label htmlFor="television">Television</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Kitchen"
+                            className="mr-2 "
+                            id="kitchen"
+                          />
+                          <label htmlFor="kitchen">Kitchen</label>
+                          <hr />
+                        </div>
                       </div>
-                      <div className="form-group">
-                        <Field
-                          type="checkbox"
-                          name={`roomAmenities`}
-                          value="Television"
-                          className="mr-2 "
-                          id="television"
-                        />
-                        <label htmlFor="television">Television</label>
-                        <hr />
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Air Conditioner"
+                            className="mr-2"
+                            id="ac"
+                          />
+                          <label htmlFor="ac">Air Conditioner</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="In-room Wi-Fi"
+                            className="mr-2"
+                            id="in-room-wifi"
+                          />
+                          <label htmlFor="in-room-wifi">In-room Wi-Fi</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Blackout Curtains"
+                            className="mr-2"
+                            id="curtains"
+                          />
+                          <label htmlFor="curtains">Blackout Curtains</label>
+                          <hr />
+                        </div>
                       </div>
-                      <div className="form-group">
-                        <Field
-                          type="checkbox"
-                          name={`roomAmenities`}
-                          value="Kitchen"
-                          className="mr-2 "
-                          id="kitchen"
-                        />
-                        <label htmlFor="kitchen">Kitchen</label>
-                        <hr />
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Desk"
+                            className="mr-2"
+                            id="desk"
+                          />
+                          <label htmlFor="desk">Desk</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Turndown Service"
+                            className="mr-2"
+                            id=""
+                          />
+                          <label htmlFor="">Turndown Service</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Ironing board"
+                            className="mr-2"
+                            id="ironing-board"
+                          />
+                          <label htmlFor="ironing-board">Ironing board</label>
+                          <hr />
+                        </div>
                       </div>
-                      <div className="form-group">
-                        <Field
-                          type="checkbox"
-                          name={`roomAmenities`}
-                          value="Air Conditioner"
-                          className="mr-2"
-                          id="ac"
-                        />
-                        <label htmlFor="ac">Air Conditioner</label>
-                        <hr />
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="In-room safe"
+                            className="mr-2"
+                            id="In-room"
+                          />
+                          <label htmlFor="In-room">In-room safe</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="
+                            Bedding: blankets or quilt"
+                            className="mr-2"
+                            id="blankets"
+                          />
+                          <label htmlFor="blankets">
+                            Bedding: blankets or quilt
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Electronic Scale"
+                            className="mr-2"
+                            id="scale"
+                          />
+                          <label htmlFor="scale">Electronic Scale</label>
+                          <hr />
+                        </div>
                       </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Sewing Kit"
+                            className="mr-2"
+                            id="sewing"
+                          />
+                          <label htmlFor="sewing">Sewing Kit</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Wardrobe/closet"
+                            className="mr-2"
+                            id="closet"
+                          />
+                          <label htmlFor="closet">Wardrobe/closet</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="220V power outlets"
+                            className="mr-2"
+                            id="poweroutlets"
+                          />
+                          <label htmlFor="poweroutlets">
+                            220V power outlets
+                          </label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Curtain"
+                            className="mr-2"
+                            id="curtainnn"
+                          />
+                          <label htmlFor="curtainnn">Curtain</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Sofa"
+                            className="mr-2"
+                            id="sofa"
+                          />
+                          <label htmlFor="sofa">Sofa</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Spare bedding"
+                            className="mr-2"
+                            id="bedding"
+                          />
+                          <label htmlFor="bedding">Spare bedding</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Alarm Clock"
+                            className="mr-2"
+                            id="alarm"
+                          />
+                          <label htmlFor="alarm">Alarm Clock</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Umbrella"
+                            className="mr-2"
+                            id="umbrella"
+                          />
+                          <label htmlFor="umbrella">Umbrella</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
 
                       <FieldArray name="moreAmenities">
                         {({ push, remove }) => (
@@ -267,19 +625,33 @@ class AddRoomForm extends Component {
                             {values.moreAmenities &&
                               values.moreAmenities.length > 0 &&
                               values.moreAmenities.map((item, idx) => (
-                                <div key={`item-${idx}`}>
-                                  <label>More Room Amenity</label>
-                                  <Field
-                                    type="text"
-                                    name={`moreAmenities[${idx}].amenity`}
-                                    className="form-control"
-                                  />
+                                <div
+                                  className=" mb-1 moreAmenity-div"
+                                  key={`item-${idx}`}
+                                >
+                                  {" "}
+                                  <div>
+                                    <label>More Room Amenity</label>
+                                    <br />
+                                    <Field
+                                      type="text"
+                                      name={`moreAmenities[${idx}].amenity`}
+                                      className="form-div"
+                                    />
+                                    <button
+                                      type="button"
+                                      className=" moreAmenity-btn"
+                                      onClick={() => remove({ idx })}
+                                    >
+                                      Delete
+                                    </button>
+                                  </div>
                                 </div>
                               ))}
 
                             <button
                               type="button"
-                              className="mb-3 btn btn-sm btn-dark"
+                              className="mb-3 mt-3 btn btn-sm btn-dark"
                               onClick={() => push({ amenity: "" })}
                             >
                               Add new Amenity
@@ -290,17 +662,30 @@ class AddRoomForm extends Component {
 
                       <br />
                     </div>
-                  </div>
 
+                        {/* End of Room Amenities   */}
+                  </div>
+                  <RoomFileUpload />
                   <div className="p-3 custom-shadow">
                     <div className="row">
-                      <div className="col-md-2"></div>
-                      <div className="col-md-8  ">
-                        <button className="btn btn-dark btn-block">
+                      <div className="col-md-6  ">
+                        <button
+                          className="btn add-room-later-btn btn-block mb-2"
+                          onClick={() =>
+                            this.props.history.push(`/hotel/${hotelID}/rooms`)
+                          }
+                        >
+                          Add Room Later
+                        </button>
+                      </div>
+                      <div className="col-md-6  ">
+                        <button
+                          className="btn btn-dark btn-block mb-2"
+                          type="submit"
+                        >
                           Submit
                         </button>
                       </div>
-                      <div className="col-md-2"></div>
                     </div>
                   </div>
                 </React.Fragment>
@@ -313,4 +698,4 @@ class AddRoomForm extends Component {
   }
 }
 
-export default connect(AddRoomForm);
+export default withRouter(AddRoomForm);

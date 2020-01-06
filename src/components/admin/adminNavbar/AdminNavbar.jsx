@@ -22,23 +22,20 @@ export default class AdminNavbar extends Component {
         >
           <ul className="dashboard-ul">
             <li className="dashboard-li">
-              <Link to={`/admin`}>
-                <i className="fas fa-home"></i>
-                Home
-              </Link>
+              <Link to={`/admin`}>Home</Link>
             </li>
             <li className="dashboard-li">
-              <Link to={`/admin/blog`}>
-                <i className="fas fa-chart-area"></i>
-                Upload Blog
-              </Link>
+              <Link to="/admin/blog">Upload Blog</Link>
             </li>
 
             <li className="dashboard-li">
-              <Link to={`/admin/hotel`}>
-                <i className="fas fa-inbox"></i>
-                Hotels
-              </Link>
+              <Link to="/admin/awaiting-hotels">Awaiting Hotels</Link>
+            </li>
+            <li className="dashboard-li">
+              <Link to="/admin/approved-hotels">Approved Hotels</Link>
+            </li>
+            <li className="dashboard-li">
+              <Link to="/admin/reports">Report</Link>
             </li>
           </ul>
         </nav>

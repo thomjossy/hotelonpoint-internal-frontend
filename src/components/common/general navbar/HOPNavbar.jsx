@@ -40,47 +40,81 @@ class Navbar extends Component {
             <div className="hop-harmbuger-div" onClick={this.handleNav}>
               <i className="fas fa-bars hop-bars"></i>
             </div>
-            <ul
-              className={
-                this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
-              }
-            >
-              <li className="hop-navbar-li">
-                <Link to="/" className="navbar-link">
-                  Home
-                </Link>
-              </li>
-              <li className="hop-navbar-li">
-                <Link to="/add-property" className="navbar-link">
-                  Add New Property
-                </Link>
-              </li>
-              {userData && (
-                <li className="nav-item mr-1">
-                  <div>
-                    <img
-                      src={userData.imageUrl}
-                      alt="..."
-                      style={{
-                        width: 40,
-                        height: 40,
-                        marginLeft: 10,
-                        marginRight: 10
-                      }}
-                      className="rounded-circle"
-                    />{" "}
-                    <span style={{ color: "white", marginRight: 10 }}>
-                      {userData.fullName}
-                    </span>
-                  </div>
+            {userData && userData.isAdmin ? (
+              <ul
+                className={
+                  this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
+                }
+              >
+                {userData && (
+                  <li className="nav-item mr-1">
+                    <div>
+                      <img
+                        src={userData.imageUrl}
+                        alt="..."
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginLeft: 10,
+                          marginRight: 10
+                        }}
+                        className="rounded-circle"
+                      />{" "}
+                      <span style={{ color: "white", marginRight: 10 }}>
+                        {userData.fullName}
+                      </span>
+                    </div>
+                  </li>
+                )}
+                <li className="hop-navbar-li">
+                  <button className="navbar-link " onClick={this.signout}>
+                    Log out
+                  </button>
                 </li>
-              )}
-              <li className="hop-navbar-li">
-                <button className="navbar-link " onClick={this.signout}>
-                  Log out
-                </button>
-              </li>
-            </ul>
+              </ul>
+            ) : (
+              <ul
+                className={
+                  this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
+                }
+              >
+                <li className="hop-navbar-li">
+                  <Link to="/" className="navbar-link">
+                    Home
+                  </Link>
+                </li>
+                <li className="hop-navbar-li">
+                  <Link to="/add-property" className="navbar-link">
+                    Add New Property
+                  </Link>
+                </li>
+                {userData && (
+                  <li className="nav-item mr-1">
+                    <div>
+                      <img
+                        src={userData.imageUrl}
+                        alt="..."
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginLeft: 10,
+                          marginRight: 10
+                        }}
+                        className="rounded-circle"
+                      />{" "}
+                      <span style={{ color: "white", marginRight: 10 }}>
+                        {userData.fullName}
+                      </span>
+                    </div>
+                  </li>
+                )}
+                <li className="hop-navbar-li">
+                  <button className="navbar-link " onClick={this.signout}>
+                    Log out
+                  </button>
+                </li>
+              </ul>
+            )}
           </nav>
         ) : (
           <nav className="hop-navbar">

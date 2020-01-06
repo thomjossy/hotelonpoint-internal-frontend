@@ -1,0 +1,19 @@
+.count-div-1 {
+  background: rgb(8, 146, 170);
+  background: linear-gradient(
+    190deg,
+    rgb(0, 101, 114) 7%,
+    rgb(0, 147, 173) 100%
+  );
+  color: $whiteColor;
+}
+.count-div-2 {
+  background: rgb(2, 134, 8);
+  background: linear-gradient(190deg, rgb(5, 105, 27) 7%, rgb(0, 119, 6) 100%);
+  color: #ffffff;
+}
+.count-div-3 {
+  background: rgb(175, 69, 24);
+  background: linear-gradient(190deg, rgb(151, 2, 2) 7%, rgb(190, 45, 1) 100%);
+  color: $whiteColor;
+}

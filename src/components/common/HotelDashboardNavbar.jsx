@@ -11,6 +11,7 @@ export default class HotelDashboardNavbar extends Component {
   };
   render() {
     const { match } = this.props;
+    console.log("hoteldashboardnavbar", this.props);
     return (
       <div className="dashboardnavbar-div">
         <div className="harmbuger-div">
@@ -23,34 +24,34 @@ export default class HotelDashboardNavbar extends Component {
         >
           <ul className="dashboard-ul">
             <li className="dashboard-li">
-              <Link to={`/hotel/${match.params.name}`}>
+              <Link to={`/hotel/${match.params.id}`}>
                 <i className="fas fa-home"></i>
                 Home
               </Link>
             </li>
             <li className="dashboard-li">
-              <Link to={`/hotel/${match.params.name}/reservation`}>
+              <Link to={`/hotel/${match.params.id}/reservation`}>
                 <i className="fas fa-chart-area"></i>
                 Reservations
               </Link>
             </li>
 
             <li className="dashboard-li">
-              <Link to={`/hotel/${match.params.name}/reviews`}>
+              <Link to={`/hotel/${match.params.id}/reviews`}>
                 <i className="fas fa-inbox"></i>
                 Reviews
               </Link>
             </li>
             <li className="dashboard-li">
-              <Link to={`/hotel/${match.params.name}/rooms`}>
+              <Link to={`/hotel/${match.params.id}/rooms`}>
                 <i className="fas fa-bed"></i>
                 Manage Rooms
               </Link>
             </li>
             <li className="dashboard-li">
-              <Link to="/finance">
-                <i className="fas fa-money-bill-wave-alt"></i>
-                Finance
+              <Link to={`/hotel/${match.params.id}/opportunity`}>
+                <i className="fas fa-handshake"></i>
+                Opportunity
               </Link>
             </li>
           </ul>

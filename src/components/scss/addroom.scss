@@ -1,0 +1,25 @@
+.add-room-later-btn {
+  background: $secondGoldColor !important;
+
+  &:hover {
+    background: darken($secondGoldColor, 10) !important;
+  }
+}
+
+.moreAmenity-div {
+  display: block;
+  width: 320px;
+  .form-div {
+    width: 78%;
+    height: 2rem;
+  }
+  .moreAmenity-btn {
+    float: right;
+    border: none;
+    margin-right: 4px;
+    margin-bottom: 1px;
+    background: rgb(197, 33, 33);
+    color: #ffffff;
+    padding: 4px 10px;
+  }
+}

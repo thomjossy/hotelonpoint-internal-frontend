@@ -1,5 +1,7 @@
 .property-information-div {
-  h3,
+  h3 {
+    color: $blackColor;
+  }
   h5 {
     font-weight: 400;
   }
@@ -19,4 +21,16 @@
   color: $goldColor;
   font-size: larger;
   margin-bottom: 0;
+}
+
+.hotel-images-div {
+  height: 40vh;
+  overflow-x: scroll;
+  display: flex;
+
+  .single-img {
+    height: 200px;
+    width: 200px;
+    margin: 0 3px;
+  }
 }

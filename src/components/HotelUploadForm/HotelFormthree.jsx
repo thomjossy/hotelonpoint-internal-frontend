@@ -1,19 +1,20 @@
-import { Field } from "formik";
+import { Field, ErrorMessage, connect } from "formik";
 import React from "react";
-import './upload.css';
+import "./upload.css";
 
-export default function HotelUploadFormThree() {
+function HotelUploadFormThree({ props }) {
+  // const { errors, touched } = props.formik;
   return (
     <div className="container bigd" style={{ fontSize: "14px" }}>
       <section>
         <div className="p-3 custom-shadow">
-          <h1>Mangement Details</h1>
+          <h2>Mangement Details</h2>
           <br />
           <div className="row">
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Property Owner</h3>
-              <div class="form-group">
+              <h4>Property Owner</h4>
+              <div className="form-group">
                 <label htmlFor="propertyOwner">Name</label>
                 <Field
                   type="text"
@@ -22,9 +23,14 @@ export default function HotelUploadFormThree() {
                   placeholder="John Doe"
                   className="form-control"
                 />
+                <ErrorMessage name="propertyOwner">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="propertyOwnerPhoneOne">Phone Number</label>
                 <Field
                   type="tel"
@@ -33,8 +39,13 @@ export default function HotelUploadFormThree() {
                   placeholder="+234 801 345 6789"
                   className="form-control"
                 />
+                <ErrorMessage name="propertyOwnerPhoneOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="propertyOwnerPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -46,7 +57,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="propOwnerEmail">Email</label>
                 <Field
                   type="text"
@@ -55,13 +66,18 @@ export default function HotelUploadFormThree() {
                   placeholder="jane@email.com"
                   className="form-control"
                 />
+                <ErrorMessage name="propOwnerEmail">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
             </div>
             {/* End of Owners info */}
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Front Desk</h3>
-              <div class="form-group">
+              <h4>Front Desk</h4>
+              <div className="form-group">
                 <label htmlFor="frontDesk">Name</label>
                 <Field
                   type="text"
@@ -70,9 +86,14 @@ export default function HotelUploadFormThree() {
                   placeholder="John Doe"
                   className="form-control"
                 />
+                <ErrorMessage name="frontDesk">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="frontDeskPhoneOne">Phone Number</label>
                 <Field
                   type="tel"
@@ -81,8 +102,13 @@ export default function HotelUploadFormThree() {
                   placeholder="+234 801 345 6789"
                   className="form-control"
                 />
+                <ErrorMessage name="frontDeskPhoneOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="frontDeskPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -94,7 +120,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="frontDeskEmail">Email</label>
                 <Field
                   type="email"
@@ -102,7 +128,12 @@ export default function HotelUploadFormThree() {
                   name="frontDeskEmail"
                   placeholder="jane@email.com"
                   className="form-control"
-                />
+                />{" "}
+                <ErrorMessage name="frontDeskEmail">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
             </div>
             {/* End of Owners info */}
@@ -114,19 +145,24 @@ export default function HotelUploadFormThree() {
           <div className="row">
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Reservation 1</h3>
-              <div class="form-group">
+              <h4>Head of Reservation 1</h4>
+              <div className="form-group">
                 <label htmlFor="headOfReservationOne">Name</label>
                 <Field
-                  type="text"
+                  type="tel"
                   id="headOfReservationOne"
                   name="headOfReservationOne"
                   placeholder="John Doe"
                   className="form-control"
-                />
+                />{" "}
+                <ErrorMessage name="headOfReservationOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationPhoneOne">Phone Number</label>
                 <Field
                   type="tel"
@@ -135,8 +171,13 @@ export default function HotelUploadFormThree() {
                   placeholder="+234 801 345 6789"
                   className="form-control"
                 />
+                <ErrorMessage name="headOfReservationPhoneOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -148,7 +189,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationOneEmail">Email</label>
                 <Field
                   type="email"
@@ -156,15 +197,20 @@ export default function HotelUploadFormThree() {
                   name="headOfReservationOneEmail"
                   placeholder="email@email.com"
                   className="form-control"
-                />
+                />{" "}
+                <ErrorMessage name="headOfReservationOneEmail">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
             </div>
 
             {/* End of Owners info */}
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Reservation 2</h3>
-              <div class="form-group">
+              <h4>Head of Reservation 2</h4>
+              <div className="form-group">
                 <label htmlFor="headOfReservationTwo">Name</label>
                 <Field
                   type="text"
@@ -175,7 +221,7 @@ export default function HotelUploadFormThree() {
                 />
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationTwoPhoneOne">
                   Phone Number
                 </label>
@@ -187,7 +233,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationTwoPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -199,7 +245,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfReservationTwoEmail">Email</label>
                 <Field
                   type="email"
@@ -219,8 +265,8 @@ export default function HotelUploadFormThree() {
           <div className="row">
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Operations 1</h3>
-              <div class="form-group">
+              <h4>Accountant 1</h4>
+              <div className="form-group">
                 <label htmlFor="headOfOperationOne">Name</label>
                 <Field
                   type="text"
@@ -229,10 +275,15 @@ export default function HotelUploadFormThree() {
                   placeholder="John Doe"
                   className="form-control"
                 />
+                <ErrorMessage name="headOfOperationOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
 
-              <div class="form-group">
-                <label htmlFor="headOfOperationPhoneOne">Phone Number</label>
+              <div className="form-group">
+                <label htmlFor="headOfOperationPhoneOne">Phone Number 1</label>
                 <Field
                   type="tel"
                   id="headOfOperationPhoneOne"
@@ -240,8 +291,13 @@ export default function HotelUploadFormThree() {
                   placeholder="+234 801 345 6789"
                   className="form-control"
                 />
+                <ErrorMessage name="headOfOperationPhoneOne">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfOperationPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -253,7 +309,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfOperationOneEmail">Email</label>
                 <Field
                   type="email"
@@ -262,13 +318,18 @@ export default function HotelUploadFormThree() {
                   placeholder="jane@email.com"
                   className="form-control"
                 />
+                <ErrorMessage name="headOfOperationOneEmail">
+                  {msg => {
+                    return <div className="text-danger">{msg}</div>;
+                  }}
+                </ErrorMessage>
               </div>
             </div>
             {/* End of Owners info */}
             {/* Begining of Row   */}
             <div className="col-md-6 col-sm-12">
-              <h3>Head of Operations 2</h3>
-              <div class="form-group">
+              <h4>Accountant 2</h4>
+              <div className="form-group">
                 <label htmlFor="headOfOperationTwo">Name</label>
                 <Field
                   type="text"
@@ -279,7 +340,7 @@ export default function HotelUploadFormThree() {
                 />
               </div>
 
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfOperationTwoPhoneOne">Phone Number</label>
                 <Field
                   type="tel"
@@ -289,7 +350,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfOperationTwoPhoneTwo">
                   Phone Number 2 (Optional)
                 </label>
@@ -301,7 +362,7 @@ export default function HotelUploadFormThree() {
                   className="form-control"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="headOfOperationTwoEmail">Email</label>
                 <Field
                   type="email"
@@ -320,3 +381,5 @@ export default function HotelUploadFormThree() {
     </div>
   );
 }
+
+export default connect(HotelUploadFormThree);

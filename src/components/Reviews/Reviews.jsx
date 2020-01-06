@@ -5,7 +5,11 @@ export default class Reviews extends Component {
     return (
       <section className="review-section container mt-4">
         <h2 className="reservation-title">Customers Reviews</h2>
-        <div className="review-div my-3">
+
+        <h2 className="text-center">
+          Hello, we are currently working on this page :)
+        </h2>
+        {/* <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -35,8 +39,8 @@ export default class Reviews extends Component {
             ></textarea>
             <button className="btn  btn-dark btn-md w-50">Send</button>
           </div>
-        </div>
-        <div className="review-div my-3">
+        </div> */}
+        {/* <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -56,8 +60,8 @@ export default class Reviews extends Component {
               <i className="fas fa-star color"></i>
             </div>
           </div>
-        </div>
-        <div className="review-div my-3">
+        </div> */}
+        {/* <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -77,8 +81,8 @@ export default class Reviews extends Component {
               <i className="fas fa-star color"></i>
             </div>
           </div>
-        </div>
-        <div className="review-div my-3">
+        </div> */}
+        {/* <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -98,7 +102,7 @@ export default class Reviews extends Component {
               <i className="fas fa-star color"></i>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     );
   }

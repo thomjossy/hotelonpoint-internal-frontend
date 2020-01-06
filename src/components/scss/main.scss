@@ -18,6 +18,9 @@ $blackColor: #04070e;
 @import "./singlehotellandingpage";
 @import "./awaitinghotels";
 @import "./hoteldetails";
+@import "./approvedhotels";
+@import "./opportunity";
+@import "./report";
 
 * {
   padding: 0;
@@ -30,7 +33,7 @@ $blackColor: #04070e;
 // }
 
 .custom-shadow {
-  box-shadow: 0px 0px 1rem rgba($blackColor, 0.3);
+  box-shadow: 0px 0px 0.8rem rgba($blackColor, 0.3);
 }
 
 .gold {
@@ -48,4 +51,12 @@ $blackColor: #04070e;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.center-div {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $goldColor;
 }

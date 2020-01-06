@@ -27,3 +27,30 @@
     }
   }
 }
+
+.no-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+
+  .sad-face {
+    height: 150px;
+    width: 150px;
+    filter: grayscale(80%);
+  }
+  .error-add-room {
+    padding: 0.6rem 1.6rem;
+    background: $blackColor;
+
+    .add-new-room {
+      color: $whiteColor;
+      text-decoration: none;
+    }
+  }
+}
+
+.delete-room-btn {
+  cursor: pointer;
+}

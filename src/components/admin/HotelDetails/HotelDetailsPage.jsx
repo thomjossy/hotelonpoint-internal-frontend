@@ -1,39 +1,96 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+import Spinner from "../../images/Spinner.gif";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default class HotelDetailsPage extends Component {
+class HotelDetailsPage extends Component {
   state = {
-    hotel: {}
+    hotel: {},
+    rooms: [],
+    loading: true
   };
 
-  getHotel = async () => {
-    const promise = await axios.get(
-      `https://calm-anchorage-14244.herokuapp.com/hotel/${this.props.match.params.id}`
+  async componentDidMount() {
+    const response = await axios.get(
+      `http://localhost:3400/admin/${this.props.match.params.id}`
     );
-    const { data } = await promise;
-    this.setState({ hotel: data.data });
-  };
-  componentDidMount() {
-    this.getHotel();
+
+    this.setState({ hotel: response.data.Hotel });
+    this.setState({ rooms: response.data.Room, loading: false });
   }
 
-  render(props) {
-    console.log("From state Result", this.state.hotel);
-    console.log("From state Result", this.props);
+  handleApprove = async () => {
+    const items = {
+      approved: true
+    };
+    try {
+      const promise = await axios.put(
+        `http://localhost:3400/admin/approve/${this.props.match.params.id}/`,
+        items
+      );
+      if (promise.data) {
+        toast.success("Successfully Approved");
+        setTimeout(() => {
+          window.location.href = `/admin/approved-hotels`;
+        }, 1000);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`${err.message}`);
+    }
+  };
+
+  handleDelete = async () => {
+    try {
+      const promise = await axios.delete(
+        `http://localhost:3400/admin/deleteHotel/${this.props.match.params.id}`
+      );
+      if (promise.data) {
+        toast.success("Successfully Deleted");
+        setTimeout(() => {
+          window.location.href = `/admin/approved-hotels`;
+        }, 1000);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`${err.message}`);
+    }
+  };
+  render() {
     const {
       propertyInfo,
       managementDetails,
       hotelPolicy,
-      imageUrl,
-      rooms
+      imagerUrl,
+      approved
     } = this.state.hotel;
-    return (
+
+    const { rooms, hotel, loading } = this.state;
+
+    return hotel !== undefined && loading ? (
+      <div className="center-div">
+        <img src={Spinner} alt="" />
+      </div>
+    ) : (
       <section className="container mx-auto">
+        <ToastContainer />
         <div className="property-information-div">
           <h3>{propertyInfo && propertyInfo.hotelName}</h3>
-          <div className="hotel-images-div"></div>
-
-          <h5>Property Information</h5>
+          <br />
+          <div className="hotel-images-div">
+            {imagerUrl.map((item, index) => (
+              <img
+                src={item.url}
+                alt="hotel-pics"
+                className="single-img"
+                key={`${item}-${index}`}
+              />
+            ))}
+          </div>
+          <br />
+          <h4>Property Information</h4>
           <p>{propertyInfo && propertyInfo.hotelDescription}</p>
           <ul className="no-bullets">
             <li>Contact Name of the Hotel: </li>
@@ -53,7 +110,7 @@ export default class HotelDetailsPage extends Component {
           </ul>
         </div>
         <div className="management-details-div">
-          <h5 className="light-font">Mangement Details</h5>
+          <h4 className="">Mangement Details</h4>
           <div className="row">
             <div className="col-md-6">
               <p className="second-gold">Owner's Information</p>
@@ -98,7 +155,7 @@ export default class HotelDetailsPage extends Component {
               </ul>
             </div>
             <div className="col-md-6">
-              <p className="second-gold">Head of Operations One Information</p>
+              <p className="second-gold">Accountant One Information</p>
               <ul className="no-bullets">
                 <li>
                   Name: &nbsp;
@@ -122,7 +179,7 @@ export default class HotelDetailsPage extends Component {
               </ul>
             </div>
             <div className="col-md-6">
-              <p className="second-gold">Head of Operations Two Information</p>
+              <p className="second-gold">Accountant Two Information</p>
               <ul className="no-bullets">
                 <li>
                   Name: &nbsp;
@@ -196,7 +253,7 @@ export default class HotelDetailsPage extends Component {
           </div>
         </div>
         <div className="hotel-policy-div">
-          <h5 className="light-font">Hotel Policies</h5>
+          <h4 className="">Hotel Policies</h4>
           <ul className="no-bullets">
             <li>
               Guest Checkin Time: &nbsp;
@@ -224,19 +281,96 @@ export default class HotelDetailsPage extends Component {
               })}
           </ul>
 
-          <h5 className="light-font">More Hotel Policies</h5>
-          <p className="no-bullets">
-            {hotelPolicy &&
-              hotelPolicy.moreHotelPolicies.map((item, index) => {
-                return (
-                  <div>
-                    <p key={index}>{item.policy}</p>
-                  </div>
-                );
-              })}
-          </p>
+          {hotelPolicy && hotelPolicy.moreHotelPolicies.length > 1 ? (
+            <h5 className="light-font">More Hotel Policies</h5>
+          ) : null}
+
+          {hotelPolicy &&
+            hotelPolicy.moreHotelPolicies.length > 0 &&
+            hotelPolicy.moreHotelPolicies.map((item, index) => {
+              return (
+                <div key={index}>
+                  <p>{item.policy}</p>
+                </div>
+              );
+            })}
+        </div>
+        <div>
+          {rooms &&
+            rooms.length > 0 &&
+            rooms.map((item, index) => {
+              return (
+                <div key={`${item}-${index}`} className="mb-3">
+                  <h5>{`Room ${index + 1}  Informations`}</h5>
+                  <p>Name of Room: &nbsp; {item.roomType}</p>
+                  <p>Size of Room: &nbsp; {item.roomSize}</p>
+                  <p>Type of beds in this Room: &nbsp; {item.bedType}</p>
+                  <p>Number of beds in this room: &nbsp; {item.bedNumber}</p>
+                  <p>
+                    Number of rooms of this type: &nbsp; {item.roomsOfThisType}
+                  </p>
+                  <p>
+                    Number of Persons that can occupy this room: &nbsp;{" "}
+                    {item.occupantNumber}
+                  </p>
+                  <p>Price of this room: &nbsp; {item.roomPrice}</p>
+                  <p>Weekend Rate of this room: &nbsp; {item.weekendRate}</p>
+                  <p>Standard Rate of this room: &nbsp; {item.standardRate}</p>
+                  <p>
+                    Smoking policy of this room: &nbsp; {item.smokingPolicy}
+                  </p>
+
+                  <br />
+                  {item.roomAmenities && item.roomAmenities.length > 1 ? (
+                    <h5>Room Amenities</h5>
+                  ) : null}
+                  {item.roomAmenities &&
+                    item.roomAmenities.length > 1 &&
+                    item.roomAmenities.map((count, idx) => {
+                      return (
+                        <div key={`${count}-${idx}`}>
+                          <p>Room Amenity: &nbsp; {JSON.parse(count)}</p>
+                        </div>
+                      );
+                    })}
+                  {item.moreAmenities &&
+                    item.moreAmenities.length > 1 &&
+                    item.moreAmenities.map((count, idx) => {
+                      return (
+                        <div key={`${count}-${idx}`}>
+                          <p>Room Amenity: &nbsp; {JSON.parse(count)}</p>
+                        </div>
+                      );
+                    })}
+                </div>
+              );
+            })}
+        </div>
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <button
+              type="button"
+              className="btn btn-dark btn-block"
+              onClick={() => this.handleDelete()}
+            >
+              Delete
+            </button>
+          </div>
+          <div className="col-md-6 mb-3">
+            {approved ? null : (
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                onClick={() => this.handleApprove()}
+              >
+                Approve
+              </button>
+            )}
+          </div>
         </div>
       </section>
     );
   }
 }
+
+export default withRouter(HotelDetailsPage);

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import history from "../../history";
 import {
   CLEAR_ERRORS,
   LOADING_BLOG,
@@ -17,7 +16,7 @@ const url = "https://calm-anchorage-14244.herokuapp.com";
 export const loginUser = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post(`${url}/user/login`, data)
+    .post(`${url}/user/logins`, data)
     .then(res => {
       console.log(res);
       setAuthorizationHeader(res.data.message);
@@ -33,6 +32,48 @@ export const loginUser = (data, history) => dispatch => {
       });
       toast.error(err.response.data.message, {
         position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const loginAdmin = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`http://localhost:3400/admin/adminlogin`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getAdmin(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/admin";
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const getAdmin = history => dispatch => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .get(`http://localhost:3400/admin`)
+    .then(res => {
+      dispatch({
+        type: SET_USER,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err
       });
     });
 };
@@ -106,7 +147,7 @@ export const sendABlog = data => dispatch => {
         payload: res.data
       });
 
-      window.location.href = "/";
+      window.location.href = "/admin/blog";
       toast.success(res.data.message, {
         position: toast.POSITION.BOTTOM_CENTER
       });
