@@ -1,16 +1,19 @@
-import CircularProgress from "@material-ui/core/CircularProgress";
-import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import "./upload.css";
+
+import * as Yup from "yup";
+
 import { Form, Formik } from "formik";
 import React, { Component } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+
+import CircularProgress from "@material-ui/core/CircularProgress";
+import FileUpload from "./FileUpload";
 import HotelFormOne from "../HotelUploadForm/HotelFormOne";
+import HotelFormSix from "./HotelFormSix";
 import HotelFormThree from "../HotelUploadForm/HotelFormthree";
 import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
-import FileUpload from "./FileUpload";
-import HotelFormSix from "./HotelFormSix";
-import "./upload.css";
-import * as Yup from "yup";
+import axios from "axios";
 
 const initialValues = {
   hotelName: "",
@@ -306,7 +309,7 @@ export default class FormWrapper extends Component {
       form.append("registerAddress", values.registerAddress);
       form.append("registerPhone", values.registerPhone);
 
-      const url = "http://localhost:3400/hotel";
+      const url = "https://calm-anchorage-14244.herokuapp.com/hotel";
       this.setState({ isSubmitting: true });
       try {
         const result = await axios.post(url, form);

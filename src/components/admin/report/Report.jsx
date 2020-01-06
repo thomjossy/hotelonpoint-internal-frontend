@@ -1,8 +1,10 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default class Report extends Component {
   state = {
@@ -12,7 +14,7 @@ export default class Report extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get(
-      `http://localhost:3400/admin/getAllHotels`
+      `https://calm-anchorage-14244.herokuapp.com/admin/getAllHotels`
     );
 
     this.setState({ hotels: data.data });
@@ -34,7 +36,7 @@ export default class Report extends Component {
     const handleDelete = async id => {
       try {
         const promise = await axios.delete(
-          `http://localhost:3400/admin/deleteHotel/${id}/`
+          `https://calm-anchorage-14244.herokuapp.com/admin/deleteHotel/${id}/`
         );
         if (promise.data) {
           toast.success("Hotel Successfully Deleted");
@@ -53,7 +55,7 @@ export default class Report extends Component {
       };
       try {
         const promise = await axios.put(
-          `http://localhost:3400/admin/suspend/${id}`,
+          `https://calm-anchorage-14244.herokuapp.com/admin/suspend/${id}`,
           items
         );
         if (promise.data) {
@@ -73,7 +75,7 @@ export default class Report extends Component {
       };
       try {
         const promise = await axios.put(
-          `http://localhost:3400/admin/approve/${id}`,
+          `https://calm-anchorage-14244.herokuapp.com/admin/approve/${id}`,
           items
         );
         if (promise.data) {

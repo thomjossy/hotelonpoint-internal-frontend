@@ -1,13 +1,6 @@
-import React from "react";
 import "date-fns";
-import Grid from "@material-ui/core/Grid";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
-import { useContext } from "react";
-import { RoomContext } from "../../context";
+
+import React from "react";
 
 export default function Reservation(props) {
   // const [selectedDate, setSelectedDate] = React.useState(
@@ -117,3 +110,4 @@ export default function Reservation(props) {
     </section>
   );
 }
+

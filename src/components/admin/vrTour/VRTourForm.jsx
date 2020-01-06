@@ -1,8 +1,10 @@
-import { Formik, Form, Field } from "formik";
-import React, { Component } from "react";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { Field, Form, Formik } from "formik";
+import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import axios from "axios";
 
 class VRTourForm extends Component {
   render() {
@@ -22,7 +24,7 @@ class VRTourForm extends Component {
             };
             try {
               const promise = await axios.put(
-                `http://localhost:3400/admin/addVR/${this.props.match.params.id}`,
+                `https://calm-anchorage-14244.herokuapp.com/admin/addVR/${this.props.match.params.id}`,
                 items
               );
               console.log("promise", promise);

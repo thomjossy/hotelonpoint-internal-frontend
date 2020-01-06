@@ -1,15 +1,7 @@
+import { CLEAR_ERRORS, CLEAR_MESSAGE, LOADING_BLOG, LOADING_UI, LOADING_USER, SET_BLOG, SET_ERRORS, SET_MESSAGE, SET_UNAUTHENTICATED, SET_USER } from "../type";
+
 import axios from "axios";
 import { toast } from "react-toastify";
-import {
-  CLEAR_ERRORS,
-  LOADING_BLOG,
-  LOADING_UI,
-  LOADING_USER,
-  SET_BLOG,
-  SET_ERRORS,
-  SET_UNAUTHENTICATED,
-  SET_USER
-} from "../type";
 
 const url = "https://calm-anchorage-14244.herokuapp.com";
 
@@ -36,10 +28,58 @@ export const loginUser = (data, history) => dispatch => {
     });
 };
 
+export const validateUser = (data) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/user/validateUser`, data)
+    .then(res => {
+      dispatch({
+        type: SET_MESSAGE,
+        payload: res.data.data
+      })
+      dispatch({ type: CLEAR_ERRORS });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+      dispatch({
+        type: CLEAR_MESSAGE,
+      })
+    });
+};
+
+export const updatePassword = (data, id) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .put(`${url}/user/changePassword/${id}`, data)
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: SET_MESSAGE,
+        payload: res.data.data
+      })
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href= '/login'
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+      dispatch({
+        type: CLEAR_MESSAGE,
+      })
+    });
+};
+
 export const loginAdmin = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post(`http://localhost:3400/admin/adminlogin`, data)
+    .post(`${url}/admin/adminlogin`, data)
     .then(res => {
       console.log(res);
       setAuthorizationHeader(res.data.data);
@@ -62,8 +102,9 @@ export const loginAdmin = (data, history) => dispatch => {
 export const getAdmin = history => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
-    .get(`http://localhost:3400/admin`)
+    .get(`${url}/admin`)
     .then(res => {
+      console.log("got here", res);
       dispatch({
         type: SET_USER,
         payload: res.data
@@ -92,6 +133,10 @@ export const getUser = history => dispatch => {
       console.log(err);
       dispatch({
         type: SET_ERRORS,
+        payload: err
+      });
+      dispatch({
+        type: SET_UNAUTHENTICATED,
         payload: err
       });
     });
@@ -147,7 +192,7 @@ export const sendABlog = data => dispatch => {
         payload: res.data
       });
 
-      window.location.href = "/admin/blog";
+      window.location.href = "/";
       toast.success(res.data.message, {
         position: toast.POSITION.BOTTOM_CENTER
       });

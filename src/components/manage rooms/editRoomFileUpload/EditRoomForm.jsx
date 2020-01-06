@@ -1,8 +1,10 @@
-import { connect, Formik, Form, Field, FieldArray } from "formik";
-import React, { Component } from "react";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { Field, FieldArray, Form, Formik, connect } from "formik";
+import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import axios from "axios";
 
 class EditRoomForm extends Component {
   state = {
@@ -13,7 +15,7 @@ class EditRoomForm extends Component {
   async componentDidMount() {
     console.log(this.props.location.state.id);
     const response = await axios.get(
-      `http://localhost:3400/room/${this.props.location.state.id}/room`
+      `https://calm-anchorage-14244.herokuapp.com/room/${this.props.location.state.id}/room`
     );
     this.setState({ hotelDetails: response.data.data, loading: false });
     console.log(response);
@@ -121,7 +123,7 @@ class EditRoomForm extends Component {
               this.setState({ isSubmitting: true });
               try {
                 const result = await axios.put(
-                  `http://localhost:3400/room/${this.props.location.state.id}`,
+                  `https://calm-anchorage-14244.herokuapp.com/room/${this.props.location.state.id}`,
                   real
                 );
                 console.log("3243", result);

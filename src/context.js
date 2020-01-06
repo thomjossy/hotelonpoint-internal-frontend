@@ -1,9 +1,6 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-import { reservationlist } from "./components/services/fakereservation";
-import { registerdHotels } from "./components/services/fakeregisteredhotels";
-import { hotelRooms } from "./components/services/fakehotelrooms";
-import axios from "axios";
 const RoomContext = React.createContext();
 class RoomProvider extends Component {
   state = {
@@ -24,11 +21,6 @@ class RoomProvider extends Component {
     registerdHotels: [],
     hotelRooms: []
   };
-
-  componentDidMount() {
-    this.setState({ reservationlist: reservationlist });
-    this.setState({ registerdHotels: registerdHotels, hotelRooms: hotelRooms });
-  }
 
   handleDateChange = date => {
     this.setState({ checkIn: date });
@@ -92,3 +84,4 @@ class RoomProvider extends Component {
 const RoomConsumer = RoomContext.Consumer;
 
 export { RoomProvider, RoomConsumer, RoomContext };
+
