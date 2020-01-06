@@ -1,11 +1,16 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
+import axios from "axios";
+import { Form, Formik } from "formik";
 import React, { Component } from "react";
-import { Formik, Form, Field, FieldArray } from "formik";
-import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import HotelFormOne from "../HotelUploadForm/HotelFormOne";
 import HotelFormThree from "../HotelUploadForm/HotelFormthree";
-import HotelUploadForm from "./HotelUploadForm";
+import HotelFormTwo from "../HotelUploadForm/HotelFormTwo";
 import FileUpload from "./FileUpload";
-import axios from "axios";
+import HotelFormSix from "./HotelFormSix";
+import "./upload.css";
+import * as Yup from "yup";
 
 const initialValues = {
   hotelName: "",
@@ -20,22 +25,6 @@ const initialValues = {
   compName: "",
   repApproach: "",
   hotelDescription: "",
-  rooms: [
-    {
-      roomName: "",
-      roomType: "",
-      roomSize: "",
-      roomsOfThisType: "",
-      bedType: "",
-      bedNumber: "",
-      weekendRate: "",
-      standardRate: "",
-      occupantNumber: "",
-      roomPrice: "",
-      roomAmenities: [],
-      moreAmenities: []
-    }
-  ],
   propertyOwner: "",
   propertyOwnerPhoneOne: "",
   propertyOwnerPhoneTwo: "",
@@ -49,7 +38,7 @@ const initialValues = {
   headOfReservationPhoneTwo: "",
   headOfReservationOneEmail: "",
   headOfReservationTwo: "",
-  headOfReservationTwoPhoneTwo: "",
+  headOfReservationTwoPhoneOne: "",
   headOfReservationTwoPhoneTwo: "",
   headOfReservationTwoEmail: "",
   headOfOperationOne: "",
@@ -67,38 +56,129 @@ const initialValues = {
   checkOut: "",
   freeBooking: "",
   paidBooking: "",
-  otherpaymentMethod: "",
+  isBreakfastAvailable: "",
+  breakfastPrice: "",
+  contractName: "",
+  confirmRecipientAddress: "",
+  recipientCountry: "",
+  recipientState: "",
+  recipientCity: "",
+  recipientZipCode: "",
+  confirmAgreement: false,
+  isShuttleAvailable: "",
+  shuttlePrice: "",
+  registerName: "",
+  registerPhone: "",
+  registerAddress: "",
   moreHotelPolicies: [
     {
-      policy: ""
+      policyTitle: "",
+      policyDescription: ""
     }
   ],
-  moreHotelAmenities: [
-    {
-      amenity: ""
-    }
-  ],
+  moreHotelAmenities: [],
   files: []
 };
 
-const newRooms = {
-  roomName: "",
-  roomType: "",
-  roomSize: "",
-  roomsOfThisType: "",
-  bedType: "",
-  bedNumber: "",
-  weekendRate: "",
-  standardRate: "",
-  occupantNumber: "",
-  roomPrice: "",
-  roomAmenities: [],
-  moreAmenities: [{ amenity: "" }]
-};
-
+const validationSchema = Yup.object({
+  hotelName: Yup.string().required("This field is Required"),
+  contactName: Yup.string().required("This field is Required"),
+  hotelWebsite: Yup.string().url(),
+  country: Yup.string().required("This field is Required"),
+  state: Yup.string().required("This field is Required"),
+  city: Yup.string().required("This field is Required"),
+  zipCode: Yup.number()
+    .positive()
+    .integer()
+    .required("This field is Required"),
+  compName: Yup.string(),
+  hotelDescription: Yup.string()
+    .required("This field is Required")
+    .max(200, "Maximum amount of character exceeded")
+    .min(50, "Hotel Description should be more than 50 Characters"),
+  propertyOwner: Yup.string().required("This field is Required"),
+  propertyOwnerPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  propertyOwnerPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  propOwnerEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  frontDesk: Yup.string().required("This field is Required"),
+  frontDeskPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  frontDeskPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  frontDeskEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfReservationOne: Yup.string().required("This field is Required"),
+  headOfReservationPhoneOne: Yup.string().required(
+    "This field is Required and enter a valid phone number"
+  ),
+  headOfReservationPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationOneEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfReservationTwo: Yup.string(),
+  headOfReservationTwoPhoneOne: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationTwoPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfReservationTwoEmail: Yup.string().email(),
+  headOfOperationOne: Yup.string().required("This is a required field"),
+  headOfOperationPhoneOne: Yup.string().required(
+    "This is a required field and enter a valid phone number"
+  ),
+  headOfOperationPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationOneEmail: Yup.string()
+    .required("This field is Required and fill a valid email")
+    .email(),
+  headOfOperationTwo: Yup.string(),
+  headOfOperationTwoPhoneOne: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationTwoPhoneTwo: Yup.number()
+    .positive()
+    .integer(),
+  headOfOperationTwoEmail: Yup.string().email(),
+  checkIn: Yup.date(),
+  checkOut: Yup.date(),
+  freeBooking: Yup.number()
+    .integer()
+    .positive(),
+  paidBooking: Yup.number("Enter Numeric Characters")
+    .positive()
+    .integer(),
+  breakfastPrice: Yup.number()
+    .positive()
+    .integer(),
+  contractName: Yup.string().required("This is a required field"),
+  recipientCountry: Yup.string(),
+  recipientState: Yup.string(),
+  recipientCity: Yup.string(),
+  // recipientZipCode: Yup.string()
+  //   .integer()
+  //   .positive(),
+  shuttlePrice: Yup.number()
+    .positive()
+    .integer()
+});
 export default class FormWrapper extends Component {
   state = {
-    page: 0
+    page: 0,
+    message: "",
+    isSubmitting: false
   };
 
   render() {
@@ -106,8 +186,8 @@ export default class FormWrapper extends Component {
       <HotelFormOne />,
       <HotelFormThree />,
       <HotelFormTwo />,
-      <HotelUploadForm />,
-      <FileUpload />
+      <FileUpload />,
+      <HotelFormSix />
     ];
 
     const incrementStep = () => {
@@ -118,15 +198,10 @@ export default class FormWrapper extends Component {
     };
 
     const handleFormSubmit = async values => {
-      console.log("23", values);
       const form = new FormData();
 
       for (let x = 0; x < values.files.length; x++) {
         form.append("image", values.files[x]);
-      }
-
-      for (let x = 0; x < values.rooms.length; x++) {
-        form.append("rooms", JSON.stringify(values.rooms[x]));
       }
 
       for (let x = 0; x < values.paymentMethod.length; x++) {
@@ -150,6 +225,7 @@ export default class FormWrapper extends Component {
           JSON.stringify(values.moreHotelAmenities[x])
         );
       }
+      form.append("confirmAgreement", values.confirmAgreement);
 
       form.append("hotelName", values.hotelName);
       form.append("hotelWebsite", values.hotelWebsite);
@@ -216,73 +292,114 @@ export default class FormWrapper extends Component {
       form.append("checkOut", values.checkOut);
       form.append("freeBooking", values.freeBooking);
       form.append("paidBooking", values.paidBooking);
-      form.append("otherPaymentMethod", values.otherPaymentMethod);
+      form.append("isBreakfastAvailable", values.isBreakfastAvailable);
+      form.append("breakfastPrice", values.breakfastPrice);
+      form.append("contractName", values.contractName);
+      form.append("confirmRecipientAddress", values.confirmRecipientAddress);
+      form.append("recipientCountry", values.recipientCountry);
+      form.append("recipientState", values.recipientState);
+      form.append("recipientCity", values.recipientCity);
+      form.append("recipientZipCode", values.recipientZipCode);
+      form.append("isShuttleAvailable", values.isShuttleAvailable);
+      form.append("shuttlePrice", values.shuttlePrice);
+      form.append("registerName", values.registerName);
+      form.append("registerAddress", values.registerAddress);
+      form.append("registerPhone", values.registerPhone);
 
-      //apicall
-      // Axios.post('http://localhost:3001/properties?file=#', form)
+      const url = "http://localhost:3400/hotel";
+      this.setState({ isSubmitting: true });
+      try {
+        const result = await axios.post(url, form);
+        this.setState({ message: result.data.status, isSubmitting: false });
+        toast.success(this.state.message);
 
-      const result = await axios.post("http://localhost:3400/hotel", form);
-      console.log("here", result);
+        setTimeout(() => {
+          window.location.href = `/hotel/${result.data.data._id}/rooms/addroom`;
+          // history.push("/");
+        }, 1000);
+      } catch (err) {
+        this.setState({
+          message: err.response.data.error,
+          isSubmitting: false
+        });
+        toast.error(this.state.message);
+      }
     };
     return (
-      <div className="container" style={{ fontSize: "14px" }}>
-        <div className="mt-3">
-          <br />
-          <Formik
-            initialValues={initialValues}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log(JSON.stringify(values, null, 2));
-              setSubmitting(true);
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit
-              // isSubmitting
-            }) => (
-              <Form>
-                <div>{hotels[this.state.page]}</div>
-                <br />
-                <div className="button-div">
-                  <button
-                    type="button"
-                    className="btn btn-dark btn-lg"
-                    disabled={this.state.page === 0}
-                    onClick={() => decrementStep()}
-                  >
-                    Back
-                  </button>
+      <>
+        <ToastContainer />
+        <Formik
+          validateOnChange={true}
+          validateOnBlur={true}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            console.log(JSON.stringify(values, null, 2));
+            setSubmitting(true);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit
+            // isSubmitting
+          }) => (
+            <div className="container ">
+              <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
+                  <Form>
+                    <div>{hotels[this.state.page]}</div>
 
-                  {this.state.page === 4 ? (
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg"
-                      // disabled={isSubmitting}
-                      onClick={() => handleFormSubmit(values)}
-                    >
-                      Submit
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      className="btn btn-dark btn-lg"
-                      // disabled={isSubmitting}
-                      onClick={() => incrementStep()}
-                    >
-                      Next
-                    </button>
-                  )}
+                    <div className="row">
+                      <div className="col-md-6">
+                        <button
+                          type="button"
+                          className="btn btn-dark btn-block"
+                          disabled={this.state.page === 0}
+                          onClick={() => decrementStep()}
+                        >
+                          Back
+                        </button>
+                      </div>
+                      <div className="col-md-6">
+                        {this.state.page === hotels.length - 1 ? (
+                          values.confirmAgreement ? (
+                            <button
+                              type="submit"
+                              className="btn btn-primary btn-block"
+                              disabled={this.state.isSubmitting}
+                              onClick={() => handleFormSubmit(values)}
+                            >
+                              Submit
+                              {this.state.isSubmitting && (
+                                <CircularProgress size={30} />
+                              )}
+                            </button>
+                          ) : null
+                        ) : (
+                          <button
+                            type="button"
+                            href="#top"
+                            className="btn btn-dark btn-block"
+                            onClick={() => incrementStep()}
+                          >
+                            Next
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </Form>
                 </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
-        <br />
-      </div>
+                <div className="col-md-1"></div>
+              </div>
+            </div>
+          )}
+        </Formik>
+      </>
     );
   }
 }

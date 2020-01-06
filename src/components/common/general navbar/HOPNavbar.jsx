@@ -1,183 +1,164 @@
 import "./nav.css";
 import React, { Component } from "react";
-import { faCcVisa, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import {
-  faHotel,
-  faPlaneDeparture,
-  faShip,
-  faTaxi
-} from "@fortawesome/free-solid-svg-icons";
-// import { getUser, logoutUser } from "../../redux/actions/userActions";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
+import { getUser, logoutUser } from "../../../redux/actions/userActions";
 import { Link } from "react-router-dom";
-
 import logo from "../../images/HOP.svg";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showNav: false
+      // authenticated: false,
+      // userData: {}
+    };
+  }
   componentDidMount() {
     // this.props.getUser();
   }
 
   signout = () => {
-    // this.props.logoutUser(history);
+    this.props.logoutUser();
+  };
+  handleNav = () => {
+    this.setState({ showNav: !this.state.showNav });
   };
 
   render() {
-    // const {
-    //   user: { authenticated, userData }
-    // } = this.props;
+    const {
+      user: { authenticated, userData }
+    } = this.props;
     return (
       <div>
-        <div>
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <span className="navbar-brand">
-              <img src={logo} width="200" alt="" />
+        {authenticated ? (
+          <nav className="hop-navbar">
+            <span className="navbar-logo">
+              <img src={logo} alt="HotelOnPoints" />
             </span>
-            <button
-              class="navbar-toggler "
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarTogglerDemo01"
-              aria-controls="navbarTogglerDemo01"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon bg-light"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <ul className="navbar-nav ml-auto">
-                <li className="number  mr-1">
-                  <div
-                    className="btn-group mr-1 btn-group-sm"
-                    role="group"
-                    aria-label="Button group with nested dropdown"
-                  >
-                    <div className="btn-group" role="group">
-                      <button
-                        id="btnGroupDrop2"
-                        type="button"
-                        className="botin dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Talk to us
-                      </button>
 
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenu2"
-                      >
-                        <Link to="/language/" className="dropdown-item">
-                          <FontAwesomeIcon
-                            className="wicon"
-                            icon={faWhatsapp}
-                          />{" "}
-                          08028967884
-                        </Link>
-                      </div>
+            <div className="hop-harmbuger-div" onClick={this.handleNav}>
+              <i className="fas fa-bars hop-bars"></i>
+            </div>
+            {userData && userData.isAdmin ? (
+              <ul
+                className={
+                  this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
+                }
+              >
+                {userData && (
+                  <li className="nav-item mr-1">
+                    <div>
+                      <img
+                        src={userData.imageUrl}
+                        alt="..."
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginLeft: 10,
+                          marginRight: 10
+                        }}
+                        className="rounded-circle"
+                      />{" "}
+                      <span style={{ color: "white", marginRight: 10 }}>
+                        {userData.fullName}
+                      </span>
                     </div>
-                  </div>
-                </li>
-
-                <li className="nav-item mr-1">
-                  <div
-                    className="btn-group mr-1 btn-group-sm"
-                    role="group"
-                    aria-label="Button group with nested dropdown"
-                  >
-                    <div className="btn-group" role="group">
-                      <button
-                        id="btnGroupDrop1"
-                        type="button"
-                        className="botin dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        EN
-                      </button>
-
-                      <div
-                        className="dropdown-menu"
-                        aria-labelledby="btnGroupDrop1"
-                      >
-                        <Link to="/language" className="dropdown-item">
-                          testing
-                        </Link>
-                      </div>
-                      <button type="button" className="botin">
-                        NGN
-                      </button>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="nav-item mr-1">
-                  <Link to="/properties">
-                    <button className="botin">Add your property</button>
-                  </Link>
-                </li>
-                <li className="nav-item mr-1">
-                  <Link to="/signup">
-                    <button className="botin">Sign up</button>
-                  </Link>
-                </li>
-                <li className="nav-item mr-1">
-                  <Link to="/login">
-                    <button className="botin">Login</button>
-                  </Link>
+                  </li>
+                )}
+                <li className="hop-navbar-li">
+                  <button className="navbar-link " onClick={this.signout}>
+                    Log out
+                  </button>
                 </li>
               </ul>
-            </div>
+            ) : (
+              <ul
+                className={
+                  this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
+                }
+              >
+                <li className="hop-navbar-li">
+                  <Link to="/" className="navbar-link">
+                    Home
+                  </Link>
+                </li>
+                <li className="hop-navbar-li">
+                  <Link to="/add-property" className="navbar-link">
+                    Add New Property
+                  </Link>
+                </li>
+                {userData && (
+                  <li className="nav-item mr-1">
+                    <div>
+                      <img
+                        src={userData.imageUrl}
+                        alt="..."
+                        style={{
+                          width: 40,
+                          height: 40,
+                          marginLeft: 10,
+                          marginRight: 10
+                        }}
+                        className="rounded-circle"
+                      />{" "}
+                      <span style={{ color: "white", marginRight: 10 }}>
+                        {userData.fullName}
+                      </span>
+                    </div>
+                  </li>
+                )}
+                <li className="hop-navbar-li">
+                  <button className="navbar-link " onClick={this.signout}>
+                    Log out
+                  </button>
+                </li>
+              </ul>
+            )}
           </nav>
+        ) : (
+          <nav className="hop-navbar">
+            <span className="navbar-logo">
+              <img src={logo} alt="HotelOnPoints" />
+            </span>
 
-          <nav className="navbar-expand-lg navbar-light bg2 shadow   ">
-            <ul className="nav">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  <FontAwesomeIcon className="menuicon" icon={faHotel} />
-                  Acommodation
+            <div className="hop-harmbuger-div" onClick={this.handleNav}>
+              <i className="fas fa-bars hop-bars"></i>
+            </div>
+            <ul
+              className={
+                this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
+              }
+            >
+              <li className="hop-navbar-li">
+                <Link to="/" className="navbar-link">
+                  Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/Taxishome/" className="nav-link">
-                  <FontAwesomeIcon className="menuicon" icon={faTaxi} />
-                  Taxis
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/Airportshuttle/" className="nav-link">
-                  <FontAwesomeIcon className="menuicon" icon={faShip} />
-                  Tours&Ticket
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/flight/" className="nav-link">
-                  <FontAwesomeIcon
-                    className="menuicon"
-                    icon={faPlaneDeparture}
-                  />
-                  Flight
+              <li className="hop-navbar-li">
+                <Link to="/add-property" className="navbar-link">
+                  Add New Property
                 </Link>
               </li>
 
-              <li className="nav-item">
-                <Link to="/flight/" className="nav-link">
-                  <FontAwesomeIcon className="menuicon" icon={faCcVisa} />
-                  Visa
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/Attraction" className="nav-link">
-                  Attractions
+              <li className="hop-navbar-li">
+                <Link to="/login" className="navbar-link ">
+                  Log In
                 </Link>
               </li>
             </ul>
           </nav>
-        </div>
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapActionsToProps = {
+  getUser,
+  logoutUser
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Navbar);

@@ -2,7 +2,7 @@
 }
 
 .dashboard-top {
-  height: 30vh;
+  height: 20vh;
   background: linear-gradient(rgba(0, 0, 0, 0.699), rgba(0, 0, 0, 0.699)),
     url(../images/hoomage.jpg);
   background-repeat: no-repeat;
@@ -20,15 +20,127 @@
   }
 }
 
-.dashboard-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 250px));
-  gap: 1rem;
-  background: chocolate;
+.property-search-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
 
-  .dashboard-menu {
-    width: 150px;
-    height: 150px;
-    background: cyan;
+  .search {
+    font-size: 1.4rem;
+    color: rgba($secondGoldColor, 0.9);
+    transform: translateX(-2.5rem);
   }
+}
+.property-search {
+  width: 70%;
+  height: 2.7rem;
+  padding: 1rem;
+  border: 1px solid $secondGoldColor;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  outline: none;
+
+  &::placeholder {
+    color: $blackColor;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  &:hover {
+    border-color: #a0a0a0;
+  }
+  &:focus {
+    border-color: $secondGoldColor;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.26);
+  }
+}
+
+.dashboard-table {
+  width: 100%;
+  text-align: center;
+  border: 0.01rem solid rgba($blackColor, 0.3);
+  box-shadow: 0px 0px 0.7rem rgba($blackColor, 0.2);
+
+  tr {
+    th {
+      color: $secondGoldColor;
+      background: $blackColor;
+      padding: 0.5rem;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(even) {
+        // color: $whiteColor;
+        background: rgba($secondGoldColor, 0.5);
+      }
+      td {
+        text-align: left;
+        padding: 0.5rem;
+        border: 0.01rem solid rgba($blackColor, 0.2);
+      }
+    }
+  }
+}
+
+.hotel-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin-right: 2px;
+}
+@media screen and (max-width: 768px) {
+  .property-search {
+    width: 90%;
+    height: 2.7rem;
+    padding: 0.5rem;
+    border: 1px solid $secondGoldColor;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    outline: none;
+
+    &::placeholder {
+      color: $blackColor;
+      padding: 0.3rem;
+      font-size: 1rem;
+    }
+    &:hover {
+      border-color: #a0a0a0;
+    }
+    &:focus {
+      border-color: $secondGoldColor;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.26);
+    }
+  }
+}
+.add-new-property-div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  .add-new-property {
+    border: 1px solid $blackColor;
+    text-align: right;
+    padding: 8px 8px;
+    background: $blackColor;
+    color: $whiteColor;
+
+    margin-bottom: 2rem;
+  }
+}
+
+.hotel-link {
+  color: $blackColor;
+  text-decoration: underline;
+}
+
+.hotel-link:hover {
+  font-weight: 500;
+  color: $blackColor;
+  text-decoration: underline;
 }

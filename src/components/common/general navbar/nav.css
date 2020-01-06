@@ -1,56 +1,152 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap");
-.navigation {
-  color: red;
+
+* {
+  box-sizing: border-box;
 }
-.nav-link {
-  font-size: 15px;
-  color: black;
-  font-weight: bold;
+.hop-navbar {
+  position: relative;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.nav-link:hover {
-  color: white;
+
+.hop-navbar > .navbar-logo {
+  margin-left: 4px;
+  width: 200px;
+  overflow: hidden;
 }
-.wicon {
-  font-size: 30px;
-  color: green;
+
+.hop-navbar > .navbar-logo > img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-.number {
-  color: white;
+
+.hop-navbar > .hop-harmbuger-div {
+  position: absolute;
+  border: 1.6px solid #c4bda3;
+  width: 2.8rem;
+  right: 10px;
+  top: 10px;
+  text-align: center;
+  display: none;
 }
-.menuicon {
-  color: black;
-  font-size: 15px;
-  margin-right: 5px;
-}
-.navbar-expand-lg {
-  z-index: 3px;
-}
-.navbar {
-  background-color: black !important;
-}
-.navbar-toggler {
-  border-color: white !important;
-  margin-bottom: 10px;
-}
-.navbar-toggler-icon {
-  color: white;
-}
-.botin {
-  outline: none;
-  border-style: solid;
-  border-radius: 5px;
-  border-color: #c4bda3;
+
+.hop-navbar > .hop-harmbuger-div .hop-bars {
   color: #c4bda3;
-  background: none;
+  text-align: center;
+  font-size: 1.7rem;
 }
-.botin:hover {
-  background-color: #c4bda3;
-  color: black;
-  font-weight: bold;
+
+.hop-navbar > .hop-navbar-ul {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 7px;
+  margin-top: 2px;
 }
-.bg2 {
-  background-color: #c4bda3;
+
+.hop-navbar > .hop-navbar-ul .hop-navbar-li {
+  margin-right: 7px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.nav-item {
-  font-family: "PT Sans", sans-serif;
+
+.hop-navbar > .hop-navbar-ul .hop-navbar-li .navbar-link {
+  text-decoration: none;
+  align-self: center;
+  font-size: 1rem;
+  border: 1.6px solid #c4bda3;
+  border-radius: 0.5rem;
+  padding: 2px 7px;
+  color: #c4bda3;
+  transition: all 0.6s ease-in;
+}
+
+.hop-navbar > .hop-navbar-ul .hop-navbar-li .navbar-link:hover {
+  border: 1.6px solid #c4bda3;
+  border-radius: 0.5rem;
+  padding: 2px 7px;
+  color: #000000;
+  background: #c4bda3;
+}
+
+@media screen and (max-width: 768px) {
+  .hop-navbar {
+    position: relative;
+    background: black;
+    display: block;
+    padding-bottom: 10px;
+  }
+
+  .hop-navbar > .hop-harmbuger-div {
+    position: absolute;
+    border: 1.5px solid #c4bda3;
+    width: 2.8rem;
+    right: 10px;
+    top: 2px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+  }
+
+  .hop-navbar > .hop-harmbuger-div .hop-bars {
+    color: #c4bda3;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .hop-navbar > .hop-navbar-ul {
+    align-self: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0px;
+    margin-top: 20px;
+  }
+  .hop-navbar > .show-ul {
+    display: block;
+  }
+  .hop-navbar > .hop-navbar-ul .hop-navbar-li {
+    margin-right: 7px;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .hop-navbar > .hop-navbar-ul .hop-navbar-li .navbar-link {
+    display: block;
+    text-decoration: none;
+    align-self: center;
+    font-size: 1rem;
+    border: 0px solid #c4bda3;
+    border-radius: 0px;
+    padding: 2px 7px;
+    color: #c4bda3;
+    height: 100%;
+    width: 100%;
+    transition: all 0.6s ease-in;
+  }
+
+  .hop-navbar > .hop-navbar-ul .hop-navbar-li .navbar-link:hover {
+    border: 1px solid #c4bda3;
+    border-radius: 0px;
+    padding: 2px 7px;
+    color: #000000;
+    background: #c4bda3;
+  }
+
+  .hop-navbar > .navbar-logo {
+    margin-left: 4px;
+    width: 180px;
+    display: block;
+  }
+
+  .hop-navbar > .navbar-logo > img {
+    width: 100%;
+    overflow: hidden;
+  }
 }

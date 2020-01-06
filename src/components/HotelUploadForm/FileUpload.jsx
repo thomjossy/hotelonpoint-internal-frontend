@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./fileUpload/fileupload.css";
-import Files from "react-files";
 import { connect } from "formik";
+import React, { Component } from "react";
+import Files from "react-files";
+import "./fileUpload/fileupload.css";
 
 class FileUpload extends Component {
   state = {
@@ -20,8 +20,11 @@ class FileUpload extends Component {
   }
   render() {
     const { files } = this.state;
+  
+ 
     return (
-      <div>
+      <section>
+        <div className="mb-4 p-3 custom-shadow">
         <div className="files">
           <h3>Upload Pictures of your hotel</h3>
           <br />
@@ -51,7 +54,9 @@ class FileUpload extends Component {
             </div>
           </Files>
         </div>
-      </div>
+        </div>
+      
+      </section>
     );
   }
 }

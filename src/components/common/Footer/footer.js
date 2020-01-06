@@ -29,14 +29,14 @@ function Footer() {
             <label className="label text-center">
               Subscribe to get the latest of deals
             </label>
-            <div class="input-group">
+            <div className="input-group">
               <input
                 type="email"
                 name="email"
                 className="form-control"
                 placeholder="youremail@example.com"
               />
-              <div class="input-group-append">
+              <div className="input-group-append">
                 <input
                   type="submit"
                   className=" d-inline btn btn-sm btn-light"

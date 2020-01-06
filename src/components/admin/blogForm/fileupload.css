@@ -1,0 +1,16 @@
+.blogphoto {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.imageup {
+  margin-right: 2px;
+  width: 200px;
+  height: 200px;
+}
+
+.piccard {
+  background-color: rgba(245, 238, 238, 0.753);
+  height: 300px;
+  margin-top: 10px;
+}

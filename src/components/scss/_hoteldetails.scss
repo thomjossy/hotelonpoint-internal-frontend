@@ -1,0 +1,36 @@
+.property-information-div {
+  h3 {
+    color: $blackColor;
+  }
+  h5 {
+    font-weight: 400;
+  }
+  .no-bullets {
+    list-style-type: none;
+  }
+}
+.no-bullets {
+  list-style-type: none;
+}
+
+.light-font {
+  font-weight: 400;
+}
+
+.second-gold {
+  color: $goldColor;
+  font-size: larger;
+  margin-bottom: 0;
+}
+
+.hotel-images-div {
+  height: 40vh;
+  overflow-x: scroll;
+  display: flex;
+
+  .single-img {
+    height: 200px;
+    width: 200px;
+    margin: 0 3px;
+  }
+}

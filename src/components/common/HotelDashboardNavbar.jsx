@@ -8,49 +8,50 @@ export default class HotelDashboardNavbar extends Component {
 
   handleNavOpen = () => {
     this.setState({ navOpen: !this.state.navOpen });
-    console.log("clicked");
   };
   render() {
+    const { match } = this.props;
+    console.log("hoteldashboardnavbar", this.props);
     return (
       <div className="dashboardnavbar-div">
-        <div className="harmbuger-div" onClick={this.handleNavOpen}>
-          <i className="fas fa-bars"></i>
+        <div className="harmbuger-div">
+          <i onClick={this.handleNavOpen} className="fas fa-bars"></i>
         </div>
         <nav
           className={
             this.state.navOpen ? "dashboardnavbar" : "dashboardnavbar-close"
           }
         >
-          <ul>
-            <li>
-              <Link to="/">
+          <ul className="dashboard-ul">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}`}>
                 <i className="fas fa-home"></i>
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/properties">
-                <i className="fas fa-building"></i>
-                Add Properties
-              </Link>
-            </li>
-            <li>
-              <Link to="/reservations">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/reservation`}>
                 <i className="fas fa-chart-area"></i>
                 Reservations
               </Link>
             </li>
 
-            <li>
-              <Link to="/">
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/reviews`}>
                 <i className="fas fa-inbox"></i>
-                Messages
+                Reviews
               </Link>
             </li>
-            <li>
-              <Link to="/">
-                <i className="fas fa-money-bill-wave-alt"></i>
-                Finance
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/rooms`}>
+                <i className="fas fa-bed"></i>
+                Manage Rooms
+              </Link>
+            </li>
+            <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/opportunity`}>
+                <i className="fas fa-handshake"></i>
+                Opportunity
               </Link>
             </li>
           </ul>
