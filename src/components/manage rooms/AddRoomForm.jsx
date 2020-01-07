@@ -84,7 +84,7 @@ class AddRoomForm extends Component {
             form.append("standardRate", values.standardRate);
             form.append("occupantNumber", values.occupantNumber);
             form.append("bedType", values.bedType);
-            const url = `http://localhost:3400/room/${hotelID}`;
+            const url = `https://calm-anchorage-14244.herokuapp.com/room/${hotelID}`;
             console.log(values);
             console.log(form.get("moreAmenities"));
             console.log(form.get("roomType"));

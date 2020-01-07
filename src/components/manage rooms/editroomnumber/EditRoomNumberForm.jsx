@@ -12,7 +12,7 @@ class EditRoomNumberForm extends Component {
 
   async componentDidMount() {
     const response = await axios.get(
-      `http://localhost:3400/room/${this.props.match.params.id}`
+      `https://calm-anchorage-14244.herokuapp.com/room/${this.props.match.params.id}`
     );
     this.setState({ hotelDetails: response.data.data[0], loading: false });
     console.log("editroomdetails", this.state.hotelDetails);
@@ -53,7 +53,7 @@ class EditRoomNumberForm extends Component {
               this.setState({ isSubmitting: true });
               try {
                 const result = await axios.put(
-                  `http://localhost:3400/room/${this.props.location.state.id}`,
+                  `https://calm-anchorage-14244.herokuapp.com/room/${this.props.location.state.id}`,
                   real
                 );
 

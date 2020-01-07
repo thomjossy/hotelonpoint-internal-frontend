@@ -1,8 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
-
 import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
 import { Link } from "react-router-dom";
 import axios from "axios";
 

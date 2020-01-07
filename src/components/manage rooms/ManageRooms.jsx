@@ -13,7 +13,7 @@ class ManageRooms extends Component {
   async componentDidMount() {
     try {
       const promise = await axios.get(
-        `http://localhost:3400/room/${this.props.match.params.id}`
+        `https://calm-anchorage-14244.herokuapp.com/room/${this.props.match.params.id}`
       );
       this.setState({
         hotelRooms: promise.data.data,
@@ -28,7 +28,9 @@ class ManageRooms extends Component {
   handleRoomDelete = async id => {
     const hotelRooms = [...this.state.hotelRooms];
     try {
-      const promise = await axios.delete(`http://localhost:3400/room/${id}`);
+      const promise = await axios.delete(
+        `https://calm-anchorage-14244.herokuapp.com/room/${id}`
+      );
       console.log("promise from delete", promise);
 
       const newHotelRooms = this.state.hotelRooms.filter(

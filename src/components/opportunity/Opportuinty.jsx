@@ -25,7 +25,7 @@ export default class Opportuinty extends Component {
     this.setState({ isSubmitting: true });
     try {
       const result = await axios.put(
-        `http://localhost:3400/hotel/percentage/${this.props.match.params.id}`,
+        `https://calm-anchorage-14244.herokuapp.com/hotel/percentage/${this.props.match.params.id}`,
         data
       );
 
