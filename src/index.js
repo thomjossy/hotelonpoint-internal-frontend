@@ -1,21 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { RoomProvider } from "./context";
 import "./index.css";
-import App from "./App";
-import store from "./redux/store";
-import { Provider } from "react-redux";
+
 import * as serviceWorker from "./serviceWorker";
 
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import { RoomProvider } from "./context";
+
+// import { Provider } from "react-redux";
+
+
 ReactDOM.render(
-  <Provider store={store}>
+  // <Provider store={store}>
     <RoomProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </RoomProvider>
-  </Provider>,
+    </RoomProvider>,
+  // </Provider>,
   document.getElementById("root")
 );
 
