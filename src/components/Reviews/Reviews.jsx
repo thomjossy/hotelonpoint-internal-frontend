@@ -4,8 +4,6 @@ export default class Reviews extends Component {
   render() {
     return (
       <section className="review-section container mt-4">
-        <h2 className="reservation-title">Customers Reviews</h2>
-
         <h2 className="text-center">
           Hello, we are currently working on this page :)
         </h2>
