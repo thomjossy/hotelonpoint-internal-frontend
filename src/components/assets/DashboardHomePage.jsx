@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { RoomContext } from "../../context";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Spinner from "../images/Spinner.gif";
 
 class DashboardHomePage extends Component {
-  static contextType = RoomContext;
-
   state = {
     myHotel: [],
-    loading: true
+    loading: true,
+    propertySearch: ""
   };
 
   async componentDidMount() {
@@ -21,12 +19,16 @@ class DashboardHomePage extends Component {
     this.setState({ myHotel: response.data.hotels, loading: false });
   }
 
+  handlePropertyChange = e => {
+    this.setState({ propertySearch: e.target.value });
+  };
+
   render() {
     const {
       user: { userData }
     } = this.props;
-    const { handlePropertyChange, propertySearch } = this.context;
-    const { myHotel, loading } = this.state;
+
+    const { myHotel, loading, propertySearch } = this.state;
 
     const filterdHotels = myHotel.filter(item =>
       item.propertyInfo.hotelName
@@ -62,7 +64,9 @@ class DashboardHomePage extends Component {
               value={propertySearch}
               className="property-search"
               placeholder={"Search for your property by name "}
-              onChange={handlePropertyChange}
+              onChange={() => {
+                this.handlePropertyChange();
+              }}
             />
             <i className="fas fa-search search"></i>
           </div>
