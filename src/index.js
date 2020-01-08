@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 import "react-app-polyfill/ie9";
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+=======
+>>>>>>> 3503b976dd903a3c6b291509cc519c100fffc38a
 import "./index.css";
-import App from "./App";
-import store from "./redux/store";
-import { Provider } from "react-redux";
+
 import * as serviceWorker from "./serviceWorker";
+
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import React from "react";
+import ReactDOM from "react-dom";
+import store from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
