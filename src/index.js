@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import "react-app-polyfill/ie9";
-import "react-app-polyfill/ie11";
-import "react-app-polyfill/stable";
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-=======
->>>>>>> 3503b976dd903a3c6b291509cc519c100fffc38a
 import "./index.css";
 
 import * as serviceWorker from "./serviceWorker";
