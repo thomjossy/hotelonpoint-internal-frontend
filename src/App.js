@@ -6,7 +6,6 @@ import Navbar from "./components/common/general navbar/HOPNavbar";
 import Footer from "./components/common/Footer/footer";
 import FormWrapper from "./components/HotelUploadForm/FormWrapper";
 import "./components/scss/main.scss";
-import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Reviews from "./components/Reviews/Reviews";
