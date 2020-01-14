@@ -41,7 +41,7 @@ export default class ApprovedHotels extends Component {
           `https://calm-anchorage-14244.herokuapp.com/admin/deleteHotel/${id}/`
         );
         if (promise.data) {
-          toast.success("Hotel Successfully Deleted");
+          toast.success("Hotels Successfully Deleted");
           setTimeout(() => {
             window.location.href = `/admin/approved-hotels`;
           }, 800);
