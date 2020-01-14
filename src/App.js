@@ -6,7 +6,6 @@ import Navbar from "./components/common/general navbar/HOPNavbar";
 import Footer from "./components/common/Footer/footer";
 import FormWrapper from "./components/HotelUploadForm/FormWrapper";
 import "./components/scss/main.scss";
-import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Reviews from "./components/Reviews/Reviews";
@@ -18,6 +17,7 @@ import AdminLogin from "./components/admin/adminlogin/index";
 import jwtDecode from "jwt-decode";
 import { logoutUser, getUser, getAdmin } from "./redux/actions/userActions";
 import store from "./redux/store";
+import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 // My routes for the hotel owner is in the Dashboard file in the pages folder
 // My routes for the content manager is in the AdminDashboard

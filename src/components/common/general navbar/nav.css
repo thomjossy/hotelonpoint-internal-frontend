@@ -28,7 +28,7 @@
   border: 1.6px solid #c4bda3;
   width: 2.8rem;
   right: 10px;
-  top: 10px;
+  top: 2px;
   text-align: center;
   display: none;
 }
@@ -36,7 +36,8 @@
 .hop-navbar > .hop-harmbuger-div .hop-bars {
   color: #c4bda3;
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
+  height: 2rem;
 }
 
 .hop-navbar > .hop-navbar-ul {
@@ -85,19 +86,21 @@
 
   .hop-navbar > .hop-harmbuger-div {
     position: absolute;
-    border: 1.5px solid #c4bda3;
-    width: 2.8rem;
+    border: 1px solid #c4bda3;
+    color: #ffffff;
+    font-size: 1.3rem;
+    height: 2rem;
+    width: 2rem;
     right: 10px;
     top: 2px;
     text-align: center;
     display: block;
     cursor: pointer;
+    z-index: 999;
   }
 
-  .hop-navbar > .hop-harmbuger-div .hop-bars {
-    color: #c4bda3;
-    text-align: center;
-    font-size: 1.5rem;
+  .hop-navbar > .hop-harmbuger-div > .hop-bars {
+    color: #ffffff;
   }
 
   .hop-navbar > .hop-navbar-ul {

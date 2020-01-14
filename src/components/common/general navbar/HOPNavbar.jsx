@@ -30,7 +30,7 @@ class Navbar extends Component {
       user: { authenticated, userData }
     } = this.props;
     return (
-      <div>
+      <div className="nav-section">
         {authenticated ? (
           <nav className="hop-navbar">
             <span className="navbar-logo">
@@ -123,7 +123,7 @@ class Navbar extends Component {
             </span>
 
             <div className="hop-harmbuger-div" onClick={this.handleNav}>
-              <i className="fas fa-bars hop-bars"></i>
+              <i className="fas fa-bars"></i>
             </div>
             <ul
               className={
