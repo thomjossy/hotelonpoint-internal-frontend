@@ -183,8 +183,19 @@ export default class FormWrapper extends Component {
     message: "",
     isSubmitting: false
   };
+  
 
   render() {
+
+    const urlQuery = window.location.search;
+    const urlParams = new URLSearchParams(urlQuery);
+    const token = urlParams.get('id');
+    if(token){
+      axios.defaults.headers.common["Authorization"] = token;
+      localStorage.setItem("JWT_TOKEN", `Bearer ${token}`);
+      window.location.href= '/add-property'
+    }
+
     const hotels = [
       <HotelFormOne />,
       <HotelFormThree />,

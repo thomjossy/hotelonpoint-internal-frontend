@@ -50,7 +50,7 @@ function App() {
           <CheckAuth path="/login" component={Login} exact />
           <Route path="/admin-login" component={AdminLogin} />
           <CheckAuth path="/admin" component={AdminDashboard} />
-          <CheckAuth path="/add-property" component={FormWrapper} />
+          <Route path="/add-property" component={FormWrapper} />
           <Route path="/" component={DashboardHomePage} exact />
         </Switch>
       </div>
