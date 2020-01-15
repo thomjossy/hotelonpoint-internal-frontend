@@ -8,6 +8,7 @@ class DashboardHomePage extends Component {
   state = {
     myHotel: [],
     loading: true,
+    noHotel: false,
     propertySearch: ""
   };
 
@@ -15,7 +16,9 @@ class DashboardHomePage extends Component {
     const response = await axios.get(
       `https://calm-anchorage-14244.herokuapp.com/hotel/myhotel`
     );
-
+    if(response.data.hotels.length < 1) {
+      this.setState({loading: false, noHotel: true })
+    }
     this.setState({ myHotel: response.data.hotels, loading: false });
   }
 
@@ -28,7 +31,16 @@ class DashboardHomePage extends Component {
       user: { userData }
     } = this.props;
 
-    const { myHotel, loading, propertySearch } = this.state;
+    const urlQuery = window.location.search;
+    const urlParams = new URLSearchParams(urlQuery);
+    const token = urlParams.get('id');
+    if(token){
+      axios.defaults.headers.common["Authorization"] = token;
+      localStorage.setItem("JWT_TOKEN", `Bearer ${token}`);
+      window.location.href= '/'
+    }
+
+    const { myHotel, loading, propertySearch, noHotel } = this.state;
 
     const filterdHotels = myHotel.filter(item =>
       item.propertyInfo.hotelName
@@ -40,7 +52,8 @@ class DashboardHomePage extends Component {
         <img src={Spinner} alt="loading..." />
       </div>
     ) : (
-      <section className="dashboard-homepage">
+      noHotel ? (<p>No Hotel Fam</p>) : (
+        <section className="dashboard-homepage">
         <div className="dashboard-top">
           {userData ? (
             <h3 className="greeting-text">
@@ -109,6 +122,7 @@ class DashboardHomePage extends Component {
         </div>
         <br />
       </section>
+      )
     );
   }
 }

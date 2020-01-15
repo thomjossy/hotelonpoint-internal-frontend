@@ -33,7 +33,7 @@ function ProfileData (props){
       >
         <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a>
         <Link className="dropdown-item">Bookings</Link>
-        <Link className="dropdown-item">My property</Link>
+        <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Properties</a>
         <Link className="dropdown-item">Reviews</Link>
       </div>
 
