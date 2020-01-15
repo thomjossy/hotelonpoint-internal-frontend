@@ -60,7 +60,7 @@ class HotelFormOne extends Component {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <label htmlFor="contactName">Contact Name of the Hotel</label>
+                <label htmlFor="contactName">Hotel Address </label>
                 <Field
                   type="text"
                   className="form-control"

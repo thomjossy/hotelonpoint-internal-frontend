@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUser, logoutUser } from "../../../redux/actions/userActions";
 import { Link } from "react-router-dom";
 import logo from "../../images/HOP.svg";
+import Dropdown from "../../dropdown/dropdown";
 
 class Navbar extends Component {
   constructor() {
@@ -48,22 +49,10 @@ class Navbar extends Component {
               >
                 {userData && (
                   <li className="nav-item mr-1">
-                    <div>
-                      <img
-                        src={userData.imageUrl}
-                        alt="..."
-                        style={{
-                          width: 40,
-                          height: 40,
-                          marginLeft: 10,
-                          marginRight: 10
-                        }}
-                        className="rounded-circle"
-                      />{" "}
-                      <span style={{ color: "white", marginRight: 10 }}>
-                        {userData.fullName}
-                      </span>
-                    </div>
+                    <Dropdown
+                      imageurl={userData.imageUrl}
+                      fullname={userData.fullName}
+                    />
                   </li>
                 )}
                 <li className="hop-navbar-li">
@@ -90,22 +79,10 @@ class Navbar extends Component {
                 </li>
                 {userData && (
                   <li className="nav-item mr-1">
-                    <div>
-                      <img
-                        src={userData.imageUrl}
-                        alt="..."
-                        style={{
-                          width: 40,
-                          height: 40,
-                          marginLeft: 10,
-                          marginRight: 10
-                        }}
-                        className="rounded-circle"
-                      />{" "}
-                      <span style={{ color: "white", marginRight: 10 }}>
-                        {userData.fullName}
-                      </span>
-                    </div>
+                    <Dropdown
+                      imageurl={userData.imageUrl}
+                      fullname={userData.fullName}
+                    />
                   </li>
                 )}
                 <li className="hop-navbar-li">
