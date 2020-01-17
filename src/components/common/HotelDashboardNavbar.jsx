@@ -43,6 +43,12 @@ export default class HotelDashboardNavbar extends Component {
               </Link>
             </li>
             <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/edit-hotel`}>
+                <i className="fas fa-bed"></i>
+                Edit Hotel
+              </Link>
+            </li>
+            <li className="dashboard-li">
               <Link to={`/hotel/${match.params.id}/rooms`}>
                 <i className="fas fa-bed"></i>
                 Manage Rooms

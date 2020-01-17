@@ -183,17 +183,82 @@ export default class FormWrapper extends Component {
     message: "",
     isSubmitting: false
   };
-  
 
   render() {
+    let progressBarStyles;
+    if (this.state.page === 0) {
+      progressBarStyles = {
+        width: "20%",
+        backgroundColor: "#c4bda3",
+        height: "20px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px",
+        padding: "10px"
+      };
+    } else if (this.state.page === 1) {
+      progressBarStyles = {
+        width: "40%",
+        backgroundColor: "#c4bda3",
+        height: "20px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px"
+      };
+    } else if (this.state.page === 2) {
+      progressBarStyles = {
+        width: "60%",
+        backgroundColor: "#c4bda3",
+        height: "20px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px"
+      };
+    } else if (this.state.page === 3) {
+      progressBarStyles = {
+        width: "80%",
+        backgroundColor: "#c4bda3",
+        height: "20px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px"
+      };
+    } else {
+      progressBarStyles = {
+        width: "95%",
+        backgroundColor: "#c4bda3",
+        height: "20px",
+        borderTopLeftRadius: "10px",
+        borderTopRightRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px"
+      };
+    }
+
+    let formMessage;
+    if (this.state.page === 0) {
+      formMessage = "20";
+    } else if (this.state.page === 1) {
+      formMessage = "40";
+    } else if (this.state.page === 2) {
+      formMessage = "60";
+    } else if (this.state.page === 3) {
+      formMessage = "80";
+    } else {
+      formMessage = "99";
+    }
 
     const urlQuery = window.location.search;
     const urlParams = new URLSearchParams(urlQuery);
-    const token = urlParams.get('id');
-    if(token){
+    const token = urlParams.get("id");
+    if (token) {
       axios.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("JWT_TOKEN", `Bearer ${token}`);
-      window.location.href= '/add-property'
+      window.location.href = "/add-property";
     }
 
     const hotels = [
@@ -366,10 +431,17 @@ export default class FormWrapper extends Component {
                 <div className="col-md-1"></div>
                 <div className="col-md-10">
                   <Form>
+                    <div className=" p-1 progress-div">
+                      <div style={progressBarStyles}></div>{" "}
+                      <h4 className="text-center progress-text">
+                        {formMessage}%
+                      </h4>
+                    </div>
+
                     <div>{hotels[this.state.page]}</div>
 
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 mb-2">
                         <button
                           type="button"
                           className="btn btn-dark btn-block"
@@ -379,7 +451,7 @@ export default class FormWrapper extends Component {
                           Back
                         </button>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 mb-2">
                         {this.state.page === hotels.length - 1 ? (
                           values.confirmAgreement ? (
                             <button

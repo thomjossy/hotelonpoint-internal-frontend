@@ -29,19 +29,19 @@ const validationSchema = Yup.object({
   roomsOfThisType: Yup.number()
     .positive()
     .integer()
-    .required("This field is Required"),
+    .required("This field is Required and values must be Numbers"),
   bedNumber: Yup.number()
     .positive()
     .integer()
-    .required("This field is Required"),
+    .required("This field is Required and values must be Numbers"),
   weekendRate: Yup.number()
     .positive()
     .integer()
-    .required("This field is Required"),
+    .required("This field is Required and values must be Numbers"),
   standardRate: Yup.number()
     .positive()
     .integer()
-    .required("This field is Required"),
+    .required("This field is Required and values must be Numbers"),
   roomPrice: Yup.string().required("This field is Required")
 });
 
@@ -251,7 +251,11 @@ class AddRoomForm extends Component {
                             />
                             <ErrorMessage name="bedNumber">
                               {msg => {
-                                return <div className="text-danger">{msg}</div>;
+                                return (
+                                  <div className="text-danger">
+                                    <p>Enter a valid Number</p>
+                                  </div>
+                                );
                               }}
                             </ErrorMessage>
                           </div>
@@ -354,7 +358,7 @@ class AddRoomForm extends Component {
                     </div>
                     {/* End of Row   */}
 
-                        {/* Beginging of Room Amenities   */}
+                    {/* Beginging of Room Amenities   */}
                     <h3>Room Amenities</h3>
                     <div className="p-3 mb-3 custom-shadow">
                       <p>
@@ -663,7 +667,7 @@ class AddRoomForm extends Component {
                       <br />
                     </div>
 
-                        {/* End of Room Amenities   */}
+                    {/* End of Room Amenities   */}
                   </div>
                   <RoomFileUpload />
                   <div className="p-3 custom-shadow">

@@ -1,6 +1,6 @@
 import { Field, ErrorMessage, connect } from "formik";
 import React from "react";
-import "./upload.css";
+// import "./upload.css";
 
 function HotelUploadFormThree({ props }) {
   // const { errors, touched } = props.formik;
@@ -20,6 +20,7 @@ function HotelUploadFormThree({ props }) {
                   type="text"
                   id="propertyOwner"
                   name="propertyOwner"
+                  placeholder="John Doe"
                   className="form-control"
                 />
                 <ErrorMessage name="propertyOwner">
@@ -35,6 +36,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="propertyOwnerPhoneOne"
                   name="propertyOwnerPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
                 <ErrorMessage name="propertyOwnerPhoneOne">
@@ -51,6 +53,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="propertyOwnerPhoneTwo"
                   name="propertyOwnerPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -60,6 +63,7 @@ function HotelUploadFormThree({ props }) {
                   type="text"
                   id="propOwnerEmail"
                   name="propOwnerEmail"
+                  placeholder="jane@email.com"
                   className="form-control"
                 />
                 <ErrorMessage name="propOwnerEmail">
@@ -79,6 +83,7 @@ function HotelUploadFormThree({ props }) {
                   type="text"
                   id="frontDesk"
                   name="frontDesk"
+                  placeholder="John Doe"
                   className="form-control"
                 />
                 <ErrorMessage name="frontDesk">
@@ -94,6 +99,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="frontDeskPhoneOne"
                   name="frontDeskPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
                 <ErrorMessage name="frontDeskPhoneOne">
@@ -110,6 +116,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="frontDeskPhoneTwo"
                   name="frontDeskPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -119,6 +126,7 @@ function HotelUploadFormThree({ props }) {
                   type="email"
                   id="frontDeskEmail"
                   name="frontDeskEmail"
+                  placeholder="jane@email.com"
                   className="form-control"
                 />{" "}
                 <ErrorMessage name="frontDeskEmail">
@@ -144,6 +152,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfReservationOne"
                   name="headOfReservationOne"
+                  placeholder="John Doe"
                   className="form-control"
                 />{" "}
                 <ErrorMessage name="headOfReservationOne">
@@ -159,6 +168,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfReservationPhoneOne"
                   name="headOfReservationPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
                 <ErrorMessage name="headOfReservationPhoneOne">
@@ -175,6 +185,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfReservationPhoneTwo"
                   name="headOfReservationPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -184,6 +195,7 @@ function HotelUploadFormThree({ props }) {
                   type="email"
                   id="headOfReservationOneEmail"
                   name="headOfReservationOneEmail"
+                  placeholder="email@email.com"
                   className="form-control"
                 />{" "}
                 <ErrorMessage name="headOfReservationOneEmail">
@@ -204,6 +216,7 @@ function HotelUploadFormThree({ props }) {
                   type="text"
                   id="headOfReservationTwo"
                   name="headOfReservationTwo"
+                  placeholder="John Doe"
                   className="form-control"
                 />
               </div>
@@ -216,6 +229,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfReservationTwoPhoneOne"
                   name="headOfReservationTwoPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -227,6 +241,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfReservationTwoPhoneTwo"
                   name="headOfReservationTwoPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -273,6 +288,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfOperationPhoneOne"
                   name="headOfOperationPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
                 <ErrorMessage name="headOfOperationPhoneOne">
@@ -289,6 +305,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfOperationPhoneTwo"
                   name="headOfOperationPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -329,6 +346,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfOperationTwoPhoneOne"
                   name="headOfOperationTwoPhoneOne"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>
@@ -340,6 +358,7 @@ function HotelUploadFormThree({ props }) {
                   type="tel"
                   id="headOfOperationTwoPhoneTwo"
                   name="headOfOperationTwoPhoneTwo"
+                  placeholder="+234 801 345 6789"
                   className="form-control"
                 />
               </div>

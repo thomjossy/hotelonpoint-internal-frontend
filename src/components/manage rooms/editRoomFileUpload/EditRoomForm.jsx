@@ -1,5 +1,4 @@
 import "react-toastify/dist/ReactToastify.css";
-
 import { Field, FieldArray, Form, Formik, connect } from "formik";
 import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -18,8 +17,6 @@ class EditRoomForm extends Component {
       `https://calm-anchorage-14244.herokuapp.com/room/${this.props.location.state.id}/room`
     );
     this.setState({ hotelDetails: response.data.data, loading: false });
-    console.log(response);
-    console.log("editroomdetails", this.state.hotelDetails);
   }
 
   render() {
