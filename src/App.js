@@ -11,7 +11,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Reviews from "./components/Reviews/Reviews";
 import Dashboard from "./components/pages/Dashboard";
 import AdminDashboard from "./components/admin/admindashboard/AdminDashboard";
-import CheckAuth from "./checkAuth";
 import axios from "axios";
 import Login from "./components/login/index";
 import AdminLogin from "./components/admin/adminlogin/index";
@@ -49,7 +48,7 @@ function App() {
           <Route path="/hotel/:id/reviews" component={Reviews} />
           <Route path="/login" component={Login} exact />
           <Route path="/admin-login" component={AdminLogin} />
-          <CheckAuth path="/admin" component={AdminDashboard} />
+          <Route path="/admin" component={AdminDashboard} />
           <Route path="/add-property" component={FormWrapper} />
           <Route path="/" component={DashboardHomePage} exact />
         </Switch>

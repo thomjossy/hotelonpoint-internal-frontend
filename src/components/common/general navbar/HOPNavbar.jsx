@@ -35,7 +35,9 @@ class Navbar extends Component {
         {authenticated ? (
           <nav className="hop-navbar">
             <span className="navbar-logo">
-              <img src={logo} alt="HotelOnPoints" />
+              <a href="https://www.hotelonpoints.com/">
+                <img src={logo} alt="HotelOnPoints" />
+              </a>
             </span>
 
             <div className="hop-harmbuger-div" onClick={this.handleNav}>
@@ -96,7 +98,9 @@ class Navbar extends Component {
         ) : (
           <nav className="hop-navbar">
             <span className="navbar-logo">
-              <img src={logo} alt="HotelOnPoints" />
+              <a href="https://www.hotelonpoints.com/">
+                <img src={logo} alt="HotelOnPoints" />
+              </a>
             </span>
 
             <div className="hop-harmbuger-div" onClick={this.handleNav}>

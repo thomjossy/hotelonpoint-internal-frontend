@@ -12,7 +12,7 @@ class HotelFormOne extends Component {
   };
   render() {
     // const { isPropertyGroup } = this.props.formik.values;
-    console.log("formikprops", this.props.formik);
+
     return (
       <div className="container bigd" style={{ fontSize: "14px" }}>
         <h2>Property Information</h2>

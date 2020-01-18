@@ -10,6 +10,7 @@ import EditRoomForm from "../manage rooms/editRoomFileUpload/EditRoomForm";
 import EditRoomNumberForm from "../manage rooms/editroomnumber/EditRoomNumberForm";
 import Opportuinty from "../opportunity/Opportuinty";
 import FormWraperEdit from "../edithotelform/FormWrapperEdit";
+import Booking from "../booking/Booking";
 
 export default function Dashboard(props) {
   return (
@@ -21,7 +22,7 @@ export default function Dashboard(props) {
       />
       <Route path="/hotel/:id/edit-hotel" component={FormWraperEdit} exact />
       <Route path="/hotel/:id" component={SingleHotelLandingPage} exact />
-
+      <Route path="/hotel/:id/bookings" component={Booking} />
       <Route path="/hotel/:id/reviews" component={Reviews} />
       <Route path="/hotel/:id/reservation" component={Reservation} />
       <Route path="/hotel/:id/rooms/addroom" component={AddRoomForm} />

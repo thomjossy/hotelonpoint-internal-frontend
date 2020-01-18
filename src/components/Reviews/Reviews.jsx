@@ -38,7 +38,7 @@ export default class Reviews extends Component {
             <button className="btn  btn-dark btn-md w-50">Send</button>
           </div>
         </div> */}
-        {/* <div className="review-div my-3">
+        <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -58,8 +58,8 @@ export default class Reviews extends Component {
               <i className="fas fa-star color"></i>
             </div>
           </div>
-        </div> */}
-        {/* <div className="review-div my-3">
+        </div>
+        <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
             reiciendis harum, provident corporis similique totam distinctio
@@ -79,7 +79,7 @@ export default class Reviews extends Component {
               <i className="fas fa-star color"></i>
             </div>
           </div>
-        </div> */}
+        </div>
         {/* <div className="review-div my-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima

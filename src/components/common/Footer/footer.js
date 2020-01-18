@@ -18,11 +18,11 @@ function Footer() {
       <div className="p-3">
         <div className="row ">
           <div className="col-md-4">
-            <Link to="/">
+            <a href="https://www.hotelonpoints.com/">
               <h1 className="logo">
                 <img src={logo} width="300" alt="" />
               </h1>
-            </Link>
+            </a>
           </div>
 
           <div className="col-md-4">
@@ -67,7 +67,7 @@ function Footer() {
                   <br />
                   Whatsapp
                   <br />
-                  phone No
+                  Phone No
                 </p>
               </div>
             </div>

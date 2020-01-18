@@ -623,6 +623,7 @@ class EditRoomForm extends Component {
                       <div className="col-md-8  ">
                         <button
                           className="btn btn-dark btn-block"
+                          type="submit"
                           disabled={this.state.loading}
                         >
                           Submit

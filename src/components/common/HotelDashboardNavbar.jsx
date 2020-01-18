@@ -11,7 +11,6 @@ export default class HotelDashboardNavbar extends Component {
   };
   render() {
     const { match } = this.props;
-    console.log("hoteldashboardnavbar", this.props);
     return (
       <div className="dashboardnavbar-div">
         <div className="harmbuger-div">
@@ -23,12 +22,12 @@ export default class HotelDashboardNavbar extends Component {
           }
         >
           <ul className="dashboard-ul">
-            <li className="dashboard-li">
+            {/* <li className="dashboard-li">
               <Link to={`/hotel/${match.params.id}`}>
                 <i className="fas fa-home"></i>
                 Home
               </Link>
-            </li>
+            </li> */}
             <li className="dashboard-li">
               <Link to={`/hotel/${match.params.id}/reservation`}>
                 <i className="fas fa-chart-area"></i>
@@ -44,7 +43,7 @@ export default class HotelDashboardNavbar extends Component {
             </li>
             <li className="dashboard-li">
               <Link to={`/hotel/${match.params.id}/edit-hotel`}>
-                <i className="fas fa-bed"></i>
+                <i className="fas fa-hotel"></i>
                 Edit Hotel
               </Link>
             </li>
@@ -58,6 +57,12 @@ export default class HotelDashboardNavbar extends Component {
               <Link to={`/hotel/${match.params.id}/opportunity`}>
                 <i className="fas fa-handshake"></i>
                 Opportunity
+              </Link>
+            </li>
+            <li className="dashboard-li">
+              <Link to={`/`}>
+                <i className="fas fa-home"></i>
+                Other Hotels
               </Link>
             </li>
           </ul>
