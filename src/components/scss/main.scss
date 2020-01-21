@@ -22,6 +22,7 @@ $blackColor: #04070e;
 @import "./opportunity";
 @import "./report";
 @import "./booking";
+@import "./finance";
 
 * {
   padding: 0;
@@ -60,4 +61,8 @@ $blackColor: #04070e;
   justify-content: center;
   align-items: center;
   color: $goldColor;
+}
+
+.scroll-div {
+  overflow-x: scroll;
 }

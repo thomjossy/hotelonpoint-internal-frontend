@@ -10,6 +10,10 @@ class HotelFormOne extends Component {
     }
     return error;
   };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { errors, touched } = this.props.formik;
     const { isPropertyGroup } = this.props.formik.values;
@@ -60,7 +64,7 @@ class HotelFormOne extends Component {
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <label htmlFor="contactName">Hotel Address </label>
+                <label htmlFor="contactName">Physical Address of Hotel </label>
                 <Field
                   type="text"
                   className="form-control"
@@ -76,6 +80,37 @@ class HotelFormOne extends Component {
             </div>
             <div className="col-md-6">
               <div className="form-group">
+                <label htmlFor="hotelDistance">
+                  How many kilometres from hotel to city centre
+                </label>
+                <Field
+                  type="text"
+                  className="form-control"
+                  id="hotelDistance"
+                  name="hotelDistance"
+                />
+              </div>
+            </div>
+          </div>
+          {/* End of Row   */}
+
+          {/* Begining of Row   */}
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label htmlFor="hotelOpenDate">
+                  What date was your hotel opened?
+                </label>
+                <Field
+                  type="date"
+                  className="form-control"
+                  id="hotelOpenDate"
+                  name="hotelOpenDate"
+                />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="form-group">
                 <label htmlFor="starRating">Star Rating of you hotel</label>
                 <Field
                   as="select"
@@ -83,16 +118,17 @@ class HotelFormOne extends Component {
                   id="starRating"
                   name="starRating"
                 >
-                  <option value="1 star">1 Star</option>
-                  <option value="2 star">2 Star</option>
-                  <option value="3 star">3 Star</option>
-                  <option value="4 star">4 Star</option>
-                  <option value="5 star">5 Star</option>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Star</option>
+                  <option value="3">3 Star</option>
+                  <option value="4">4 Star</option>
+                  <option value="5">5 Star</option>
                 </Field>
               </div>
             </div>
           </div>
           {/* End of Row   */}
+
           {/* Begining of Row   */}
           <div className="row">
             <div className="col-md-6">
@@ -228,7 +264,7 @@ class HotelFormOne extends Component {
             <div className="col-md-6">
               <label htmlFor="repApproach">
                 Where you approached by a Hotel On Point staff, if so write
-                his/her fullname below
+                his/her fullname below ?
               </label>
               <Field
                 type="text"

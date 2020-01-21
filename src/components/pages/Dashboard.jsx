@@ -11,6 +11,7 @@ import EditRoomNumberForm from "../manage rooms/editroomnumber/EditRoomNumberFor
 import Opportuinty from "../opportunity/Opportuinty";
 import FormWraperEdit from "../edithotelform/FormWrapperEdit";
 import Booking from "../booking/Booking";
+import Finance from "../finance/Finance";
 
 export default function Dashboard(props) {
   return (
@@ -30,6 +31,7 @@ export default function Dashboard(props) {
         <EditRoomForm location={props.location} />
       </Route>
       <Route path="/hotel/:id/rooms" component={ManageRooms} exact />
+      <Route path="/hotel/:id/finance" component={Finance} exact />
       <Route path="/hotel/:id/opportunity" component={Opportuinty} exact />
     </section>
   );

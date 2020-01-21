@@ -60,6 +60,12 @@ export default class HotelDashboardNavbar extends Component {
               </Link>
             </li>
             <li className="dashboard-li">
+              <Link to={`/hotel/${match.params.id}/finance`}>
+                <i className="fas fa-money-check-alt"></i>
+                Finance
+              </Link>
+            </li>
+            <li className="dashboard-li">
               <Link to={`/`}>
                 <i className="fas fa-home"></i>
                 Other Hotels

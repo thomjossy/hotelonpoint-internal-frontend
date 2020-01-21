@@ -88,59 +88,63 @@ export default class ApprovedHotels extends Component {
           <i className="fas fa-search search"></i>
         </div>
         <br />
-        <table className="approvedHotels-table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>ID</th>
-              <th>Name of Hotel</th>
-              <th>Details</th>
-              <th>Action</th>
-              <th>Action</th>
-              <th>Add VR</th>
-            </tr>
-          </thead>
-          {approvedHotels.length === 0 ? (
-            <tbody>
+        <div className="scrool-div">
+          <table className="approvedHotels-table">
+            <thead>
               <tr>
-                <td>No hotel found...</td>
+                <th>No</th>
+                <th>ID</th>
+                <th>Name of Hotel</th>
+                <th>Details</th>
+                <th>Action</th>
+                <th>Action</th>
+                <th>Add VR</th>
               </tr>
-            </tbody>
-          ) : (
-            <tbody>
-              {approvedHotels.map((item, index) => {
-                return (
-                  <tr key={`${item._id}-${index}`}>
-                    <td>{index + 1}</td>
-                    <td>{item._id}</td>
-                    <td>{item.propertyInfo.hotelName}</td>
-                    <td>
-                      <Link to={`/admin/hotel-details/${item._id}`}>
-                        {" "}
-                        Details
-                      </Link>
-                    </td>
-                    <td
-                      className="approve-btn"
-                      onClick={() => handleSuspend(item._id)}
-                    >
-                      Suspend
-                    </td>
-                    <td
-                      onClick={() => handleDelete(item._id)}
-                      className="text-danger delete-btn"
-                    >
-                      Delete
-                    </td>
-                    <td className="approve-btn">
-                      <Link to={`/admin/approved-hotels/${item._id}`}>Add</Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          )}
-        </table>
+            </thead>
+            {approvedHotels.length === 0 ? (
+              <tbody>
+                <tr>
+                  <td>No hotel found...</td>
+                </tr>
+              </tbody>
+            ) : (
+              <tbody>
+                {approvedHotels.map((item, index) => {
+                  return (
+                    <tr key={`${item._id}-${index}`}>
+                      <td>{index + 1}</td>
+                      <td>{item._id}</td>
+                      <td>{item.propertyInfo.hotelName}</td>
+                      <td>
+                        <Link to={`/admin/hotel-details/${item._id}`}>
+                          {" "}
+                          Details
+                        </Link>
+                      </td>
+                      <td
+                        className="approve-btn"
+                        onClick={() => handleSuspend(item._id)}
+                      >
+                        Suspend
+                      </td>
+                      <td
+                        onClick={() => handleDelete(item._id)}
+                        className="text-danger delete-btn"
+                      >
+                        Delete
+                      </td>
+                      <td className="approve-btn">
+                        <Link to={`/admin/approved-hotels/${item._id}`}>
+                          Add
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            )}
+          </table>
+        </div>
       </section>
     );
   }

@@ -340,7 +340,7 @@ class HotelDetailsPage extends Component {
                     item.moreAmenities.map((count, idx) => {
                       return (
                         <div key={`${count}-${idx}`}>
-                          <p>Room Amenity: &nbsp; {JSON.parse(count)}</p>
+                          <p>Room Amenity: &nbsp; {count}</p>
                         </div>
                       );
                     })}

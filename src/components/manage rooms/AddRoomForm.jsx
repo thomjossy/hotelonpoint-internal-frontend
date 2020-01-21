@@ -42,7 +42,9 @@ const validationSchema = Yup.object({
     .positive()
     .integer()
     .required("This field is Required and values must be Numbers"),
-  roomPrice: Yup.string().required("This field is Required")
+  roomPrice: Yup.number()
+    .positive()
+    .required("This field is Required")
 });
 
 class AddRoomForm extends Component {
@@ -187,7 +189,7 @@ class AddRoomForm extends Component {
                               {msg => {
                                 return (
                                   <div className="text-danger">
-                                    <p>Enter a valid Number</p>
+                                    <p>This is a requried filed</p>
                                   </div>
                                 );
                               }}
@@ -289,7 +291,7 @@ class AddRoomForm extends Component {
                               type="text"
                               id="roomPrice"
                               name={`roomPrice`}
-                              placeholder="NGN30,000"
+                              placeholder="30000"
                               className="form-control"
                             />
                             <ErrorMessage name="roomPrice">
@@ -385,11 +387,11 @@ class AddRoomForm extends Component {
                           <Field
                             type="checkbox"
                             name={`roomAmenities`}
-                            value="Television"
+                            value="LCD Television"
                             className="mr-2 "
                             id="television"
                           />
-                          <label htmlFor="television">Television</label>
+                          <label htmlFor="television">LCD Television</label>
                           <hr />
                         </div>
                         <div className="form-group col-md-4">
@@ -461,9 +463,9 @@ class AddRoomForm extends Component {
                             name={`roomAmenities`}
                             value="Turndown Service"
                             className="mr-2"
-                            id=""
+                            id="turndown"
                           />
-                          <label htmlFor="">Turndown Service</label>
+                          <label htmlFor="turndown">Turndown Service</label>
                           <hr />
                         </div>
                         <div className="form-group col-md-4">
@@ -618,6 +620,460 @@ class AddRoomForm extends Component {
                             id="umbrella"
                           />
                           <label htmlFor="umbrella">Umbrella</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Bedding Balcony"
+                            className="mr-2"
+                            id="balcony"
+                          />
+                          <label htmlFor="balcony">Bedding Balcony</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Multi-type Outlets"
+                            className="mr-2"
+                            id="multi-outlet"
+                          />
+                          <label htmlFor="multi-outlet">
+                            Multi-type Outlets
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Perk"
+                            className="mr-2"
+                            id="Perk"
+                          />
+                          <label htmlFor="Perk">Perk</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Duvet"
+                            className="mr-2"
+                            id="Duvet"
+                          />
+                          <label htmlFor="Duvet">Duvet</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Hair Dryer"
+                            className="mr-2"
+                            id="dryer"
+                          />
+                          <label htmlFor="dryer">Hair Dryer</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Toilet Power Outlet"
+                            className="mr-2"
+                            id="toilet"
+                          />
+                          <label htmlFor="toilet">Toilet Power Outlet</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Security Kit"
+                            className="mr-2"
+                            id="Security-Kit"
+                          />
+                          <label htmlFor="Security-Kit">Security Kit</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Intercom"
+                            className="mr-2"
+                            id="Intercom"
+                          />
+                          <label htmlFor="Intercom">Intercom</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="International Direct Dialing"
+                            className="mr-2"
+                            id="dialing"
+                          />
+                          <label htmlFor="dialing">
+                            International Direct Dialing
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Cable Channels"
+                            className="mr-2"
+                            id="cable"
+                          />
+                          <label htmlFor="cable">Cable Channels</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Domestic/Local Call"
+                            className="mr-2"
+                            id="domestic"
+                          />
+                          <label htmlFor="domestic">Domestic/Local Call</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Satelite Channels"
+                            className="mr-2"
+                            id="satelite-channels"
+                          />
+                          <label htmlFor="satelite-channels">
+                            Satelite Channels
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Coffee Machine"
+                            className="mr-2"
+                            id="Coffee-Machine"
+                          />
+                          <label htmlFor="Coffee-Machine">Coffee Machine</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Coffee/Teapot"
+                            className="mr-2"
+                            id="Coffee/Teapot"
+                          />
+                          <label htmlFor="Coffee/Teapot">Coffee/Teapot</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Complimentary Baffled Water"
+                            className="mr-2"
+                            id="Complimentary-Baffled-Water"
+                          />
+                          <label htmlFor="Complimentary-Baffled-Water">
+                            Complimentary Baffled Water
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Mini-Bar"
+                            className="mr-2"
+                            id="Mini-Bar"
+                          />
+                          <label htmlFor="Mini-Bar">Mini-Bar</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Mini-Refrigerator"
+                            className="mr-2"
+                            id="Mini-Refrigerator"
+                          />
+                          <label htmlFor="Mini-Refrigerator">
+                            Mini-Refrigerator
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Bath tub"
+                            className="mr-2"
+                            id="Bath-tub"
+                          />
+                          <label htmlFor="Bath-tub">Bath tub</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="High Speed Internet"
+                            className="mr-2"
+                            id="High-Speed-Internet"
+                          />
+                          <label htmlFor="High-Speed-Internet">
+                            High Speed Internet
+                          </label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Landmark View"
+                            className="mr-2"
+                            id="Landmark-View"
+                          />
+                          <label htmlFor="Landmark-View">Landmark View</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Bathrobe"
+                            className="mr-2"
+                            id="Bathrobe"
+                          />
+                          <label htmlFor="Bathrobe">Bathrobe</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Slippers"
+                            className="mr-2"
+                            id="slippers"
+                          />
+                          <label htmlFor="slippers">Slippers</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Showers"
+                            className="mr-2"
+                            id="showers"
+                          />
+                          <label htmlFor="showers">Showers</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Automatic Curtain"
+                            className="mr-2"
+                            id="ac-curtain"
+                          />
+                          <label htmlFor="ac-curtain">Automatic Curtain</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Ipad"
+                            className="mr-2"
+                            id="Ipad"
+                          />
+                          <label htmlFor="Ipad">Ipad</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Tea Bag"
+                            className="mr-2"
+                            id="tea-bag"
+                          />
+                          <label htmlFor="tea-bag">Tea Bag</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="City View"
+                            className="mr-2"
+                            id="city-view"
+                          />
+                          <label htmlFor="city-view">City View</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Pool View"
+                            className="mr-2"
+                            id="pool-view"
+                          />
+                          <label htmlFor="pool-view">Pool View</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Magnifying Make-up Mirror"
+                            className="mr-2"
+                            id="makeup"
+                          />
+                          <label htmlFor="makeup">
+                            Magnifying Make-up Mirror
+                          </label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Kitchen Ware"
+                            className="mr-2"
+                            id="kitchen-ware"
+                          />
+                          <label htmlFor="kitchen-ware">Kitchen Ware</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Microwave"
+                            className="mr-2"
+                            id="Microwave"
+                          />
+                          <label htmlFor="Microwave">Microwave</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Stove"
+                            className="mr-2"
+                            id="stove"
+                          />
+                          <label htmlFor="stove">Stove</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Toaster"
+                            className="mr-2"
+                            id="toaster"
+                          />
+                          <label htmlFor="toaster">Toaster</label>
+                          <hr />
+                        </div>
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Dining Area"
+                            className="mr-2"
+                            id="dining-area"
+                          />
+                          <label htmlFor="dining-area">Dining Area</label>
+                          <hr />
+                        </div>
+                      </div>
+                      {/* End of Row */}
+
+                      {/* Begining of Row */}
+                      <div className="row">
+                        <div className="form-group col-md-4">
+                          <Field
+                            type="checkbox"
+                            name={`roomAmenities`}
+                            value="Radio"
+                            className="mr-2"
+                            id="radio"
+                          />
+                          <label htmlFor="radio">Radio</label>
                           <hr />
                         </div>
                       </div>

@@ -44,3 +44,60 @@
   align-items: center;
   justify-content: center;
 }
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.658);
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modal-inner {
+    border-radius: 10px;
+    position: static;
+    padding: 5px;
+    background-color: white;
+    opacity: 1;
+    width: 400px;
+    height: auto;
+
+    h5 {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .remark {
+      width: 90%;
+      height: 120px;
+      display: block;
+      padding: 2px;
+      margin: 0 auto;
+    }
+    .star-div {
+      width: 90%;
+      margin: 0px auto;
+    }
+    .btn-div {
+      width: 90%;
+      margin: 5px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.close-modal {
+  display: none;
+}

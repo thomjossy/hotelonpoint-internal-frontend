@@ -34,10 +34,13 @@ function ProfileData(props) {
         <Link to="/hotel/:id/bookings" className="dropdown-item">
           Bookings
         </Link>
-        <a href="https://internal.hotelonpoints.com/" className="dropdown-item">
-          My Properties
-        </a>
-        <Link className="dropdown-item">Reviews</Link>
+        <Link to={`/`}>My Properties</Link>
+        {/* <Link
+          className="dropdown-item"
+          to={`/hotel/${props.match.params.id}/reviews`}
+        >
+          Reviews
+        </Link> */}
       </div>
     </div>
   );

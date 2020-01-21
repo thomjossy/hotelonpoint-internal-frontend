@@ -24,6 +24,8 @@ const initialValues = {
   state: "",
   city: "",
   zipCode: "",
+  hotelOpenDate: new Date(),
+  hotelDistance: "",
   isPropertyGroup: "",
   compName: "",
   repApproach: "",
@@ -190,18 +192,18 @@ export default class FormWrapper extends Component {
       progressBarStyles = {
         width: "20%",
         backgroundColor: "#c4bda3",
-        height: "20px",
+        height: "10px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         borderBottomLeftRadius: "10px",
         borderBottomRightRadius: "10px",
-        padding: "10px"
+        padding: "3px"
       };
     } else if (this.state.page === 1) {
       progressBarStyles = {
         width: "40%",
         backgroundColor: "#c4bda3",
-        height: "20px",
+        height: "10px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         borderBottomLeftRadius: "10px",
@@ -211,7 +213,7 @@ export default class FormWrapper extends Component {
       progressBarStyles = {
         width: "60%",
         backgroundColor: "#c4bda3",
-        height: "20px",
+        height: "10px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         borderBottomLeftRadius: "10px",
@@ -221,7 +223,7 @@ export default class FormWrapper extends Component {
       progressBarStyles = {
         width: "80%",
         backgroundColor: "#c4bda3",
-        height: "20px",
+        height: "10px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         borderBottomLeftRadius: "10px",
@@ -231,7 +233,7 @@ export default class FormWrapper extends Component {
       progressBarStyles = {
         width: "95%",
         backgroundColor: "#c4bda3",
-        height: "20px",
+        height: "10px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         borderBottomLeftRadius: "10px",
@@ -315,6 +317,8 @@ export default class FormWrapper extends Component {
       form.append("state", values.state);
       form.append("city", values.city);
       form.append("zipCode", values.zipCode);
+      form.append("hotelOpenDate", values.hotelOpenDate);
+      form.append("hotelDistance", values.hotelDistance);
       form.append("isPropertyGroup", values.isPropertyGroup);
       form.append("compName", values.compName);
       form.append("hotelDescription", values.hotelDescription);
@@ -433,9 +437,9 @@ export default class FormWrapper extends Component {
                   <Form>
                     <div className=" p-1 progress-div">
                       <div style={progressBarStyles}></div>{" "}
-                      <h4 className="text-center progress-text">
+                      <h5 className="text-center progress-text">
                         {formMessage}%
-                      </h4>
+                      </h5>
                     </div>
 
                     <div>{hotels[this.state.page]}</div>

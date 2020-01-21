@@ -1,9 +1,13 @@
 import { Field, ErrorMessage, connect } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 // import "./upload.css";
 
 function HotelUploadFormThree({ props }) {
   // const { errors, touched } = props.formik;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="container bigd" style={{ fontSize: "14px" }}>
       <section>

@@ -90,56 +90,57 @@ class AwaitingHotels extends Component {
           <i className="fas fa-search search"></i>
         </div>
         <br />
-
-        <table className="awaitinghotels-table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>ID</th>
-              <th>Name of Hotel</th>
-              <th>Details</th>
-              <th>Action</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          {awaitinghotels.length === 0 ? (
-            <tbody>
+        <div className="scrool-div">
+          <table className="awaitinghotels-table">
+            <thead>
               <tr>
-                <td>No hotel found...</td>
+                <th>No</th>
+                <th>ID</th>
+                <th>Name of Hotel</th>
+                <th>Details</th>
+                <th>Action</th>
+                <th>Action</th>
               </tr>
-            </tbody>
-          ) : (
-            <tbody>
-              {awaitinghotels.map((item, index) => {
-                return (
-                  <tr key={`${item._id}-${index}`}>
-                    <td>{index + 1}</td>
-                    <td>{item._id}</td>
-                    <td>{item.propertyInfo.hotelName}</td>
-                    <td>
-                      <Link to={`/admin/hotel-details/${item._id}`}>
-                        {" "}
-                        Details
-                      </Link>
-                    </td>
-                    <td
-                      className="approve-btn"
-                      onClick={() => handleApprove(item._id)}
-                    >
-                      Approve
-                    </td>
-                    <td
-                      onClick={() => handleDelete(item._id)}
-                      className="text-danger delete-btn"
-                    >
-                      Delete
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          )}
-        </table>
+            </thead>
+            {awaitinghotels.length === 0 ? (
+              <tbody>
+                <tr>
+                  <td>No hotel found...</td>
+                </tr>
+              </tbody>
+            ) : (
+              <tbody>
+                {awaitinghotels.map((item, index) => {
+                  return (
+                    <tr key={`${item._id}-${index}`}>
+                      <td>{index + 1}</td>
+                      <td>{item._id}</td>
+                      <td>{item.propertyInfo.hotelName}</td>
+                      <td>
+                        <Link to={`/admin/hotel-details/${item._id}`}>
+                          {" "}
+                          Details
+                        </Link>
+                      </td>
+                      <td
+                        className="approve-btn"
+                        onClick={() => handleApprove(item._id)}
+                      >
+                        Approve
+                      </td>
+                      <td
+                        onClick={() => handleDelete(item._id)}
+                        className="text-danger delete-btn"
+                      >
+                        Delete
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            )}
+          </table>
+        </div>
       </section>
     );
   }

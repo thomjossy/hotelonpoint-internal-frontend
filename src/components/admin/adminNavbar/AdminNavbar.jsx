@@ -35,6 +35,9 @@ export default class AdminNavbar extends Component {
               <Link to="/admin/approved-hotels">Approved Hotels</Link>
             </li>
             <li className="dashboard-li">
+              <Link to="/admin/reviews">Reviews</Link>
+            </li>
+            <li className="dashboard-li">
               <Link to="/admin/reports">Report</Link>
             </li>
           </ul>

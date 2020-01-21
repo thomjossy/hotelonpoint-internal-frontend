@@ -2,6 +2,9 @@ import { connect, Field } from "formik";
 import React, { Component } from "react";
 
 class HotelFormSix extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     const { confirmRecipientAddress } = this.props.formik.values;
 
@@ -41,8 +44,8 @@ class HotelFormSix extends Component {
               <h3>
                 10%{" "}
                 <span className="text-muted">
-                  (You only pay us 10% of booked hotels, you can always increase
-                  commission percentage after listing this property)
+                  (You pay after the customer stays a commission of 10% to Hotel
+                  On Points, you can always increase in the future.)
                 </span>
               </h3>
             </div>
