@@ -11,7 +11,6 @@ class HotelFormSix extends Component {
     return (
       <section>
         <div className="files">
-          <h3>Terms and Condition</h3>
           <br />
         </div>
         <div className="contract-section container">

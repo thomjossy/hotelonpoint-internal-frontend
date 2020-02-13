@@ -1,5 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
-
+import _ from "lodash";
+import CustomLoading from "../../assets/CustomLoading";
+import { paginate } from "../../../utils/paginate";
 import React, { Component } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -9,7 +11,10 @@ import axios from "axios";
 export default class ApprovedHotels extends Component {
   state = {
     hotels: [],
-    searchfield: ""
+    searchfield: "",
+    loading: true,
+    pageSize: 10,
+    currentPage: 1
   };
 
   async componentDidMount() {
@@ -17,15 +22,34 @@ export default class ApprovedHotels extends Component {
       `https://calm-anchorage-14244.herokuapp.com/admin/getAllHotels`
     );
 
-    this.setState({ hotels: data.data });
+    this.setState({ hotels: data.data, loading: false });
   }
 
   handleChange = e => {
     this.setState({ searchfield: e.target.value });
   };
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
-    const { hotels, searchfield } = this.state;
+    const {
+      hotels: newHotels,
+      searchfield,
+      loading,
+      pageSize,
+      currentPage
+    } = this.state;
+
+    const newApprovedHotels = newHotels.filter(item => item.approved === true);
+    let pageCount = Math.ceil(newApprovedHotels.length / pageSize);
+    console.log("pagecount", pageCount);
+    if (pageCount === 1) {
+      pageCount = null;
+    }
+    const hotels = paginate(newHotels, currentPage, pageSize);
+    const pages = _.range(1, pageCount + 1);
 
     const approvedHotels = hotels.filter(
       item =>
@@ -71,7 +95,9 @@ export default class ApprovedHotels extends Component {
       }
     };
 
-    return (
+    return loading ? (
+      <CustomLoading />
+    ) : (
       <section className="container">
         <ToastContainer />
         <h3>Hotels Approved</h3>
@@ -92,7 +118,6 @@ export default class ApprovedHotels extends Component {
           <table className="approvedHotels-table">
             <thead>
               <tr>
-                <th>No</th>
                 <th>ID</th>
                 <th>Name of Hotel</th>
                 <th>Details</th>
@@ -112,7 +137,6 @@ export default class ApprovedHotels extends Component {
                 {approvedHotels.map((item, index) => {
                   return (
                     <tr key={`${item._id}-${index}`}>
-                      <td>{index + 1}</td>
                       <td>{item._id}</td>
                       <td>{item.propertyInfo.hotelName}</td>
                       <td>
@@ -145,6 +169,27 @@ export default class ApprovedHotels extends Component {
             )}
           </table>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination mt-4">
+            {pages.map(page => {
+              return (
+                <li
+                  key={page}
+                  className={
+                    page === currentPage ? "page-item active" : "page-item"
+                  }
+                >
+                  <a
+                    className="page-link"
+                    onClick={() => this.handlePageChange(page)}
+                  >
+                    {page}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </section>
     );
   }

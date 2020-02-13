@@ -20,10 +20,7 @@ class HotelFormTwo extends Component {
           <br />
           <div className="mb-3 p-4 custom-shadow">
             <h3>Hotel Policies</h3>
-            <p>
-              To add a new policy click on the Add New Policy button, then add
-              the title of a policy and its description in the field provided
-            </p>
+
             {/*Beginging of Row */}
             <div className="row">
               <div className="col-md-6">
@@ -44,18 +41,24 @@ class HotelFormTwo extends Component {
                 </div>
               </div>
               <div className="col-md-6">
-                {isBreakfastAvailable === "Yes, Paid" ? (
-                  <div className="form-group">
+                {isBreakfastAvailable == "Yes, Paid" ? (
+                  <div>
                     <label htmlFor="breakfastPrice">
                       How much do you charge for breakfast?
                     </label>
-                    <Field
-                      type="text"
-                      className="form-control"
-                      id="breakfastPrice"
-                      name="breakfastPrice"
-                      placeholder="NGN5,000"
-                    />
+
+                    <div className="input-group flex-nowrap">
+                      <div className="input-group-prepend mt-2 mr-1">
+                        <span classNam="input-group-text ">NGN</span>
+                      </div>
+                      <Field
+                        type="text"
+                        className="form-control"
+                        id="breakfastPrice"
+                        name="breakfastPrice"
+                        placeholder="5000"
+                      />
+                    </div>
                   </div>
                 ) : null}
               </div>
@@ -85,16 +88,19 @@ class HotelFormTwo extends Component {
               </div>
               <div className="col-md-6">
                 {isShuttleAvailable === "Yes, but paid" ? (
-                  <div className="form-group">
+                  <div>
                     <label htmlFor="shuttlePrice">
                       How much do you charge for the shuttle?
                     </label>
+                    <div className="input-group-prepend mt-2 mr-1">
+                      <span classNam="input-group-text ">NGN</span>
+                    </div>
                     <Field
                       type="text"
                       className="form-control"
                       id="shuttlePrice"
                       name="shuttlePrice"
-                      placeholder="NGN 10,000"
+                      placeholder="10000"
                     />
                   </div>
                 ) : null}
@@ -137,10 +143,9 @@ class HotelFormTwo extends Component {
                   How many hours can a guest cancel his booking for free?
                 </label>
                 <Field
-                  type="text"
+                  type="time"
                   id="freeBooking"
                   name="freeBooking"
-                  placeholder="24 Hours"
                   className="form-control"
                 />
               </div>
@@ -150,7 +155,7 @@ class HotelFormTwo extends Component {
                   cancellation hours, how much will he pay for cancellation?
                 </label>
                 <Field
-                  type="text"
+                  type="number"
                   id="paidBooking"
                   name="paidBooking"
                   placeholder="NGN 3,000"
@@ -159,7 +164,10 @@ class HotelFormTwo extends Component {
               </div>
             </div>
             {/*End of Row */}
-
+            <p className="mt-2">
+              To add a new policy click on the Add New Policy button, then add
+              the title of a policy and its description in the field provided
+            </p>
             <FieldArray name="moreHotelPolicies">
               {({ push, remove }) => (
                 <>
@@ -184,7 +192,7 @@ class HotelFormTwo extends Component {
                             />{" "}
                             <button
                               style={{ marginTop: 10, marginBottom: 10 }}
-                              className=" btn btn-sm btn-danger col-4"
+                              className=" btn btn-sm btn-danger col-md-4 "
                               onClick={() => remove({ idx })}
                             >
                               Delete
@@ -257,7 +265,7 @@ class HotelFormTwo extends Component {
             </p>
 
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="swimmingpool"
@@ -270,7 +278,7 @@ class HotelFormTwo extends Component {
                 </label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="wifi"
@@ -281,7 +289,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="wifi">Wifi</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="garden"
@@ -294,7 +302,7 @@ class HotelFormTwo extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="fitneCenter"
@@ -305,7 +313,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="fitneCenter">Fitness Center</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="Restaurant"
@@ -316,7 +324,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="Restaurant">Restaurant</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="bar"
@@ -329,7 +337,7 @@ class HotelFormTwo extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="terrace"
@@ -340,7 +348,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="terrace">Terrace</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="spa"
@@ -351,7 +359,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="spa">Spa</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="roomService"
@@ -366,7 +374,7 @@ class HotelFormTwo extends Component {
             {/* Begining of Row */}
 
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="Sauna"
@@ -377,7 +385,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="Sauna">Sauna</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="airportShuttle"
@@ -388,7 +396,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="airportShuttle">Airpot Shuttle</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="familyRoom"
@@ -404,7 +412,7 @@ class HotelFormTwo extends Component {
             {/* Begining of Row */}
 
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="hottub"
@@ -415,7 +423,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="hottub">Hot tub/Jacuzzi</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="waterPark"
@@ -426,7 +434,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="waterPark">Water Park</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="AC"
@@ -442,7 +450,7 @@ class HotelFormTwo extends Component {
             {/* Begining of Row */}
 
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="Electric"
@@ -455,7 +463,7 @@ class HotelFormTwo extends Component {
                 </label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="non-smoking-floor"
@@ -466,7 +474,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="non-smoking-floor">Non-Smoking Floor</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="smoking-floor"
@@ -481,7 +489,7 @@ class HotelFormTwo extends Component {
             {/*End of Row */}
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="currency-exchange"
@@ -492,7 +500,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="currency-exchange">Currency Exchange</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="front-desk"
@@ -503,7 +511,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="front-desk">Front Desk (24Hours)</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="morning-call"
@@ -519,7 +527,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="gym"
@@ -530,7 +538,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="gym">GYM</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="hot-spring"
@@ -541,7 +549,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="hot-spring">Hot Spring</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="elevator"
@@ -557,7 +565,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="audio-system"
@@ -568,7 +576,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="audio-system">Audio System</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="newspaper"
@@ -579,7 +587,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="newspaper">Newspaper in lobby</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="cctv"
@@ -595,7 +603,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="concierge"
@@ -606,7 +614,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="concierge">Concierge Service</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="postal"
@@ -617,7 +625,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="postal">Postal Services</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="ticket-counter"
@@ -635,7 +643,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="duty-manager"
@@ -646,7 +654,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="duty-manager">Duty Manager</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="free-parking"
@@ -657,7 +665,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="free-parking">Free Parking</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="beauty-salon"
@@ -673,7 +681,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="executive-lounge"
@@ -684,7 +692,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="executive-lounge">Executive Lounge</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="indoor"
@@ -695,7 +703,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="indoor">Indoor Swimming Pool</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="roof-top"
@@ -711,7 +719,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="meeting-room"
@@ -722,7 +730,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="meeting-room">Meeting Room</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="tennis"
@@ -733,7 +741,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="tennis">Tennis</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="atm"
@@ -749,7 +757,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="photocopy"
@@ -760,7 +768,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="photocopy">Fax/Photocopy Service</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="luggage"
@@ -771,7 +779,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="luggage">Porter Luggage Storage</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="car-rental"
@@ -787,7 +795,7 @@ class HotelFormTwo extends Component {
 
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="bicycle"
@@ -798,7 +806,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="bicycle">Bicycle Rental</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="front-desk-safe"
@@ -809,7 +817,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="front-desk-safe">Front Desk Safe</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="tourist-map"
@@ -824,7 +832,7 @@ class HotelFormTwo extends Component {
             {/*End of Row */}
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="event-centre"
@@ -835,7 +843,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="event-centre">Event Centre</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="laundry"
@@ -846,7 +854,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="laundry">Laundry Service</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="ironing-service"
@@ -861,7 +869,7 @@ class HotelFormTwo extends Component {
             {/*End of Row */}
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="day-care"
@@ -872,7 +880,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="day-care">Day Care Centre</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="playground"
@@ -883,7 +891,7 @@ class HotelFormTwo extends Component {
                 <label htmlFor="playground">Children Playground</label>
                 <hr />
               </div>
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="cinema"
@@ -898,7 +906,7 @@ class HotelFormTwo extends Component {
             {/*End of Row */}
             {/* Begining of Row */}
             <div className="row">
-              <div className="form-group col-4">
+              <div className="form-group col-md-4">
                 <Field
                   type="checkbox"
                   id="night-club"
@@ -927,7 +935,7 @@ class HotelFormTwo extends Component {
                         />
                         <button
                           style={{ marginTop: 10, marginBottom: 10 }}
-                          className=" btn btn-sm btn-danger col-4"
+                          className=" btn btn-sm btn-danger col-md-4"
                           onClick={() => remove({ index })}
                         >
                           {" "}

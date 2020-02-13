@@ -20,7 +20,12 @@ class ManageRooms extends Component {
         loading: false,
         response: promise.data
       });
+      window.scrollTo(0, 0);
     } catch (err) {
+      if (err.message == "Network Error") {
+        return alert("There is a very Poor Network");
+      }
+
       this.setState({ loading: false, response: err.response.data });
     }
   }
@@ -95,7 +100,7 @@ class ManageRooms extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.hotelRooms.map((item, index) => (
+              {this.state.hotelRooms.reverse().map((item, index) => (
                 <tr key={item._id}>
                   <td>{item.roomType}</td>
                   <td>
@@ -105,7 +110,7 @@ class ManageRooms extends Component {
                         state: { id: item._id }
                       }}
                     >
-                      Adjust Number
+                      Mark Booked Room
                     </Link>
                   </td>
                   <td className="text-primary">

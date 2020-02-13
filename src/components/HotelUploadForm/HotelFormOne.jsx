@@ -81,7 +81,7 @@ class HotelFormOne extends Component {
             <div className="col-md-6">
               <div className="form-group">
                 <label htmlFor="hotelDistance">
-                  How many kilometres from hotel to city centre
+                  How many kilometres from hotel to city centre?
                 </label>
                 <Field
                   type="text"
@@ -263,7 +263,7 @@ class HotelFormOne extends Component {
             </div>
             <div className="col-md-6">
               <label htmlFor="repApproach">
-                Where you approached by a Hotel On Point staff, if so write
+                Where you approached by a HotelOnPoint staff, if so write
                 his/her fullname below ?
               </label>
               <Field

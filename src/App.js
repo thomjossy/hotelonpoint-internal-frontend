@@ -5,6 +5,7 @@ import DashboardHomePage from "./components/assets/DashboardHomePage";
 import Navbar from "./components/common/general navbar/HOPNavbar";
 import Footer from "./components/common/Footer/footer";
 import FormWrapper from "./components/HotelUploadForm/FormWrapper";
+import CustomerCareDashboard from "./components/customercare/customerCareDashboard/CustomerCareDashboard";
 import "./components/scss/main.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -14,13 +15,25 @@ import AdminDashboard from "./components/admin/admindashboard/AdminDashboard";
 import axios from "axios";
 import Login from "./components/login/index";
 import AdminLogin from "./components/admin/adminlogin/index";
+import NotFound from "./components/NotFound/NotFound";
+
 import jwtDecode from "jwt-decode";
-import { logoutUser, getUser, getAdmin } from "./redux/actions/userActions";
+import {
+  logoutUser,
+  getUser,
+  getAdmin,
+  getCC
+} from "./redux/actions/userActions";
 import store from "./redux/store";
+import AdminSignUp from "./components/admin/signup/AdminSignUp";
+import CustomerCareLogin from "./components/customercare/customerCareLogin/CustomerCareLogin";
+import CustomerCareSignUp from "./components/customercare/customerCareSignUp/CustomerCareSignUp";
 
 // My routes for the hotel owner is in the Dashboard file in the pages folder
 // My routes for the content manager is in the AdminDashboard
 //file in the admindashboard folder in the admin folder
+//My rooutes for the customer care is in the customercareDashboard file which is located in the
+// CustomerCareDashboard folder in the customercare folder
 
 function App() {
   const token = localStorage.JWT_TOKEN;
@@ -34,6 +47,8 @@ function App() {
       axios.defaults.headers.common["Authorization"] = token;
       if (decodedToken.isAdmin) {
         store.dispatch(getAdmin());
+      } else if (decodedToken.isCC) {
+        store.dispatch(getCC());
       } else {
         store.dispatch(getUser());
       }
@@ -45,12 +60,17 @@ function App() {
       <div className="wrapper">
         <Switch>
           <Route path="/hotel/:id" component={Dashboard} />
-          <Route path="/hotel/:id/reviews" component={Reviews} />
+          <Route path="/hotel/:id/reviews" component={Reviews} exact />
           <Route path="/login" component={Login} exact />
-          <Route path="/admin-login" component={AdminLogin} />
+          <Route path="/admin-login" component={AdminLogin} exact />
+          <Route path="/admin-signup" component={AdminSignUp} exact />
+          <Route path="/care-login" component={CustomerCareLogin} exact />
+          <Route path="/care-signup" component={CustomerCareSignUp} exact />
           <Route path="/admin" component={AdminDashboard} />
+          <Route path="/care" component={CustomerCareDashboard} />
           <Route path="/add-property" component={FormWrapper} />
-          <Route path="/" component={DashboardHomePage} exact />
+          <Route path="/" component={DashboardHomePage} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </div>
       <br />

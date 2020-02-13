@@ -24,7 +24,7 @@ const initialValues = {
   state: "",
   city: "",
   zipCode: "",
-  hotelOpenDate: new Date(),
+  hotelOpenDate: "",
   hotelDistance: "",
   isPropertyGroup: "",
   compName: "",
@@ -99,7 +99,7 @@ const validationSchema = Yup.object({
   compName: Yup.string(),
   hotelDescription: Yup.string()
     .required("This field is Required")
-    .max(200, "Maximum amount of character exceeded")
+    .max(700, "Maximum amount of character exceeded")
     .min(50, "Hotel Description should be more than 50 Characters"),
   propertyOwner: Yup.string().required("This field is Required"),
   propertyOwnerPhoneOne: Yup.string().required(
@@ -392,6 +392,7 @@ export default class FormWrapper extends Component {
       const url = "https://calm-anchorage-14244.herokuapp.com/hotel";
       this.setState({ isSubmitting: true });
       try {
+        console.log("resultttt", form);
         const result = await axios.post(url, form);
         this.setState({ message: result.data.status, isSubmitting: false });
         toast.success(this.state.message);
@@ -401,6 +402,15 @@ export default class FormWrapper extends Component {
           // history.push("/");
         }, 1000);
       } catch (err) {
+        if (err.message == "Network Error") {
+          this.setState({
+            message: err.message,
+            isSubmitting: false
+          });
+          return alert(
+            "We are having issues connecting through your network... Try again"
+          );
+        }
         this.setState({
           message: err.response.data.error,
           isSubmitting: false

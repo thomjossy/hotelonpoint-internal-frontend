@@ -1,5 +1,8 @@
 import "react-toastify/dist/ReactToastify.css";
 import React, { Component } from "react";
+import _ from "lodash";
+import CustomLoading from "../../assets/CustomLoading";
+import { paginate } from "../../../utils/paginate";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,7 +10,10 @@ import axios from "axios";
 export default class Report extends Component {
   state = {
     hotels: [],
-    searchfield: ""
+    loading: true,
+    searchfield: "",
+    pageSize: 10,
+    currentPage: 1
   };
 
   async componentDidMount() {
@@ -15,15 +21,33 @@ export default class Report extends Component {
       `https://calm-anchorage-14244.herokuapp.com/admin/getAllHotels`
     );
 
-    this.setState({ hotels: data.data });
+    this.setState({ hotels: data.data, loading: false });
   }
 
   handleChange = e => {
     this.setState({ searchfield: e.target.value });
   };
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
-    const { hotels, searchfield } = this.state;
+    const {
+      hotels: newHotels,
+      searchfield,
+      loading,
+      currentPage,
+      pageSize
+    } = this.state;
+
+    let pageCount = Math.ceil(newHotels.length / pageSize);
+    console.log("pagecount", pageCount);
+    if (pageCount === 1) {
+      pageCount = null;
+    }
+    const hotels = paginate(newHotels, currentPage, pageSize);
+    const pages = _.range(1, pageCount + 1);
 
     const allHotels = hotels.filter(item =>
       item.propertyInfo.hotelName
@@ -87,12 +111,14 @@ export default class Report extends Component {
       }
     };
 
-    let totalHotelCount = hotels.length;
+    let totalHotelCount = newHotels.length;
 
-    const awaitinghotels = hotels.filter(item => item.approved === false);
-    const approvedHotels = hotels.filter(item => item.approved === true);
+    const awaitinghotels = newHotels.filter(item => item.approved === false);
+    const approvedHotels = newHotels.filter(item => item.approved === true);
 
-    return (
+    return loading ? (
+      <CustomLoading />
+    ) : (
       <section className="container">
         <ToastContainer />
         <h3>Table of all Hotels</h3>
@@ -137,7 +163,6 @@ export default class Report extends Component {
         <table className="approvedHotels-table">
           <thead>
             <tr>
-              <th>No</th>
               <th>ID</th>
               <th>Name of Hotel</th>
               <th>Details</th>
@@ -156,7 +181,6 @@ export default class Report extends Component {
               {allHotels.map((item, index) => {
                 return (
                   <tr key={`${item}-${index}`}>
-                    <td>{index + 1}</td>
                     <td>{item._id}</td>
                     <td>{item.propertyInfo.hotelName}</td>
                     <td>
@@ -192,6 +216,27 @@ export default class Report extends Component {
             </tbody>
           )}
         </table>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination mt-4">
+            {pages.map(page => {
+              return (
+                <li
+                  key={page}
+                  className={
+                    page === currentPage ? "page-item active" : "page-item"
+                  }
+                >
+                  <a
+                    className="page-link"
+                    onClick={() => this.handlePageChange(page)}
+                  >
+                    {page}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </section>
     );
   }

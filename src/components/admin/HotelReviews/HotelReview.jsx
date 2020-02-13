@@ -32,7 +32,6 @@ export default class HotelReview extends Component {
                 <tr>
                   <td>Wisdom Hotels</td>
                   <td>0</td>
-
                   <td>view</td>
                 </tr>
               </tbody>

@@ -10,8 +10,7 @@ import { ToastContainer } from "react-toastify";
 import background from "./bacground-pic/blue.jfif";
 import { connect } from "react-redux";
 import history from "../../history";
-
-//import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 var sectionStyle = {
   width: "100%",
@@ -107,7 +106,9 @@ class Login extends React.Component {
                       {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
-                  <p>No account sign up </p>
+                  <Link to="/admin-signup">
+                    you don't have an account, sign up
+                  </Link>
                 </div>
               </div>
             </div>

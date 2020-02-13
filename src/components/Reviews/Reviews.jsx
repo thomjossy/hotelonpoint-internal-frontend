@@ -1,106 +1,162 @@
 import React, { Component } from "react";
+import Axios from "axios";
+import moment from "moment";
+import _ from "lodash";
+import CustomLoading from "../assets/CustomLoading";
+import { paginate } from "../../utils/paginate";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class Reviews extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageSize: 10,
+      currentPage: 1,
+      loading: true,
+      customerReviews: [],
+      reviewReply: ""
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const response = await Axios.get(
+        `http://localhost:3400/Review/${this.props.match.params.id}`
+      );
+      console.log("axiosresponse", response.data.data);
+      console.log("response", response.data.data);
+      this.setState({
+        customerReviews: response.data.data.reviews,
+        loading: false
+      });
+      if (response.data.data >= 400) {
+        return alert("Internal Server Error");
+      }
+      console.log("statevalues", this.state.customerReviews);
+    } catch (err) {
+      console.error("err", err);
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  handleChange = e => {
+    this.setState({ reviewReply: e.target.value });
+  };
+
+  handlePageChange = page => {
+    console.log(page);
+    this.setState({ currentPage: page });
+  };
+
+  handleReviewReply = async id => {
+    const data = {
+      comment: this.state.reviewReply
+    };
+    try {
+      const response = await Axios.post(
+        `http://localhost:3400/comment/${id}`,
+        data
+      );
+      this.setState({ reviewReply: "" });
+      toast.success("Reply was Successful");
+      if (response) {
+        setTimeout(() => {
+          window.location.href = `/hotel/${this.props.match.params.id}/reviews`;
+        }, 1000);
+      }
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        return alert("An Unexpected error just occured");
+      }
+    }
+  };
   render() {
-    return (
+    const { loading, customerReviews, pageSize, currentPage } = this.state;
+    let pageCount = Math.ceil(customerReviews.length / pageSize);
+
+    if (pageCount === 1) {
+      pageCount = null;
+    }
+    const newCustomerReviews = paginate(customerReviews, currentPage, pageSize);
+    const pages = _.range(1, pageCount + 1);
+    return loading ? (
+      <CustomLoading />
+    ) : (
       <section className="review-section container mt-4">
-        <h2 className="text-center">
-          Hello, we are currently working on this page :)
-        </h2>
-        {/* <div className="review-div my-3">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            reiciendis harum, provident corporis similique totam distinctio
-            aspernatur adipisci dolor, iure commodi vero magni fugiat. Ea
-            facilis possimus nostrum eum libero!
-          </p>
-          <div className="reviewer-info">
-            <p>
-              <strong>Jane Hanson</strong>
-            </p>
-            <p>{new Date("12", "06", "2019").toLocaleDateString()}</p>
-            <div className="star-ratings">
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>
-            </div>
+        <ToastContainer />
+        {customerReviews.length == 0 ? (
+          <div className="center-div">
+            <h3 className="gold">{`Sorry, No Reviews yet :)`}</h3>
           </div>
-          <br />
-          <div className="reply-div">
-            <textarea
-              name=""
-              className="reply-text"
-              placeholder="Leave a reply"
-              rows="5"
-            ></textarea>
-            <button className="btn  btn-dark btn-md w-50">Send</button>
+        ) : (
+          <div>
+            {newCustomerReviews.map((item, index) => {
+              return (
+                <div className="row my-3 custom-shadow p-4" key={item._id}>
+                  <div className="col-md-6">
+                    <p>{item.comment}</p>
+                    <div className="reviewer-info">
+                      <p>
+                        <strong>{item.customerName}</strong>
+                      </p>
+                      <p>{moment(item.date).format("DD MMM YYYY")}</p>
+                      <div className="star-ratings">
+                        {item.starRating} Stars
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="reply-div">
+                      <textarea
+                        name="reviewReply"
+                        className="reply-text"
+                        placeholder="Leave a reply"
+                        rows="5"
+                        onChange={this.handleChange}
+                      ></textarea>
+                      <button
+                        className="btn  btn-dark btn-md w-50"
+                        onClick={() => {
+                          this.handleReviewReply(item._id);
+                        }}
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+              {
+                /* End of Return Component */
+              }
+            })}
           </div>
-        </div> */}
-        <div className="review-div my-3">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            reiciendis harum, provident corporis similique totam distinctio
-            aspernatur adipisci dolor, iure commodi vero magni fugiat. Ea
-            facilis possimus nostrum eum libero!
-          </p>
-          <div className="reviewer-info">
-            <p>
-              <strong>Jane Hanson</strong>
-            </p>
-            <p>{new Date("12", "06", "2019").toLocaleDateString()}</p>
-            <div className="star-ratings">
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>
-            </div>
-          </div>
-        </div>
-        <div className="review-div my-3">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            reiciendis harum, provident corporis similique totam distinctio
-            aspernatur adipisci dolor, iure commodi vero magni fugiat. Ea
-            facilis possimus nostrum eum libero!
-          </p>
-          <div className="reviewer-info">
-            <p>
-              <strong>Jane Hanson</strong>
-            </p>
-            <p>{new Date("2", "06", "2019").toLocaleDateString()}</p>
-            <div className="star-ratings">
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>
-            </div>
-          </div>
-        </div>
-        {/* <div className="review-div my-3">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            reiciendis harum, provident corporis similique totam distinctio
-            aspernatur adipisci dolor, iure commodi vero magni fugiat. Ea
-            facilis possimus nostrum eum libero!
-          </p>
-          <div className="reviewer-info">
-            <p>
-              <strong>Emeka Ikena</strong>
-            </p>
-            <p>{new Date("12", "06", "2019").toLocaleDateString()}</p>
-            <div className="star-ratings">
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>{" "}
-              <i className="fas fa-star color"></i>
-            </div>
-          </div>
-        </div> */}
+        )}
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            {pages.map(page => {
+              return (
+                <li
+                  key={page}
+                  className={
+                    page === currentPage ? "page-item active" : "page-item"
+                  }
+                >
+                  <a
+                    className="page-link"
+                    onClick={() => this.handlePageChange(page)}
+                  >
+                    {page}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </section>
     );
   }

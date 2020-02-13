@@ -23,6 +23,7 @@ export default class FormWrapperEdit extends Component {
       `https://calm-anchorage-14244.herokuapp.com/hotel/${this.props.match.params.id}`
     );
     this.setState({ hotelInfo: response.data.data.hotel, loading: false });
+    console.log("response", response.data.data);
   }
 
   render() {
@@ -92,7 +93,8 @@ export default class FormWrapperEdit extends Component {
         isShuttleAvailable: hotelInfo.hotelPolicy.isShuttleAvailable,
         shuttlePrice: hotelInfo.hotelPolicy.shuttlePrice,
         moreHotelPolicies: hotelInfo.hotelPolicy.moreHotelPolicies,
-        moreHotelAmenities: hotelInfo.hotelPolicy.moreHotelAmenities
+        moreHotelAmenities: hotelInfo.hotelPolicy.moreHotelAmenities,
+        repApproach: hotelInfo.repApproach
       };
     }
 
@@ -105,548 +107,288 @@ export default class FormWrapperEdit extends Component {
       this.setState({ page: this.state.page - 1 });
     };
 
-    // const handleFormSubmit = async values => {
-    //   const real = [
-    //     {
-    //       propName: "hotelName",
-    //       value: values.hotelName
-    //     },
-    //     {
-    //       propName: "hotelWebsite",
-    //       value: values.hotelWebsite
-    //     },
-    //     {
-    //       propName: "contactName",
-    //       value: values.contactName
-    //     },
-    //     {
-    //       propName: "starRating",
-    //       value: values.starRating
-    //     },
-    //     {
-    //       propName: "country",
-    //       value: values.country
-    //     },
-    //     {
-    //       propName: "state",
-    //       value: values.state
-    //     },
-    //     {
-    //       propName: "city",
-    //       value: values.city
-    //     },
-    //     {
-    //       propName: "zipCode",
-    //       value: values.zipCode
-    //     },
-    //     {
-    //       propName: "ispropertyGroup",
-    //       value: values.ispropertyGroup
-    //     },
-    //     {
-    //       propName: "compName",
-    //       value: values.compName
-    //     },
-    //     {
-    //       propName: "repApproach",
-    //       value: values.repApproach
-    //     },
-    //     {
-    //       propName: "hotelDescription",
-    //       value: values.hotelDescription
-    //     },
-    //     {
-    //       propName: "propertyOwner",
-    //       value: values.propertyOwner
-    //     },
-    //     {
-    //       propName: "propertyOwnerPhoneOne",
-    //       value: values.propertyOwnerPhoneOne
-    //     },
-    //     {
-    //       propName: "propertyOwnerPhoneTwo",
-    //       value: values.propertyOwnerPhoneTwo
-    //     },
-    //     {
-    //       propName: "propOwnerEmail",
-    //       value: values.propOwnerEmail
-    //     },
-    //     {
-    //       propName: "frontDesk",
-    //       value: values.frontDesk
-    //     },
-    //     {
-    //       propName: "frontDeskPhoneOne",
-    //       value: values.frontDeskPhoneOne
-    //     },
-    //     {
-    //       propName: "frontDeskPhoneTwo",
-    //       value: values.frontDeskPhoneTwo
-    //     },
-    //     {
-    //       propName: "frontDeskEmail",
-    //       value: values.frontDeskEmail
-    //     },
-    //     {
-    //       propName: "headOfReservationOne",
-    //       value: values.headOfReservationOne
-    //     },
-    //     {
-    //       propName: "headOfReservationPhoneOne",
-    //       value: values.headOfReservationPhoneOne
-    //     },
-    //     {
-    //       propName: "headOfReservationPhoneTwo",
-    //       value: values.headOfReservationPhoneTwo
-    //     },
-    //     {
-    //       propName: "headOfReservationOneEmail",
-    //       value: values.headOfReservationOneEmail
-    //     },
-    //     {
-    //       propName: "headOfReservationTwo",
-    //       value: values.headOfReservationTwo
-    //     },
-    //     {
-    //       propName: "headOfReservationTwoPhoneOne",
-    //       value: values.headOfReservationTwoPhoneOne
-    //     },
-    //     {
-    //       propName: "headOfReservationTwoPhoneTwo",
-    //       value: values.headOfReservationTwoPhoneTwo
-    //     },
-    //     {
-    //       propName: "headOfReservationTwoEmail",
-    //       value: values.headOfReservationTwoEmail
-    //     },
-    //     {
-    //       propName: "headOfOperationOne",
-    //       value: values.headOfOperationOne
-    //     },
-    //     {
-    //       propName: "headOfOperationPhoneOne",
-    //       value: values.headOfOperationPhoneOne
-    //     },
-    //     {
-    //       propName: "headOfOperationPhoneTwo",
-    //       value: values.headOfOperationPhoneTwo
-    //     },
-    //     {
-    //       propName: "headOfOperationOneEmail",
-    //       value: values.headOfOperationOneEmail
-    //     },
-    //     {
-    //       propName: "headOfOperationTwo",
-    //       value: values.headOfOperationTwo
-    //     },
-    //     {
-    //       propName: "headOfOperationTwoPhoneOne",
-    //       value: values.headOfOperationTwoPhoneOne
-    //     },
-    //     {
-    //       propName: "headOfOperationTwoPhoneTwo",
-    //       value: values.headOfOperationTwoPhoneTwo
-    //     },
-    //     {
-    //       propName: "headOfOperationTwoEmail",
-    //       value: values.headOfOperationTwoEmail
-    //     },
-    //     {
-    //       propName: "smokingPolicy",
-    //       value: values.smokingPolicy
-    //     },
-    //     {
-    //       propName: "paymentMethod",
-    //       value: values.paymentMethod
-    //     },
-    //     {
-    //       propName: "hotelAmenities",
-    //       value: values.hotelAmenities
-    //     },
-    //     {
-    //       propName: "checkIn",
-    //       value: values.checkIn
-    //     },
-    //     {
-    //       propName: "checkOut",
-    //       value: values.checkOut
-    //     },
-    //     {
-    //       propName: "freeBooking",
-    //       value: values.freeBooking
-    //     },
-    //     {
-    //       propName: "paidBooking",
-    //       value: values.paidBooking
-    //     },
-    //     {
-    //       propName: "isBreakfastAvailable",
-    //       value: values.isBreakfastAvailable
-    //     },
-    //     {
-    //       propName: "breakfastPrice",
-    //       value: values.breakfastPrice
-    //     },
-    //     {
-    //       propName: "contractName",
-    //       value: values.contractName
-    //     },
-    //     {
-    //       propName: "confirmRecipientAddress",
-    //       value: values.confirmRecipientAddress
-    //     },
-    //     {
-    //       propName: "recipientCountry",
-    //       value: values.recipientCountry
-    //     },
-    //     {
-    //       propName: "recipientCity",
-    //       value: values.recipientCity
-    //     },
-    //     {
-    //       propName: "recipientState",
-    //       value: values.recipientState
-    //     },
-    //     {
-    //       propName: "recipientZipCode",
-    //       value: values.recipientZipCode
-    //     },
-    //     {
-    //       propName: "isShuttleAvailable",
-    //       value: values.isShuttleAvailable
-    //     },
-    //     {
-    //       propName: "shuttlePrice",
-    //       value: values.shuttlePrice
-    //     },
-    //     {
-    //       propName: "isShuttleAvailable",
-    //       value: values.isShuttleAvailable
-    //     },
-    //     {
-    //       propName: "shuttlePrice",
-    //       value: values.shuttlePrice
-    //     },
-    //     {
-    //       propName: "registerName",
-    //       value: values.registerName
-    //     },
-    //     {
-    //       propName: "registerAddress",
-    //       value: values.registerAddress
-    //     },
-    //     {
-    //       propName: "registerPhone",
-    //       value: values.registerPhone
-    //     },
-    //     {
-    //       propName: "moreHotelPolicies",
-    //       value: values.moreHotelPolicies
-    //     },
-    //     {
-    //       propName: "moreHotelAmenities",
-    //       value: values.moreHotelAmenities
-    //     }
-    //   ];
-    //   this.setState({ isSubmitting: true });
-    //   try {
-    //     const result = await axios.put(
-    //       `https://calm-anchorage-14244.herokuapp.com/hotel/${this.props.match.params.id}`,
-    //       real
-    //     );
-    //     this.setState({ message: result.data.status, isSubmitting: false });
-    //     toast.success("Successfully Updated");
-    //     console.log("realvalues", real);
-    //     console.log("result", result);
-    //     // setTimeout(() => {
-    //     //   window.location.href = `/hotel/${this.props.match.params.id}`;
-    //     // }, 1000);
-    //   } catch (err) {
-    //     this.setState({
-    //       message: err.response.data.error,
-    //       isSubmitting: false
-    //     });
-    //     toast.error("An Unexpected Error Just Ocuured");
-    //   }
-    // };
+    const handleFormSubmit = async values => {
+      const real = [
+        {
+          propName: "propertyInfo.hotelName",
+          value: values.hotelName
+        },
+        {
+          propName: "propertyInfo.hotelWebsite",
+          value: values.hotelWebsite
+        },
+        {
+          propName: "propertyInfo.contactName",
+          value: values.contactName
+        },
+        {
+          propName: "propertyInfo.hotelOpenDate",
+          value: values.hotelOpenDate
+        },
+        {
+          propName: "propertyInfo.hotelDistance",
+          value: values.hotelDistance
+        },
+        {
+          propName: "propertyInfo.starRating",
+          value: values.starRating
+        },
+        {
+          propName: "propertyInfo.country",
+          value: values.country
+        },
+        {
+          propName: "propertyInfo.state",
+          value: values.state
+        },
+        {
+          propName: "propertyInfo.city",
+          value: values.city
+        },
+        {
+          propName: "propertyInfo.zipCode",
+          value: values.zipCode
+        },
+        {
+          propName: "propertyInfo.ispropertyGroup",
+          value: values.ispropertyGroup
+        },
+        {
+          propName: "propertyInfo.compName",
+          value: values.compName
+        },
+        {
+          propName: "repApproach",
+          value: values.repApproach
+        },
+        {
+          propName: "propertyInfo.hotelDescription",
+          value: values.hotelDescription
+        },
+        {
+          propName: "managementDetails.propertyOwner",
+          value: values.propertyOwner
+        },
+        {
+          propName: "managementDetails.propertyOwnerPhoneOne",
+          value: values.propertyOwnerPhoneOne
+        },
+        {
+          propName: "managementDetails.propertyOwnerPhoneTwo",
+          value: values.propertyOwnerPhoneTwo
+        },
+        {
+          propName: "managementDetails.propOwnerEmail",
+          value: values.propOwnerEmail
+        },
+        {
+          propName: "managementDetails.frontDesk",
+          value: values.frontDesk
+        },
+        {
+          propName: "managementDetails.frontDeskPhoneOne",
+          value: values.frontDeskPhoneOne
+        },
+        {
+          propName: "managementDetails.frontDeskPhoneTwo",
+          value: values.frontDeskPhoneTwo
+        },
+        {
+          propName: "managementDetails.frontDeskEmail",
+          value: values.frontDeskEmail
+        },
+        {
+          propName: "managementDetails.headOfReservationOne",
+          value: values.headOfReservationOne
+        },
+        {
+          propName: "managementDetails.headOfReservationPhoneOne",
+          value: values.headOfReservationPhoneOne
+        },
+        {
+          propName: "managementDetails.headOfReservationPhoneTwo",
+          value: values.headOfReservationPhoneTwo
+        },
+        {
+          propName: "managementDetails.headOfReservationOneEmail",
+          value: values.headOfReservationOneEmail
+        },
+        {
+          propName: "managementDetails.headOfReservationTwo",
+          value: values.headOfReservationTwo
+        },
+        {
+          propName: "managementDetails.headOfReservationTwoPhoneOne",
+          value: values.headOfReservationTwoPhoneOne
+        },
+        {
+          propName: "managementDetails.headOfReservationTwoPhoneTwo",
+          value: values.headOfReservationTwoPhoneTwo
+        },
+        {
+          propName: "managementDetails.headOfReservationTwoEmail",
+          value: values.headOfReservationTwoEmail
+        },
+        {
+          propName: "managementDetails.headOfOperationOne",
+          value: values.headOfOperationOne
+        },
+        {
+          propName: "managementDetails.headOfOperationPhoneOne",
+          value: values.headOfOperationPhoneOne
+        },
+        {
+          propName: "managementDetails.headOfOperationPhoneTwo",
+          value: values.headOfOperationPhoneTwo
+        },
+        {
+          propName: "managementDetails.headOfOperationOneEmail",
+          value: values.headOfOperationOneEmail
+        },
+        {
+          propName: "managementDetails.headOfOperationTwo",
+          value: values.headOfOperationTwo
+        },
+        {
+          propName: "managementDetails.headOfOperationTwoPhoneOne",
+          value: values.headOfOperationTwoPhoneOne
+        },
+        {
+          propName: "managementDetails.headOfOperationTwoPhoneTwo",
+          value: values.headOfOperationTwoPhoneTwo
+        },
+        {
+          propName: "managementDetails.headOfOperationTwoEmail",
+          value: values.headOfOperationTwoEmail
+        },
+        {
+          propName: "hotelPolicy.smokingPolicy",
+          value: values.smokingPolicy
+        },
+        {
+          propName: "hotelPolicy.paymentMethod",
+          value: values.paymentMethod
+        },
+        {
+          propName: "hotelPolicy.hotelAmenities",
+          value: values.hotelAmenities
+        },
+        {
+          propName: "hotelPolicy.checkIn",
+          value: values.checkIn
+        },
+        {
+          propName: "hotelPolicy.checkOut",
+          value: values.checkOut
+        },
+        {
+          propName: "hotelPolicy.freeBooking",
+          value: values.freeBooking
+        },
+        {
+          propName: "hotelPolicy.paidBooking",
+          value: values.paidBooking
+        },
+        {
+          propName: "hotelPolicy.isBreakfastAvailable",
+          value: values.isBreakfastAvailable
+        },
+        {
+          propName: "hotelPolicy.breakfastPrice",
+          value: values.breakfastPrice
+        },
+        {
+          propName: "termsAndCondition.contractName",
+          value: values.contractName
+        },
+        {
+          propName: "termsAndCondition.confirmRecipientAddress",
+          value: values.confirmRecipientAddress
+        },
+        {
+          propName: "termsAndCondition.recipientCountry",
+          value: values.recipientCountry
+        },
+        {
+          propName: "termsAndCondition.recipientCity",
+          value: values.recipientCity
+        },
+        {
+          propName: "termsAndCondition.recipientState",
+          value: values.recipientState
+        },
+        {
+          propName: "termsAndCondition.recipientZipCode",
+          value: values.recipientZipCode
+        },
+        {
+          propName: "hotelPolicy.isShuttleAvailable",
+          value: values.isShuttleAvailable
+        },
+        {
+          propName: "hotelPolicy.shuttlePrice",
+          value: values.shuttlePrice
+        },
+        {
+          propName: "hotelPolicy.isShuttleAvailable",
+          value: values.isShuttleAvailable
+        },
+        {
+          propName: "hotelPolicy.shuttlePrice",
+          value: values.shuttlePrice
+        },
+        {
+          propName: "registerName",
+          value: values.registerName
+        },
+        {
+          propName: "registerAddress",
+          value: values.registerAddress
+        },
+        {
+          propName: "registerPhone",
+          value: values.registerPhone
+        },
+        {
+          propName: "moreHotelPolicies",
+          value: values.moreHotelPolicies
+        },
+        {
+          propName: "moreHotelAmenities",
+          value: values.moreHotelAmenities
+        }
+      ];
+      this.setState({ isSubmitting: true });
+      try {
+        const result = await axios.put(
+          `https://calm-anchorage-14244.herokuapp.com/${this.props.match.params.id}`,
+          real
+        );
+        this.setState({ message: result.data.status, isSubmitting: false });
+        toast.success("Successfully Updated");
+        console.log("realvalues", real);
+        console.log("result", result);
+        // setTimeout(() => {
+        //   window.location.href = `/hotel/${this.props.match.params.id}`;
+        // }, 1000);
+      } catch (err) {
+        this.setState({
+          message: err.response.data.error,
+          isSubmitting: false
+        });
+        toast.error("An Unexpected Error Just Ocuured");
+      }
+    };
     return (
       <>
         <ToastContainer />
         <Formik
           enableReinitialize
           initialValues={initialValues}
-          onSubmit={
-            async values => {
-              const real = [
-                {
-                  propName: "hotelName",
-                  value: values.hotelName
-                },
-                {
-                  propName: "hotelWebsite",
-                  value: values.hotelWebsite
-                },
-                {
-                  propName: "contactName",
-                  value: values.contactName
-                },
-                {
-                  propName: "starRating",
-                  value: values.starRating
-                },
-                {
-                  propName: "country",
-                  value: values.country
-                },
-                {
-                  propName: "state",
-                  value: values.state
-                },
-                {
-                  propName: "city",
-                  value: values.city
-                },
-                {
-                  propName: "zipCode",
-                  value: values.zipCode
-                },
-                {
-                  propName: "ispropertyGroup",
-                  value: values.ispropertyGroup
-                },
-                {
-                  propName: "compName",
-                  value: values.compName
-                },
-                {
-                  propName: "repApproach",
-                  value: values.repApproach
-                },
-                {
-                  propName: "hotelDescription",
-                  value: values.hotelDescription
-                },
-                {
-                  propName: "propertyOwner",
-                  value: values.propertyOwner
-                },
-                {
-                  propName: "propertyOwnerPhoneOne",
-                  value: values.propertyOwnerPhoneOne
-                },
-                {
-                  propName: "propertyOwnerPhoneTwo",
-                  value: values.propertyOwnerPhoneTwo
-                },
-                {
-                  propName: "propOwnerEmail",
-                  value: values.propOwnerEmail
-                },
-                {
-                  propName: "frontDesk",
-                  value: values.frontDesk
-                },
-                {
-                  propName: "frontDeskPhoneOne",
-                  value: values.frontDeskPhoneOne
-                },
-                {
-                  propName: "frontDeskPhoneTwo",
-                  value: values.frontDeskPhoneTwo
-                },
-                {
-                  propName: "frontDeskEmail",
-                  value: values.frontDeskEmail
-                },
-                {
-                  propName: "headOfReservationOne",
-                  value: values.headOfReservationOne
-                },
-                {
-                  propName: "headOfReservationPhoneOne",
-                  value: values.headOfReservationPhoneOne
-                },
-                {
-                  propName: "headOfReservationPhoneTwo",
-                  value: values.headOfReservationPhoneTwo
-                },
-                {
-                  propName: "headOfReservationOneEmail",
-                  value: values.headOfReservationOneEmail
-                },
-                {
-                  propName: "headOfReservationTwo",
-                  value: values.headOfReservationTwo
-                },
-                {
-                  propName: "headOfReservationTwoPhoneOne",
-                  value: values.headOfReservationTwoPhoneOne
-                },
-                {
-                  propName: "headOfReservationTwoPhoneTwo",
-                  value: values.headOfReservationTwoPhoneTwo
-                },
-                {
-                  propName: "headOfReservationTwoEmail",
-                  value: values.headOfReservationTwoEmail
-                },
-                {
-                  propName: "headOfOperationOne",
-                  value: values.headOfOperationOne
-                },
-                {
-                  propName: "headOfOperationPhoneOne",
-                  value: values.headOfOperationPhoneOne
-                },
-                {
-                  propName: "headOfOperationPhoneTwo",
-                  value: values.headOfOperationPhoneTwo
-                },
-                {
-                  propName: "headOfOperationOneEmail",
-                  value: values.headOfOperationOneEmail
-                },
-                {
-                  propName: "headOfOperationTwo",
-                  value: values.headOfOperationTwo
-                },
-                {
-                  propName: "headOfOperationTwoPhoneOne",
-                  value: values.headOfOperationTwoPhoneOne
-                },
-                {
-                  propName: "headOfOperationTwoPhoneTwo",
-                  value: values.headOfOperationTwoPhoneTwo
-                },
-                {
-                  propName: "headOfOperationTwoEmail",
-                  value: values.headOfOperationTwoEmail
-                },
-                {
-                  propName: "smokingPolicy",
-                  value: values.smokingPolicy
-                },
-                {
-                  propName: "paymentMethod",
-                  value: values.paymentMethod
-                },
-                {
-                  propName: "hotelAmenities",
-                  value: values.hotelAmenities
-                },
-                {
-                  propName: "checkIn",
-                  value: values.checkIn
-                },
-                {
-                  propName: "checkOut",
-                  value: values.checkOut
-                },
-                {
-                  propName: "freeBooking",
-                  value: values.freeBooking
-                },
-                {
-                  propName: "paidBooking",
-                  value: values.paidBooking
-                },
-                {
-                  propName: "isBreakfastAvailable",
-                  value: values.isBreakfastAvailable
-                },
-                {
-                  propName: "breakfastPrice",
-                  value: values.breakfastPrice
-                },
-                {
-                  propName: "contractName",
-                  value: values.contractName
-                },
-                {
-                  propName: "confirmRecipientAddress",
-                  value: values.confirmRecipientAddress
-                },
-                {
-                  propName: "recipientCountry",
-                  value: values.recipientCountry
-                },
-                {
-                  propName: "recipientCity",
-                  value: values.recipientCity
-                },
-                {
-                  propName: "recipientState",
-                  value: values.recipientState
-                },
-                {
-                  propName: "recipientZipCode",
-                  value: values.recipientZipCode
-                },
-                {
-                  propName: "isShuttleAvailable",
-                  value: values.isShuttleAvailable
-                },
-                {
-                  propName: "shuttlePrice",
-                  value: values.shuttlePrice
-                },
-                {
-                  propName: "isShuttleAvailable",
-                  value: values.isShuttleAvailable
-                },
-                {
-                  propName: "shuttlePrice",
-                  value: values.shuttlePrice
-                },
-                {
-                  propName: "registerName",
-                  value: values.registerName
-                },
-                {
-                  propName: "registerAddress",
-                  value: values.registerAddress
-                },
-                {
-                  propName: "registerPhone",
-                  value: values.registerPhone
-                },
-                {
-                  propName: "moreHotelPolicies",
-                  value: values.moreHotelPolicies
-                },
-                {
-                  propName: "moreHotelAmenities",
-                  value: values.moreHotelAmenities
-                }
-              ];
-              this.setState({ isSubmitting: true });
-              try {
-                const result = await axios.put(
-                  `https://calm-anchorage-14244.herokuapp.com/hotel/${this.props.match.params.id}`,
-                  real
-                );
-                this.setState({
-                  message: result.data.status,
-                  isSubmitting: false
-                });
-                toast.success("Successfully Updated");
-                console.log("realvalues", real);
-                console.log("result", result);
-                // setTimeout(() => {
-                //   window.location.href = `/hotel/${this.props.match.params.id}`;
-                // }, 1000);
-              } catch (err) {
-                this.setState({
-                  message: err.response.data.error,
-                  isSubmitting: false
-                });
-                toast.error("An Unexpected Error Just Ocuured");
-              }
-            }
-            //
-            // console.log("values", JSON.stringify(values, null, 2));
-            // setSubmitting(true);
-          }
+          onSubmit={(values, { setSubmitting }) => {
+            console.log(JSON.stringify(values, null, 2));
+            setSubmitting(true);
+          }}
         >
           {({
             values,
@@ -687,7 +429,7 @@ export default class FormWrapperEdit extends Component {
                             type="submit"
                             className="btn btn-primary btn-block"
                             disabled={this.state.isSubmitting}
-                            // onClick={() => handleFormSubmit(values)}
+                            onClick={() => handleFormSubmit(values)}
                           >
                             Submit
                             {this.state.isSubmitting && (

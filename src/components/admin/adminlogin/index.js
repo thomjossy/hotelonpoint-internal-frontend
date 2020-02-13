@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import background from "./bacground-pic/blue.jfif";
 import { connect } from "react-redux";
 import history from "../../../history";
+import { Link } from "@material-ui/core";
 
 //import {Link} from 'react-router-dom'
 
@@ -57,7 +58,7 @@ class AdminLogin extends React.Component {
               <h1>We are reliable and trust Worthy</h1>
             </div>
 
-            <div className="col-md-4 ">
+            <div className="col-md-6 ">
               <div className="card  mb-3 shadow login-card">
                 <div className="card-body text-dark ">
                   <div>
@@ -106,7 +107,9 @@ class AdminLogin extends React.Component {
                       {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
-                  <p>No account sign up </p>
+                  <Link to="/admin-signup">
+                    you don't have an account, sign up
+                  </Link>
                 </div>
               </div>
             </div>

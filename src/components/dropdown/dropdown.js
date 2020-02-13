@@ -34,7 +34,9 @@ function ProfileData(props) {
         <Link to="/hotel/:id/bookings" className="dropdown-item">
           Bookings
         </Link>
-        <Link to={`/`}>My Properties</Link>
+        <Link to={`/`} className="dropdown-item">
+          My Properties
+        </Link>
         {/* <Link
           className="dropdown-item"
           to={`/hotel/${props.match.params.id}/reviews`}

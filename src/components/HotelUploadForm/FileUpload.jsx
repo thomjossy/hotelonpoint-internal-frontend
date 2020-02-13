@@ -31,7 +31,10 @@ class FileUpload extends Component {
         <br />
         <div className="mb-4 p-3 custom-shadow">
           <div className="files">
-            <h3>Upload Pictures of your hotel</h3>
+            <h5>
+              Upload 4 Pictures of your hotel(Maximum picture size should be
+              1megabyte)
+            </h5>
             <br />
             <Files
               className="files-dropzone"

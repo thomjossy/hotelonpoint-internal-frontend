@@ -1,9 +1,21 @@
-import { CLEAR_ERRORS, CLEAR_MESSAGE, LOADING_BLOG, LOADING_UI, LOADING_USER, SET_BLOG, SET_ERRORS, SET_MESSAGE, SET_UNAUTHENTICATED, SET_USER } from "../type";
+import {
+  CLEAR_ERRORS,
+  CLEAR_MESSAGE,
+  LOADING_BLOG,
+  LOADING_UI,
+  LOADING_USER,
+  SET_BLOG,
+  SET_ERRORS,
+  SET_MESSAGE,
+  SET_UNAUTHENTICATED,
+  SET_USER
+} from "../type";
 
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const url = "https://calm-anchorage-14244.herokuapp.com";
+// const url = "http://localhost:3400";
 
 export const loginUser = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
@@ -17,6 +29,13 @@ export const loginUser = (data, history) => dispatch => {
       window.location.href = "/";
     })
     .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       console.log(err);
       dispatch({
         type: SET_ERRORS,
@@ -28,7 +47,7 @@ export const loginUser = (data, history) => dispatch => {
     });
 };
 
-export const validateUser = (data) => dispatch => {
+export const validateUser = data => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
     .post(`${url}/user/validateUser`, data)
@@ -36,18 +55,25 @@ export const validateUser = (data) => dispatch => {
       dispatch({
         type: SET_MESSAGE,
         payload: res.data.data
-      })
+      });
       dispatch({ type: CLEAR_ERRORS });
     })
     .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       console.log(err);
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
-      })
+      });
       dispatch({
-        type: CLEAR_MESSAGE,
-      })
+        type: CLEAR_MESSAGE
+      });
     });
 };
 
@@ -56,23 +82,30 @@ export const updatePassword = (data, id) => dispatch => {
   axios
     .put(`${url}/user/changePassword/${id}`, data)
     .then(res => {
-      console.log(res)
+      console.log(res);
       dispatch({
         type: SET_MESSAGE,
         payload: res.data.data
-      })
+      });
       dispatch({ type: CLEAR_ERRORS });
-      window.location.href= '/login'
+      window.location.href = "/login";
     })
     .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       console.log(err);
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
-      })
+      });
       dispatch({
-        type: CLEAR_MESSAGE,
-      })
+        type: CLEAR_MESSAGE
+      });
     });
 };
 
@@ -89,6 +122,103 @@ export const loginAdmin = (data, history) => dispatch => {
     })
     .catch(err => {
       console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const signUpAdmin = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/admin/createAdmin`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getAdmin(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/admin";
+    })
+    .catch(err => {
+      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const signUpCC = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/admin/cc`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getAdmin(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/care";
+    })
+    .catch(err => {
+      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const loginCC = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/admin/cclogin`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getCC(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/care";
+    })
+    .catch(err => {
+      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
@@ -111,6 +241,13 @@ export const getAdmin = history => dispatch => {
       });
     })
     .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       console.log(err);
       dispatch({
         type: SET_ERRORS,
@@ -119,6 +256,32 @@ export const getAdmin = history => dispatch => {
     });
 };
 
+export const getCC = history => dispatch => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .get(`http://localhost:3400/admin/ccAuth`)
+    .then(res => {
+      console.log("got here", res);
+      dispatch({
+        type: SET_USER,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err
+      });
+    });
+};
 export const getUser = history => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
@@ -130,7 +293,13 @@ export const getUser = history => dispatch => {
       });
     })
     .catch(err => {
-      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       dispatch({
         type: SET_ERRORS,
         payload: err
@@ -155,6 +324,13 @@ export const signupUser = newUserData => dispatch => {
       window.location.href = "/";
     })
     .catch(err => {
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
