@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import background from "./bacground-pic/blue.jfif";
 import { connect } from "react-redux";
 import history from "../../../history";
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 //import {Link} from 'react-router-dom'
 
@@ -100,6 +100,7 @@ class AdminLogin extends React.Component {
                       onClick={this.handlesubmit}
                       variant="contained"
                       color="primary"
+                      style={{ background: "#c4bda3" }}
                       className="btn btn-block btin"
                       disabled={loading}
                     >
@@ -107,9 +108,11 @@ class AdminLogin extends React.Component {
                       {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
-                  <Link to="/admin-signup">
-                    you don't have an account, sign up
-                  </Link>
+                  <div className="text-center mt-3">
+                    <Link to="/admin-signup">
+                      You don't have an account, sign up
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -60,7 +60,7 @@ class AdminSignUp extends React.Component {
               <h1>We are reliable and trust Worthy</h1>
             </div>
 
-            <div className="col-md-4 ">
+            <div className="col-md-6 ">
               <div className="card  mb-3 shadow login-card">
                 <div className="card-body text-dark ">
                   <div>
@@ -117,6 +117,7 @@ class AdminSignUp extends React.Component {
                       onClick={this.handlesubmit}
                       variant="contained"
                       color="primary"
+                      style={{ background: "#c4bda3" }}
                       className="btn btn-block btin"
                       disabled={loading}
                     >
@@ -124,7 +125,11 @@ class AdminSignUp extends React.Component {
                       {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
-                  <Link to="/admin-login">Already, have an account, login</Link>
+                  <div className="text-center mt-3">
+                    <Link to="/admin-login">
+                      Already, have an account, login
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

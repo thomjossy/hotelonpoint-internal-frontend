@@ -69,11 +69,29 @@ class Navbar extends Component {
                   this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
                 }
               >
+                <li className="nav-item mr-1">
+                  <div
+                    className="btn-group mr-1 btn-group-sm"
+                    role="group"
+                    aria-label="Button group with nested dropdown"
+                  >
+                    <div
+                      className="btn-group"
+                      id="google_translate_element"
+                      role="group"
+                    >
+                      {/* <button type='button' className='botin'>
+                            NGN
+                          </button> */}
+                    </div>
+                  </div>
+                </li>
                 <li className="hop-navbar-li">
                   <Link to="/" className="navbar-link">
                     Home
                   </Link>
                 </li>
+
                 <li className="hop-navbar-li">
                   <Link to="/add-property" className="navbar-link">
                     Add New Property
@@ -111,10 +129,44 @@ class Navbar extends Component {
                 this.state.showNav ? "show-ul hop-navbar-ul" : "hop-navbar-ul"
               }
             >
+              <li className="nav-item mr-1">
+                <div
+                  className="btn-group mr-1 btn-group-sm"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <div
+                    className="btn-group"
+                    id="google_translate_element"
+                    role="group"
+                  >
+                    {/* <button type='button' className='botin'>
+                            NGN
+                          </button> */}
+                  </div>
+                </div>
+              </li>
               <li className="hop-navbar-li">
                 <Link to="/" className="navbar-link">
                   Home
                 </Link>
+              </li>
+              <li className="nav-item mr-1">
+                <div
+                  className="btn-group mr-1 mt-1 btn-group-sm"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <div
+                    className="btn-group"
+                    id="google_translate_element"
+                    role="group"
+                  >
+                    {/* <button type='button' className='botin'>
+                            NGN
+                          </button> */}
+                  </div>
+                </div>
               </li>
               <li className="hop-navbar-li">
                 <Link to="/add-property" className="navbar-link">

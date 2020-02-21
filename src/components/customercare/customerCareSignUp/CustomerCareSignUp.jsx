@@ -117,6 +117,7 @@ class CustomerCareLogin extends React.Component {
                       onClick={this.handlesubmit}
                       variant="contained"
                       color="primary"
+                      style={{ background: "#c4bda3" }}
                       className="btn btn-block btin"
                       disabled={loading}
                     >
@@ -124,7 +125,11 @@ class CustomerCareLogin extends React.Component {
                       {loading && <CircularProgress size={30} />}
                     </button>
                   </div>
-                  <Link to="/care/login">Already, have an account, login</Link>
+                  <div className="text-center mt-3">
+                    <Link to="/care-login">
+                      Already, have an account, login
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

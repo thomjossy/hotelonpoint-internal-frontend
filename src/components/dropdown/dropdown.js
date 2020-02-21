@@ -31,9 +31,9 @@ function ProfileData(props) {
         <a href="https://internal.hotelonpoints.com/" className="dropdown-item">
           My Dashboard
         </a>
-        <Link to="/hotel/:id/bookings" className="dropdown-item">
+        {/* <Link to="/hotel/:id/bookings" className="dropdown-item">
           Bookings
-        </Link>
+        </Link> */}
         <Link to={`/`} className="dropdown-item">
           My Properties
         </Link>

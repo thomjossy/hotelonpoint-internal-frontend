@@ -15,6 +15,7 @@ import AdminDashboard from "./components/admin/admindashboard/AdminDashboard";
 import axios from "axios";
 import Login from "./components/login/index";
 import AdminLogin from "./components/admin/adminlogin/index";
+import AdminSignUp from "./components/admin/signup/AdminSignUp";
 import NotFound from "./components/NotFound/NotFound";
 
 import jwtDecode from "jwt-decode";
@@ -25,7 +26,7 @@ import {
   getCC
 } from "./redux/actions/userActions";
 import store from "./redux/store";
-import AdminSignUp from "./components/admin/signup/AdminSignUp";
+
 import CustomerCareLogin from "./components/customercare/customerCareLogin/CustomerCareLogin";
 import CustomerCareSignUp from "./components/customercare/customerCareSignUp/CustomerCareSignUp";
 

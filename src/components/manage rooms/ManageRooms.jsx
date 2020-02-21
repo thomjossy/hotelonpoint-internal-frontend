@@ -11,6 +11,7 @@ class ManageRooms extends Component {
   };
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     try {
       const promise = await axios.get(
         `https://calm-anchorage-14244.herokuapp.com/room/${this.props.match.params.id}`
@@ -20,7 +21,6 @@ class ManageRooms extends Component {
         loading: false,
         response: promise.data
       });
-      window.scrollTo(0, 0);
     } catch (err) {
       if (err.message == "Network Error") {
         return alert("There is a very Poor Network");
