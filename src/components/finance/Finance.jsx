@@ -13,13 +13,13 @@ export default class Finance extends Component {
       const response = await Axios.get(
         `https://calm-anchorage-14244.herokuapp.com/Booking/userinvoice/${this.props.match.params.id}`
       );
-      console.log("json response", response);
+      // console.log("json response", response);
       this.setState({
         customerInvoice: response.data.data,
         loading: false
       });
 
-      console.log("123 state", this.state.customerInvoice);
+      // console.log("123 state", this.state.customerInvoice);
     } catch (error) {
       console.log("somer error", error);
       this.setState({ loading: false });
