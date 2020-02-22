@@ -22,7 +22,7 @@ export default class Reviews extends Component {
   async componentDidMount() {
     try {
       const response = await Axios.get(
-        `http://localhost:3400/Review/${this.props.match.params.id}`
+        `https://calm-anchorage-14244.herokuapp.com/Review/${this.props.match.params.id}`
       );
       console.log("axiosresponse", response.data.data);
       console.log("response", response.data.data);
@@ -57,7 +57,7 @@ export default class Reviews extends Component {
     };
     try {
       const response = await Axios.post(
-        `http://localhost:3400/comment/${id}`,
+        `https://calm-anchorage-14244.herokuapp.com/comment/${id}`,
         data
       );
       this.setState({ reviewReply: "" });

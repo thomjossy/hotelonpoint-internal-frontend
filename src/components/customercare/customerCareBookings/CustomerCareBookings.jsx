@@ -14,7 +14,9 @@ export default class CustomerCareBooking extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await axios.get(`http://localhost:3400/Booking/all`);
+    const response = await axios.get(
+      `https://calm-anchorage-14244.herokuapp.com/Booking/all`
+    );
     console.log("bookingsss", response);
     this.setState({
       userBookings: response.data.data.bookings,
@@ -33,7 +35,7 @@ export default class CustomerCareBooking extends React.Component {
     ];
     try {
       const response = await axios.put(
-        `http://localhost:3400/Booking/${id}`,
+        `https://calm-anchorage-14244.herokuapp.com/Booking/${id}`,
         real
       );
       console.log("asssdds2", response);
@@ -63,7 +65,7 @@ export default class CustomerCareBooking extends React.Component {
     ];
     try {
       const response = await axios.put(
-        `http://localhost:3400/Booking/${id}`,
+        `https://calm-anchorage-14244.herokuapp.com/Booking/${id}`,
         real
       );
 

@@ -14,8 +14,8 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// const url = "https://calm-anchorage-14244.herokuapp.com";
-const url = "http://localhost:3400";
+const url = "https://calm-anchorage-14244.herokuapp.com";
+// const url = "http://localhost:3400";
 
 export const loginUser = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
@@ -140,7 +140,6 @@ export const loginAdmin = (data, history) => dispatch => {
 };
 
 export const signUpAdmin = (data, history) => dispatch => {
-  console.log("1234", data);
   dispatch({ type: LOADING_UI });
   axios
     .post(`${url}/admin/createAdmin`, data)
@@ -260,7 +259,7 @@ export const getAdmin = history => dispatch => {
 export const getCC = history => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
-    .get(`http://localhost:3400/admin/ccAuth`)
+    .get(`https://calm-anchorage-14244.herokuapp.com/admin/ccAuth`)
     .then(res => {
       console.log("got here", res);
       dispatch({

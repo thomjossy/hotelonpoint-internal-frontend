@@ -361,7 +361,7 @@ export default class FormWrapperEdit extends Component {
       this.setState({ isSubmitting: true });
       try {
         const result = await axios.put(
-          `http://localhost:3400/hotel/${this.props.match.params.id}`,
+          `https://calm-anchorage-14244.herokuapp.com/hotel/${this.props.match.params.id}`,
           real
         );
         this.setState({ message: result.data.status, isSubmitting: false });

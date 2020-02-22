@@ -24,7 +24,7 @@ export default class Reservation extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        `http://localhost:3400/Booking/hotelbooking/${this.props.match.params.id}`
+        `https://calm-anchorage-14244.herokuapp.com/Booking/hotelbooking/${this.props.match.params.id}`
       );
       console.log("1234", response);
       this.setState({ bookings: response.data.data.bookings, loading: false });
@@ -47,7 +47,7 @@ export default class Reservation extends Component {
     console.log("asssdds2", id);
     try {
       const response = await axios.put(
-        `http://localhost:3400/Booking/user/${id}`,
+        `https://calm-anchorage-14244.herokuapp.com/Booking/user/${id}`,
         real
       );
       console.log("asssdds2", response);
@@ -77,7 +77,7 @@ export default class Reservation extends Component {
     ];
     try {
       const response = await axios.put(
-        `http://localhost:3400/Booking/user/${id}`,
+        `https://calm-anchorage-14244.herokuapp.com/Booking/user/${id}`,
         real
       );
       console.log("checkout response", response);

@@ -16,7 +16,9 @@ export default class CustomersReview extends Component {
   }
 
   async componentDidMount() {
-    const response = await Axios.get(`http://localhost:3400/Review/all`);
+    const response = await Axios.get(
+      `https://calm-anchorage-14244.herokuapp.com/Review/all`
+    );
     this.setState({
       customerReviews: response.data.data.reviews,
       loading: false
@@ -29,7 +31,7 @@ export default class CustomersReview extends Component {
     };
     try {
       const response = await Axios.put(
-        `http://localhost:3400/Review/${review}`,
+        `https://calm-anchorage-14244.herokuapp.com/Review/${review}`,
         value
       );
 
@@ -48,7 +50,7 @@ export default class CustomersReview extends Component {
   handleDeleteReview = async review => {
     try {
       const response = await Axios.delete(
-        `http://localhost:3400/Review/${review}`
+        `https://calm-anchorage-14244.herokuapp.com/Review/${review}`
       );
 
       this.setState({ isSubmitting: true });

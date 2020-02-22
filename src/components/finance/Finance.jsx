@@ -11,7 +11,7 @@ export default class Finance extends Component {
   async componentDidMount() {
     try {
       const response = await Axios.get(
-        `http://localhost:3400/Booking/userinvoice/${this.props.match.params.id}`
+        `https://calm-anchorage-14244.herokuapp.com/Booking/userinvoice/${this.props.match.params.id}`
       );
       console.log("json response", response);
       this.setState({

@@ -16,8 +16,10 @@ export default class HotelOwnerReply extends Component {
   }
 
   async componentDidMount() {
-    const response = await Axios.get(`http://localhost:3400/Comment/`);
-    console.log("respnose", response);
+    const response = await Axios.get(
+      `https://calm-anchorage-14244.herokuapp.com/Comment/`
+    );
+    // console.log("respnose", response);
     this.setState({
       customerReviews: response.data.data.comment,
       loading: false
@@ -33,7 +35,7 @@ export default class HotelOwnerReply extends Component {
     ];
     try {
       const response = await Axios.put(
-        `http://localhost:3400/Comment/${review}`,
+        `https://calm-anchorage-14244.herokuapp.com/Comment/${review}`,
         real
       );
 
@@ -52,7 +54,7 @@ export default class HotelOwnerReply extends Component {
   handleDeleteReview = async review => {
     try {
       const response = await Axios.delete(
-        `http://localhost:3400/Comment/${review}`
+        `https://calm-anchorage-14244.herokuapp.com/Comment/${review}`
       );
 
       this.setState({ isSubmitting: true });

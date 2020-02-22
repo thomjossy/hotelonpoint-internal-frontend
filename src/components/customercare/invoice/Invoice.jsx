@@ -17,14 +17,14 @@ export default class Invoice extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        `http://localhost:3400/admin/ccgetAllHotels`
+        `https://calm-anchorage-14244.herokuapp.com/admin/ccgetAllHotels`
       );
-      console.log("bookingsss", response);
+      // console.log("bookingsss", response);
       this.setState({
         hotels: response.data.data,
         loading: false
       });
-      console.log("bookingsss", this.state.hotels);
+      // console.log("bookingsss", this.state.hotels);
     } catch (error) {
       console.log(error);
     }
