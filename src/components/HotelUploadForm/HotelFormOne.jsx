@@ -263,8 +263,8 @@ class HotelFormOne extends Component {
             </div>
             <div className="col-md-6">
               <label htmlFor="repApproach">
-                Where you approached by a HotelOnPoint staff, if so write
-                his/her fullname below ?
+                Were you approached by a HotelOnPoint staff, if so write his/her
+                fullname below ?
               </label>
               <Field
                 type="text"

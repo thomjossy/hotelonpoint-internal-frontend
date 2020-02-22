@@ -40,13 +40,13 @@ class HotelFormSix extends Component {
               <p>
                 <strong>Commission Percentage</strong>
               </p>
-              <h3>
+              <h5>
                 10%{" "}
                 <span className="text-muted">
-                  (You pay after the customer stays a commission of 10% to Hotel
-                  On Points, you can always increase in the future.)
+                  (You pay after the customer stays a commission of 10% to
+                  HotelOnPoints, you can always increase in the future.)
                 </span>
-              </h3>
+              </h5>
             </div>
           </div>
 
@@ -164,9 +164,8 @@ class HotelFormSix extends Component {
               I certify that this is a legitimate accommodation business with
               all necessary licenses and permits, which can be shown upon first
               request. HotelOnPoints reserves the right to verify and
-              investigate any details provided in this registration.{" "}
+              investigate any details provided in this registration Name.{" "}
             </label>
-            Name
           </div>
           <div className="form-check">
             <Field
@@ -176,11 +175,10 @@ class HotelFormSix extends Component {
             />{" "}
             <label className="form-check-label">
               {" "}
-              I have read, accepted, and agreed to the General Delivery Terms
-              and Privacy Statement. HotelOnPoints enables accommodation and
-              guests to communicate through hotelonpoints.com, which receives
-              and processes communications in accordance with the hotelonpoints
-              Privacy statement and General Delivery.{" "}
+              I have read, accepted, and agreed to the{" "}
+              <a href="#" target="_blank">
+                General Delivery Terms and Privacy Statement.
+              </a>
             </label>
           </div>
         </div>

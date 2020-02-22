@@ -23,6 +23,7 @@ $blackColor: #04070e;
 @import "./report";
 @import "./booking";
 @import "./finance";
+@import "./fileUpload";
 
 * {
   padding: 0;
@@ -67,6 +68,6 @@ $blackColor: #04070e;
   overflow-x: scroll;
 }
 
-.cursor{
+.cursor {
   cursor: pointer;
 }

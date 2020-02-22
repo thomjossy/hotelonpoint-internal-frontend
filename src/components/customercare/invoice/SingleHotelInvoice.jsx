@@ -14,7 +14,7 @@ export default class SingleHotelInvoice extends Component {
       const response = await Axios.get(
         `http://localhost:3400/Booking/invoice/${this.props.match.params.id}`
       );
-
+      console.log("1234", response);
       this.setState({
         customerInvoice: response.data.data,
         loading: false
@@ -53,6 +53,7 @@ export default class SingleHotelInvoice extends Component {
                       <th>Price (Naira)</th>
                       <th>Date Paid</th>
                       <th>Commission</th>
+                      <th>Comm. Amount (Naira)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -63,6 +64,12 @@ export default class SingleHotelInvoice extends Component {
                           <td>{item.amount / 100}</td>
                           <td>{moment(item.paidAt).format("DD MMM YYYY")}</td>
                           <td>{customerInvoice.percentageValue}%</td>
+                          <td>
+                            {(
+                              (item.amount / 100) *
+                              (customerInvoice.percentageValue / 100)
+                            ).toFixed(2)}
+                          </td>
                         </tr>
                       );
                     })}
@@ -71,9 +78,31 @@ export default class SingleHotelInvoice extends Component {
                 <table className="total-table mt-3">
                   <tbody>
                     <tr className="total-row">
-                      <th className="total-heading">Total Amount Due</th>
+                      <th className="total-heading">Total Amount </th>
                       <th className="total-heading">
-                        &#8358; {customerInvoice.invoice.totalAmount / 100}
+                        &#8358;{" "}
+                        {(customerInvoice.invoice.totalAmount / 100).toFixed(2)}
+                      </th>
+                    </tr>
+                    <tr className="total-row">
+                      <th className="total-heading">Invoice Amount Due</th>
+                      <th className="total-heading">
+                        &#8358;{" "}
+                        {(
+                          (customerInvoice.invoice.totalAmount / 100) *
+                          (customerInvoice.percentageValue / 100)
+                        ).toFixed(2)}
+                      </th>
+                    </tr>
+                    <tr className="total-row">
+                      <th className="total-heading">Remitance Amount Due</th>
+                      <th className="total-heading">
+                        &#8358;{" "}
+                        {(
+                          customerInvoice.invoice.totalAmount / 100 -
+                          (customerInvoice.invoice.totalAmount / 100) *
+                            (customerInvoice.percentageValue / 100)
+                        ).toFixed(2)}
                       </th>
                     </tr>
                   </tbody>

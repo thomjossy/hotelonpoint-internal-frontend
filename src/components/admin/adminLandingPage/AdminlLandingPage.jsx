@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import AdminNavbar from "../adminNavbar/AdminNavbar";
 
 function SingleHotelLandingPage(props) {
   return (
     <section>
-      <AdminNavbar />
       <div className="container p-2 mt-3">
         <div className="row my-5">
           <div className="col-sm-4">

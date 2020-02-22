@@ -76,7 +76,7 @@
   background: #c4bda3;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
   .hop-navbar {
     position: relative;
     background: black;

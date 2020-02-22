@@ -8,59 +8,95 @@ class FileUpload extends Component {
     image: [],
     files: this.props.formik.values.files
   };
-  onFilesChange = image => {
-    image.forEach(img => {
+  // onFilesChange = image => {
+  //   image.forEach(img => {
+  //     this.props.formik.values.files.push(img);
+  //   });
+  //   this.setState({ image });
+  // };
+
+  onFilesChange = files => {
+    this.setState(
+      {
+        files
+      },
+      () => {
+        console.log(this.state.files);
+      }
+    );
+    files.forEach(img => {
       this.props.formik.values.files.push(img);
     });
-    this.setState({ image });
   };
-
   onFilesError(error, file) {
     console.log("error code " + error.code + ": " + error.message);
   }
+
+  filesRemoveOne = file => {
+    this.refs.files.removeFile(file);
+  };
+
+  filesRemoveAll = () => {
+    this.refs.files.removeFiles();
+  };
 
   componentDidMount() {
     window.scrollTo(0, 0);
   }
 
   render() {
-    const { files } = this.state;
+    const { files, image } = this.state;
 
     return (
       <section>
         <br />
+        <h5>
+          Upload 10 Pictures of your hotel (Maximum picture size should be 1
+          megabyte)
+        </h5>
         <div className="mb-4 p-3 custom-shadow">
-          <div className="files">
-            <h5>
-              Upload 4 Pictures of your hotel(Maximum picture size should be
-              1megabyte)
-            </h5>
+          <div className="files" style={{ minHeight: "150px" }}>
             <br />
             <Files
-              className="files-dropzone"
+              ref="files"
+              className="files-dropzone-gallery"
               onChange={this.onFilesChange}
               onError={this.onFilesError}
-              accepts={["image/png", "image/jpeg", ".pdf", "audio/*"]}
-              multiple={true}
-              maxFiles={4}
+              multiple
+              maxFiles={10}
               maxFileSize={10000000}
               minFileSize={0}
               clickable
             >
-              <div className=" piccard">
-                <p className="tex">Drop files here or click to upload</p>
-                <div className="blogphoto">
-                  {files[0] &&
-                    files.map(img => (
+              {files.length > 0 ? (
+                <div className="files-wrapper">
+                  {files.map(file => (
+                    <div className="single-img-div">
                       <img
-                        src={img.preview.url}
-                        alt="just uploaded"
-                        className="imageup"
+                        className="upload-img"
+                        src={file.preview.url}
+                        key={file.id}
                       />
-                    ))}
+                      <i
+                        className="fas fa-trash-alt text-danger delete"
+                        id={file.id}
+                        onClick={this.filesRemoveOne.bind(this, file)}
+                      ></i>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <h3 style={{ cursor: "pointer" }}>
+                    Drop images here, to upload
+                  </h3>
+                </div>
+              )}
             </Files>
+            <br />
+            <button onClick={this.filesRemoveAll}>Remove All Files</button>
+
+            {/* <button onClick={this.filesUpload}>Upload</button> */}
           </div>
         </div>
       </section>

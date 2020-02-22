@@ -53,7 +53,7 @@ class CustomerCareLogin extends React.Component {
         <div className="container mt-3 mb-3">
           <div className="row">
             <div className="col-md-4 text-white">
-              <h1>We are reliable and trust Worthy</h1>
+              {/* <h1>We are reliable and trust Worthy</h1> */}
             </div>
 
             <div className="col-md-6 ">

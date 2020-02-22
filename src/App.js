@@ -17,7 +17,7 @@ import Login from "./components/login/index";
 import AdminLogin from "./components/admin/adminlogin/index";
 import AdminSignUp from "./components/admin/signup/AdminSignUp";
 import NotFound from "./components/NotFound/NotFound";
-
+import Test from "./components/Test";
 import jwtDecode from "jwt-decode";
 import {
   logoutUser,
@@ -60,6 +60,7 @@ function App() {
       <Navbar />
       <div className="wrapper">
         <Switch>
+          {/* <Route path="/test" component={Test} /> */}
           <Route path="/hotel/:id" component={Dashboard} />
           <Route path="/hotel/:id/reviews" component={Reviews} exact />
           <Route path="/login" component={Login} exact />

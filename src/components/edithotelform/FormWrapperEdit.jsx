@@ -361,16 +361,16 @@ export default class FormWrapperEdit extends Component {
       this.setState({ isSubmitting: true });
       try {
         const result = await axios.put(
-          `https://calm-anchorage-14244.herokuapp.com/${this.props.match.params.id}`,
+          `http://localhost:3400/hotel/${this.props.match.params.id}`,
           real
         );
         this.setState({ message: result.data.status, isSubmitting: false });
         toast.success("Successfully Updated");
         console.log("realvalues", real);
         console.log("result", result);
-        // setTimeout(() => {
-        //   window.location.href = `/hotel/${this.props.match.params.id}`;
-        // }, 1000);
+        setTimeout(() => {
+          window.location.href = `/hotel/${this.props.match.params.id}`;
+        }, 1000);
       } catch (err) {
         this.setState({
           message: err.response.data.error,

@@ -9,10 +9,12 @@ import BlogForm from "../blogForm/blogform";
 import Report from "../report/Report";
 import HotelReviewPage from "../hotelreviewpage/HotelReviewPage";
 import CheckAuth from "../../../checkAuth";
+import AdminNavbar from "../adminNavbar/AdminNavbar";
 
 export default function AdminDashboard() {
   return (
     <div>
+      <Route path="/admin" component={AdminNavbar} />
       <CheckAuth path="/admin" component={AdminlLandingPage} exact />
       <br />
       <Route

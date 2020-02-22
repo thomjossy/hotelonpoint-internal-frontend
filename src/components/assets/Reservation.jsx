@@ -174,7 +174,7 @@ export default class Reservation extends Component {
                   <th>Check Out</th>
                   <th>Booked</th>
                   <th>Type of Room</th>
-                  <th> Price</th>
+                  <th>Price (Naira)</th>
                   <th>Booking Number</th>
                   <th colSpan="2">Action</th>
                 </tr>
@@ -190,7 +190,7 @@ export default class Reservation extends Component {
                         <td>{item.checkOut}</td>
                         <td>{moment(item.createdAt).format("YYYY MM DD")}</td>
                         <td>{item.roomType}</td>
-                        <td>{item.amount}</td>
+                        <td>{item.amount / 100}</td>
                         <td>{item.referenceNumber}</td>
                         {item.checkIn ? (
                           <td>Already Checked-In</td>

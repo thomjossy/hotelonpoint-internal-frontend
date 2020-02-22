@@ -352,7 +352,7 @@ class HotelDetailsPage extends Component {
           <div className="col-md-6 mb-3">
             <button
               type="button"
-              className="btn btn-dark btn-block"
+              className="btn btn-danger btn-block"
               onClick={() => this.handleDelete()}
             >
               Delete

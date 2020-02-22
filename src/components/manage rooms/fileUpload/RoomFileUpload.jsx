@@ -8,12 +8,32 @@ class FileUpload extends Component {
     image: [],
     files: this.props.formik.values.files
   };
-  onFilesChange = image => {
-    image.forEach(img => {
+
+  onFilesChange = files => {
+    this.setState(
+      {
+        files
+      },
+      () => {
+        console.log(this.state.files);
+      }
+    );
+    files.forEach(img => {
       this.props.formik.values.files.push(img);
     });
-    this.setState({ image });
   };
+
+  filesRemoveOne = file => {
+    this.refs.files.removeFile(file);
+  };
+
+  filesRemoveAll = () => {
+    this.refs.files.removeFiles();
+  };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   onFilesError(error, file) {
     console.log("error code " + error.code + ": " + error.message);
@@ -23,37 +43,55 @@ class FileUpload extends Component {
 
     return (
       <section>
+        <br />
+        <h3>
+          Upload 5 pictures of the room (Maximum picture size should be 1
+          megabyte)
+        </h3>
         <div className="mb-4 p-3 custom-shadow">
           <div className="files">
-            <h3>Upload a minimum of 4 Pictures of the room</h3>
+            <br />
             <br />
             <Files
-              className="files-dropzone"
+              ref="files"
+              className="files-dropzone-gallery"
               onChange={this.onFilesChange}
               onError={this.onFilesError}
-              accepts={["image/png", "image/jpeg", ".pdf", "audio/*"]}
-              multiple={true}
-              maxFiles={10}
+              multiple
+              maxFiles={5}
               maxFileSize={10000000}
               minFileSize={0}
               clickable
             >
-              <div className=" piccard">
-                <p className="tex">Drop files here or click to upload</p>
-                <div className="blogphoto">
-                  {files[0] &&
-                    files.map((img, index) => (
+              {files.length > 0 ? (
+                <div className="files-wrapper">
+                  {files.map(file => (
+                    <div className="single-img-div">
                       <img
-                        key={index}
-                        src={img.preview.url}
-                        alt="just uploaded"
-                        className="imageup"
+                        className="upload-img"
+                        src={file.preview.url}
+                        key={file.id}
                       />
-                    ))}
+                      <i
+                        className="fas fa-trash-alt text-danger delete"
+                        id={file.id}
+                        onClick={this.filesRemoveOne.bind(this, file)}
+                      ></i>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <h4 style={{ cursor: "pointer" }}>
+                    Drop images here, to upload
+                  </h4>
+                </div>
+              )}
             </Files>
+            <br />
+            <button onClick={this.filesRemoveAll}>Remove All Files</button>
           </div>
+          <br />
         </div>
       </section>
     );

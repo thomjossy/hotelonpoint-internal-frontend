@@ -80,7 +80,7 @@ function Footer() {
                 <br />
                 Term of use
                 <br />
-                Pament policy
+                Payment policy
                 <br />
                 Career
                 <br />

@@ -14,6 +14,7 @@ export default class ApprovedHotels extends Component {
     searchfield: "",
     loading: true,
     pageSize: 10,
+    showModal: true,
     currentPage: 1
   };
 
@@ -32,6 +33,13 @@ export default class ApprovedHotels extends Component {
   handlePageChange = page => {
     this.setState({ currentPage: page });
   };
+  handleShowModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
 
   render() {
     const {
@@ -39,7 +47,8 @@ export default class ApprovedHotels extends Component {
       searchfield,
       loading,
       pageSize,
-      currentPage
+      currentPage,
+      showModal
     } = this.state;
 
     const newApprovedHotels = newHotels.filter(item => item.approved === true);
@@ -74,6 +83,10 @@ export default class ApprovedHotels extends Component {
         console.log(err);
       }
     };
+
+    // const handleDeleteOne = async id => {
+    //   console.log("Hello from id", id);
+    // };
 
     const handleSuspend = async id => {
       const items = {
@@ -114,6 +127,30 @@ export default class ApprovedHotels extends Component {
           <i className="fas fa-search search"></i>
         </div>
         <br />
+
+        {/* <div className={showModal ? "modal-container" : "close-modal"}>
+          <div className="modal-inner">
+            <div className="star-div">
+              <p className="mb-1 mt-2">
+                This Action completely delete the Hotel entirely from the
+                database and it is not reversible, do you wish to continue
+              </p>
+            </div>
+
+            <div className="btn-div">
+              <button
+                className="btn btn-dark"
+                onClick={() => {
+                  this.handleCloseModal(id);
+                }}
+              >
+                Yes
+              </button>
+              <button className="btn btn-primary">No</button>
+            </div>
+            <div></div>
+          </div>
+        </div> */}
         <div className="scrool-div">
           <table className="approvedHotels-table">
             <thead>
@@ -122,7 +159,7 @@ export default class ApprovedHotels extends Component {
                 <th>Name of Hotel</th>
                 <th>Details</th>
                 <th>Action</th>
-                <th>Action</th>
+                {/* <th>Action</th> */}
                 <th>Add VR</th>
               </tr>
             </thead>
@@ -151,12 +188,32 @@ export default class ApprovedHotels extends Component {
                       >
                         Suspend
                       </td>
-                      <td
-                        onClick={() => handleDelete(item._id)}
-                        className="text-danger delete-btn"
+                      {/* {showModal ? (
+                        <td
+                          onClick={() => this.handleCloseModal(item._id)}
+                          // onClick={() => handleDelete(item._id)}
+                          className="text-danger"
+                        >
+                          Delete
+                        </td>
+                      ) : (
+                        <td
+                          onClick={() => this.handleShowModal()}
+                          // onClick={() => handleDelete(item._id)}
+                          className="my-modal "
+                        >
+                          This Action completely delete the Hotel entirely from
+                          the database and it is not reversible, do you wish to
+                          continue Delete
+                        </td>
+                      )} */}
+                      {/* <td
+                        onClick={() => this.handleCloseModal()}
+                        // onClick={() => handleDelete(item._id)}
+                        className="text-danger"
                       >
                         Delete
-                      </td>
+                      </td> */}
                       <td className="approve-btn">
                         <Link to={`/admin/approved-hotels/${item._id}`}>
                           Add
