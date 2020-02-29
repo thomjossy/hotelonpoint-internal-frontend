@@ -229,6 +229,66 @@ export const loginCC = (data, history) => dispatch => {
     });
 };
 
+export const loginAccountant = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/admin/accountlogin`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getCC(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/account/booking";
+    })
+    .catch(err => {
+      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const signUpAccountant = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/admin/account`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.data);
+      dispatch(getAdmin(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/account/booking";
+    })
+    .catch(err => {
+      console.log(err);
+      if (err.message == "Network Error") {
+        dispatch({
+          type: SET_ERRORS,
+          payload: err.message
+        });
+        return alert("There is a very Poor Network");
+      }
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
 export const getAdmin = history => dispatch => {
   dispatch({ type: LOADING_USER });
   axios

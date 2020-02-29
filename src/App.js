@@ -29,6 +29,9 @@ import store from "./redux/store";
 
 import CustomerCareLogin from "./components/customercare/customerCareLogin/CustomerCareLogin";
 import CustomerCareSignUp from "./components/customercare/customerCareSignUp/CustomerCareSignUp";
+import AccountLogin from "./components/accountant/accountantLogin/AccountantLogin";
+import AccountSignUp from "./components/accountant/accountantSignUp/AccountantSignUp";
+import AccountantDashboard from "./components/accountant/accountantDashboard/AccountantDashboard";
 
 // My routes for the hotel owner is in the Dashboard file in the pages folder
 // My routes for the content manager is in the AdminDashboard
@@ -68,7 +71,10 @@ function App() {
           <Route path="/admin-signup" component={AdminSignUp} exact />
           <Route path="/care-login" component={CustomerCareLogin} exact />
           <Route path="/care-signup" component={CustomerCareSignUp} exact />
+          <Route path="/account-login" component={AccountLogin} exact />
+          <Route path="/account-signup" component={AccountSignUp} exact />
           <Route path="/admin" component={AdminDashboard} />
+          <Route path="/account" component={AccountantDashboard} />
           <Route path="/care" component={CustomerCareDashboard} />
           <Route path="/add-property" component={FormWrapper} />
           <Route path="/" component={DashboardHomePage} />
