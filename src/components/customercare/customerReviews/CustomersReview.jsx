@@ -27,7 +27,8 @@ export default class CustomersReview extends Component {
 
   handleApproveReview = async review => {
     const value = {
-      approved: true
+      propName: 'approve',
+        value: true
     };
     try {
       const response = await Axios.put(
@@ -73,7 +74,7 @@ export default class CustomersReview extends Component {
   render() {
     const { loading, customerReviews } = this.state;
     const newCustomerReviews = customerReviews
-      .filter(item => item.approved !== true)
+      .filter(item => item.approve !== true)
       .reverse();
 
     return loading ? (
