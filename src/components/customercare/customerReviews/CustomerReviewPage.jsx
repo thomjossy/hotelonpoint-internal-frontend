@@ -4,11 +4,10 @@ import moment from "moment";
 export default function CustomerReviewPage(props) {
   console.log("props from reviws", props);
   const {
-    comment,
+    review,
     hotelName,
     customerName,
-    date,
-    starRating,
+    totalRating,
     _id,
     isSubmitting,
     handleApproveReview,
@@ -20,16 +19,13 @@ export default function CustomerReviewPage(props) {
       <div className="my-3 custom-shadow p-3 col-10 mx-auto">
         <h5>
           {customerName} &nbsp; &nbsp;{" "}
-          <span className="text-muted">
-            {moment(date).format("DD MM YYYY")}
-          </span>
         </h5>
-        <p>{comment}</p>
+        <p>{review}</p>
         <p>
           <strong>{hotelName}</strong>
         </p>
 
-        <p>{`${starRating} stars`}</p>
+        <p>{`${totalRating} stars`}</p>
         <div className="row">
           <button
             className="btn btn-primary  m-2 w-25"
