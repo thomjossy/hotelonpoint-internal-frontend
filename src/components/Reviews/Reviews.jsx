@@ -98,14 +98,13 @@ export default class Reviews extends Component {
               return (
                 <div className="row my-3 custom-shadow p-4" key={item._id}>
                   <div className="col-md-6">
-                    <p>{item.comment}</p>
+                    <p>{item.review}</p>
                     <div className="reviewer-info">
                       <p>
                         <strong>{item.customerName}</strong>
                       </p>
-                      <p>{moment(item.date).format("DD MMM YYYY")}</p>
                       <div className="star-ratings">
-                        {item.starRating} Stars
+                        {item.totalRating} Stars
                       </div>
                     </div>
                   </div>
@@ -113,6 +112,7 @@ export default class Reviews extends Component {
                     <div className="reply-div">
                       <textarea
                         name="reviewReply"
+                        value={this.state.reviewReply}
                         className="reply-text"
                         placeholder="Leave a reply"
                         rows="5"
